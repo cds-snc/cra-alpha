@@ -1,10 +1,16 @@
 {
-  "name": "az-htm",
+  "name": "cra-alpha",
   "version": "1.0.0",
-  "description": "server rendered components",
+  "description": "We believe that preparing returns on behalf of people who are eligible for CVITP will result in more people receiving benefits",
+  "author": "pcraig3",
+  "license": "MIT",
   "main": "src/server.js",
   "engines": {
     "node": ">=10.15"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cds-snc/cra-alpha.git"
   },
   "scripts": {
     "dev": "nodemon src/server.js",
@@ -15,8 +21,6 @@
   "keywords": [
     "htm"
   ],
-  "author": "pcraig3",
-  "license": "MIT",
   "dependencies": {
     "cookie-session": "^1.3.3",
     "emotion": "^10.0.9",

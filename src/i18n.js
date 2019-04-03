@@ -2,12 +2,10 @@ const Polyglot = require('node-polyglot')
 
 const phrases = {
   en: {
-    page_description: 'This page is all about “{{name}}”',
-    locale_description: 'The current language is English',
+    welcome: 'File your taxes to receive your benefits',
   },
   fr: {
-    page_description: 'Cette page est au sujet de « {{name}} »',
-    locale_description: 'La langue actuelle est le français',
+    welcome: 'Faites votre déclaration pour obtenir vos déductions',
   },
 }
 

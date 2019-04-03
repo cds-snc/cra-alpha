@@ -29,8 +29,6 @@ app.use(
   }),
 )
 
-let locale = 'en'
-
 const getSessionData = (session = {}, enforceExists = false) => {
   const { sin, dobDay, dobMonth, dobYear } = session
 
@@ -41,12 +39,16 @@ const getSessionData = (session = {}, enforceExists = false) => {
   return { sin, dobDay, dobMonth, dobYear }
 }
 
-app.get('/welcome', (req, res) => {
+let locale = 'en'
+
+app.get('/', (req, res) => {
   const Welcome = require('./pages/Welcome.js')
+
+  locale = ['en', 'fr'].includes(req.query.locale) ? req.query.locale : locale
 
   const content = render(
     html`
-      <${Welcome} />
+      <${Welcome} locale=${locale} polyglot=${polyglot} />
     `,
   )
 
@@ -116,32 +118,7 @@ app.get('/logout', (req, res) => {
   res.redirect(302, '/login')
 })
 
-app.get('/locale/:locale', (req, res) => {
-  locale = ['en', 'fr'].includes(req.params.locale) ? req.params.locale : 'en'
-  const content = `<h1>${polyglot.t(`${locale}.locale_description`)}</h1>`
-
-  res.send(renderPage({ title: `locale ${locale}`, locale, content }))
-})
-
-app.get('/:page', (req, res) => {
-  let component = 'Page'
-  // TODO: Try / catch
-  const Page = require(`./pages/${component}.js`)
-
-  const content = render(
-    html`
-      <${Page} name=${req.params.page} locale=${locale} polyglot=${polyglot} />
-    `,
-  )
-
-  res.send(renderPage({ title: req.params.page, locale, content }))
-})
-
-app.get('/', (req, res) => {
-  res.redirect(302, '/index')
-})
-
-// basic HTTP server via express:
+// basic HTTP server via express
 const port = 3000
 app.listen(port, err => {
   if (err) throw err

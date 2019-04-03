@@ -8,12 +8,12 @@ const welcome = css`
   }
 `
 
-const Welcome = () =>
+const Welcome = ({ locale, polyglot }) =>
   html`
     <${Layout}>
       <div class=${welcome}>
         <h1>Claim tax benefits (CTB)</h1>
-        <p>File your taxes to receive your benefits.</p>
+        <p>${polyglot.t(`${locale}.welcome`)}.</p>
 
         <p>You will need to know:</p>
         <ul>
