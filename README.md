@@ -1,28 +1,8 @@
-# az-htm
+# CRA Alpha
 
-This is a tiny [htm](https://github.com/developit/htm) server-rendered app to trial server-side components.
+This is a small frontend to trial user flows for a future CRA service that will help Canadians receive the benefits to which they are entitled.
 
-Components are a great way to build interface, but the client-side only bit raises a11y and perf problems that you need lots of tooling to mitigate.
-
-So can we write our HTML as components that get rendered on the server? The answer is yes. But can we write something we would productionize?
-
-That's still a maybe for me.
-
-This an attempt to get more "production-y" parts of a service to work.
-
-- ✅ 1 page ([express](https://expressjs.com/))
-- ✅ 1 class component ([htm](https://github.com/developit/htm) + [preact](https://github.com/developit/preact) + [preact-render-to-string](https://github.com/developit/preact-render-to-string))
-- ✅ inline CSS
-- ✅ unit tests ([jest](https://jestjs.io/) + [cheerio](https://cheerio.js.org/))
-- ✅ i18n ([node-polyglot](http://airbnb.io/polyglot.js/))
-- ✅ rebuilds on save ([nodemon](https://nodemon.io/))
-- ✅ a CSS library ([emotion](https://emotion.sh/docs/introduction))
-- ✅ linting (sort of, using [eslint](https://eslint.org/))
-
-Might add to this list in future.
-
-**Shout out to [@timarney](https://twitter.com/timarney), whose [htm-ssr-demo](https://github.com/timarney/htm-ssr-demo) was the inspiration for this.**
-
+It's a server-side [express](https://expressjs.com/) application using [htm](https://github.com/developit/htm) to render out JSX-style components on the server.
 
 ## Getting started
 
@@ -30,7 +10,7 @@ Might add to this list in future.
 
 `npm` is a javascript package manager. It downloads project dependencies and runs node applications.
 
-You'll need node version `v10.15.0` or higher to run the app.
+`npm` will complain if you're not on node version `v10.15.0` or higher when you boot up the app.
 
 ### [Install `docker`](https://docs.docker.com/install/)
 
@@ -46,16 +26,14 @@ Pretty slick. 😎
 # install dependencies
 npm install
 
-# run application
+# run application in 'dev' mode
+npm start
+
+# run application in 'prod' mode
 npm start
 ```
 
 The app should be running at [http://localhost:3000/](http://localhost:3000/).
-
-You can change the language by visiting:
-
-- `en`: [http://localhost:3000/locale/en](http://localhost:3000/locale/en)
-- `fr`: [http://localhost:3000/locale/fr](http://localhost:3000/locale/fr)
 
 On a Mac, press `Control` + `C` to quit the running application.
 
@@ -75,10 +53,10 @@ npm run lint
 
 ```bash
 # build an image locally
-docker build -t cdssnc/az-htm .
+docker build -t cdssnc/cra-alpha .
 
 # run the container
-docker run -it -p 3000:3000 cdssnc/az-htm
+docker run -it -p 3000:3000 cdssnc/cra-alpha
 ```
 
 The container should be running at [http://localhost:3000/](http://localhost:3000/).
