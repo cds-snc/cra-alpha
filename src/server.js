@@ -10,13 +10,15 @@ const app = express()
 app
   // serve anything in the 'public' directory as a static file
   .use(express.static('public'))
-  .use(logger('dev'))
   // set security-minded response headers: https://helmetjs.github.io/
   .use(helmet())
   // both of these are needed to parse post request params
   .use(express.urlencoded({ extended: true }))
   .use(express.json())
   .use(cookieSession(cookieSessionConfig))
+
+// if NODE_ENV does not equal 'test', add a request logger
+process.env.NODE_ENV !== 'test' && app.use(logger('dev'))
 
 const getSessionData = (session = {}, enforceExists = false) => {
   const { sin, dobDay, dobMonth, dobYear } = session
