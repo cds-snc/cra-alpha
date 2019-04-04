@@ -18,9 +18,15 @@ action "Run JS linter" {
   args = "run lint"
 }
 
+action "Run jest unit tests" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  needs = ["Install npm dependencies"]
+  args = "test"
+}
+
 action "If master branch" {
   uses = "actions/bin/filter@24a566c2524e05ebedadef0a285f72dc9b631411"
-  needs = ["Run JS linter", "Lint Dockerfile"]
+  needs = ["Run jest unit tests", "Run JS linter", "Lint Dockerfile"]
   args = "branch master"
 }
 

@@ -4,7 +4,7 @@
   "description": "We believe that preparing returns on behalf of people who are eligible for CVITP will result in more people receiving benefits",
   "author": "pcraig3",
   "license": "MIT",
-  "main": "src/server.js",
+  "main": "index.js",
   "engines": {
     "node": ">=10.15"
   },
@@ -13,10 +13,10 @@
     "url": "git://github.com/cds-snc/cra-alpha.git"
   },
   "scripts": {
-    "dev": "nodemon src/server.js",
-    "lint": "node_modules/eslint/bin/eslint.js src",
-    "start": "NODE_ENV=production node src/server.js",
-    "test": "node node_modules/jest/bin/jest.js"
+    "dev": "nodemon index.js",
+    "lint": "node_modules/eslint/bin/eslint.js index.js src",
+    "start": "NODE_ENV=production node index.js",
+    "test": "node node_modules/jest/bin/jest.js src"
   },
   "keywords": [
     "htm"
