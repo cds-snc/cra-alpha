@@ -13,5 +13,5 @@ test('Layout wraps children with <main> element', () => {
     ),
   )
   expect($('main').length).toBe(1)
-  expect($('main').html()).toEqual('<p>hello</p>')
+  expect($('main').html()).toContain('<p>hello</p>')
 })

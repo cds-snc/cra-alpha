@@ -10,7 +10,7 @@ const form = css`
   max-width: 450px;
   padding: 30px;
   margin-top: 50px;
-  border: 2px solid #ddd;
+  border: 2px solid #bfc1c3;
 
   > div {
     margin-bottom: 40px;

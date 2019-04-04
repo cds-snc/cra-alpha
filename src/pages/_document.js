@@ -25,8 +25,12 @@ const document = ({ title, locale, content }) => {
             margin: 20px;
             font-size: 1.4em;
             font-family: sans-serif;
-            word-break: break-word;
             line-height: 1.33;
+          }
+
+          h1 {
+            margin-top: 35px;
+            margin-bottom: 25px;
           }
 
           @media (max-width: 640px) {

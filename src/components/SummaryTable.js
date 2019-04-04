@@ -42,7 +42,7 @@ const summaryRow = css`
       padding-right: 20px;
       padding-top: 10px;
       padding-bottom: 10px;
-      border-bottom: 1px solid #bfc1c3;
+      border-bottom: 1px solid black;
     }
 
     .key {

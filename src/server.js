@@ -4,7 +4,6 @@ const helmet = require('helmet')
 const cookieSession = require('cookie-session')
 const render = require('preact-render-to-string')
 const { html, cookieSessionConfig } = require('./utils')
-const polyglot = require('./i18n.js')
 const renderPage = require('./pages/_document.js')
 
 const app = express()
@@ -38,7 +37,7 @@ app.get('/', (req, res) => {
 
   const content = render(
     html`
-      <${Welcome} locale=${locale} polyglot=${polyglot} />
+      <${Welcome} locale=${locale} />
     `,
   )
 

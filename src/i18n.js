@@ -2,9 +2,12 @@ const Polyglot = require('node-polyglot')
 
 const phrases = {
   en: {
+    alpha:
+      'This site will be changing as we test ideas and learn from folks like you',
     welcome: 'File your taxes to receive your benefits',
   },
   fr: {
+    alpha: 'Ce site va changer souvent à mesure que nous apprendrons de vous.',
     welcome: 'Faites votre déclaration pour obtenir vos déductions',
   },
 }

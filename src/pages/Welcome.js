@@ -1,5 +1,6 @@
 const { css } = require('emotion')
 const { html } = require('../utils.js')
+const polyglot = require('../i18n.js')
 const Layout = require('../components/Layout.js')
 
 const welcome = css`
@@ -8,7 +9,7 @@ const welcome = css`
   }
 `
 
-const Welcome = ({ locale, polyglot }) =>
+const Welcome = ({ locale }) =>
   html`
     <${Layout}>
       <div class=${welcome}>
