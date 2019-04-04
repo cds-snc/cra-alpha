@@ -1,4 +1,5 @@
 const { css } = require('emotion')
+const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
@@ -7,7 +8,7 @@ const confirmation = css`
   position: relative;
 `
 const confirmationNumber = css`
-  border: 2px solid black;
+  border: 2px solid ${theme.color.black};
   padding: 40px 0;
   width: 100%;
   max-width: 400px;

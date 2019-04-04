@@ -1,4 +1,5 @@
 const { css } = require('emotion')
+const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 
 const button = css`
@@ -10,9 +11,9 @@ const button = css`
   margin-top: 0;
   padding: 7px 10px;
   border-radius: 0;
-  color: #000000;
-  background-color: aquamarine;
-  border: 2px solid #595959;
+  color: ${theme.color.black};
+  background-color: ${theme.color.green};
+  border: 2px solid ${theme.color.grey};
   text-align: center;
   vertical-align: top;
   cursor: pointer;

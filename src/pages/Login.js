@@ -1,5 +1,6 @@
 const { html } = require('../utils.js')
 const { css } = require('emotion')
+const { theme } = require('../styles.js')
 const Layout = require('../components/Layout.js')
 const Input = require('../components/Input.js')
 const DateOfBirth = require('../components/DateOfBirth.js')
@@ -10,7 +11,7 @@ const form = css`
   max-width: 450px;
   padding: 30px;
   margin-top: 50px;
-  border: 2px solid #bfc1c3;
+  border: 2px solid ${theme.color.greyLight};
 
   > div {
     margin-bottom: 40px;

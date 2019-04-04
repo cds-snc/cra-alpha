@@ -1,4 +1,5 @@
 const { css } = require('emotion')
+const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 const Input = require('./Input.js')
 
@@ -20,7 +21,7 @@ const fieldset = css`
   }
 
   .hint {
-    color: #595959;
+    color: ${theme.color.grey};
     font-size: 0.9em;
     margin-bottom: ${marginBottom};
   }

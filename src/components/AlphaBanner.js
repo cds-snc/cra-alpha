@@ -1,11 +1,12 @@
 const { css } = require('emotion')
+const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 
 const alphaBanner = css`
   padding-top: 10px;
   padding-bottom: 10px;
   margin-top: -20px;
-  border-bottom: 1px solid #bfc1c3;
+  border-bottom: 1px solid ${theme.color.greyLight};
 
   p {
     display: table;
@@ -19,7 +20,7 @@ const alphaBanner = css`
     display: inline-block;
     padding: 4px 8px;
     padding-bottom: 1px;
-    outline: 2px solid #222;
+    outline: 2px solid ${theme.color.black};
     outline-offset: -2px;
     color: #000;
     background-color: transparent;

@@ -1,4 +1,5 @@
 const { css } = require('emotion')
+const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 
 const input = css`
@@ -9,7 +10,7 @@ const input = css`
 
   input {
     font: 400 1em sans-serif;
-    border: 2px solid black;
+    border: 2px solid ${theme.color.black};
     width: 100%;
     height: 40px;
     margin-top: 0;

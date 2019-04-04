@@ -1,4 +1,5 @@
 const { css } = require('emotion')
+const { theme, visuallyHidden } = require('../styles.js')
 const { html } = require('../utils.js')
 
 const summaryRow = css`
@@ -10,7 +11,7 @@ const summaryRow = css`
   /* on smaller screens */
   @media (max-width: 640px) {
     margin-bottom: 15px;
-    border-bottom: 1px solid #bfc1c3;
+    border-bottom: 1px solid ${theme.color.grey};
   }
 
   .key,
@@ -42,7 +43,7 @@ const summaryRow = css`
       padding-right: 20px;
       padding-top: 10px;
       padding-bottom: 10px;
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid ${theme.color.black};
     }
 
     .key {
@@ -83,8 +84,8 @@ const SummaryRow = ({ row: { key, value } = {} }) => {
       <dd class="action">
         <a href="/edit">
           Change
-          <span class="visuallyHidden"
-            >${` ${value && value.toLowerCase()}`}</span
+          <span class="${visuallyHidden}"
+            >${` ${key && key.toLowerCase()}`}</span
           >
         </a>
       </dd>
