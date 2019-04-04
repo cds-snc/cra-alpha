@@ -1,8 +1,6 @@
 workflow "Build and test on push" {
   on = "push"
-  resolves = [
-    "If master branch",
-  ]
+  resolves = ["Docker Registry"]
 }
 
 action "Lint Dockerfile" {
@@ -30,4 +28,10 @@ action "If master branch" {
   uses = "actions/bin/filter@24a566c2524e05ebedadef0a285f72dc9b631411"
   needs = ["Run Jest unit tests", "Run JS linter", "Lint Dockerfile"]
   args = "branch workflow"
+}
+
+action "Docker Registry" {
+  uses = "actions/docker/login@8cdf801b322af5f369e00d85e9cf3a7122f49108"
+  needs = ["If master branch"]
+  secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
 }
