@@ -2,6 +2,15 @@ const { css } = require('emotion')
 const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
 
+const confirmation = css`
+  position: relative;
+
+  .logout {
+    position: absolute;
+    top: 20px;
+    right: 0;
+  }
+`
 const confirmationNumber = css`
   border: 2px solid black;
   padding: 40px 0;
@@ -20,7 +29,8 @@ const confirmationNumber = css`
 const Confirmation = () =>
   html`
     <${Layout}>
-      <div>
+      <div class=${confirmation}>
+        <a class="logout" href="/logout">Log out</a>
         <h1>Success! 🥳🙌</h1>
         <p>🌈 Good job, Matthew! 🌈</p>
         <p>
@@ -38,7 +48,6 @@ const Confirmation = () =>
         </p>
 
         <br />
-        <a href="/logout">Log out</a>
       </div>
     <//>
   `
