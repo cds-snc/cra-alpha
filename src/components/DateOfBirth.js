@@ -1,8 +1,7 @@
 const { css } = require('emotion')
+const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 const Input = require('./Input.js')
-
-const marginBottom = '10px'
 
 const fieldset = css`
   margin: 0;
@@ -10,7 +9,7 @@ const fieldset = css`
   border: none;
 
   legend {
-    margin-bottom: ${marginBottom};
+    margin-bottom: ${theme.space.xs};
     font-weight: 700;
   }
 
@@ -20,14 +19,14 @@ const fieldset = css`
   }
 
   .hint {
-    color: #595959;
+    color: ${theme.color.grey};
     font-size: 0.9em;
-    margin-bottom: ${marginBottom};
+    margin-bottom: ${theme.space.xs};
   }
 
   #dateInput > div {
     display: inline-block;
-    margin-right: 18px;
+    margin-right: ${theme.space.md};
   }
 `
 

@@ -1,16 +1,17 @@
 const { css } = require('emotion')
+const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 
 const alphaBanner = css`
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-top: -20px;
-  border-bottom: 1px solid #bfc1c3;
+  padding-top: ${theme.space.xs};
+  padding-bottom: ${theme.space.xs};
+  margin-top: -${theme.space.md};
+  border-bottom: 1px solid ${theme.color.greyLight};
 
   p {
     display: table;
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.7em;
     line-height: 1.25;
   }
 
@@ -19,14 +20,14 @@ const alphaBanner = css`
     display: inline-block;
     padding: 4px 8px;
     padding-bottom: 1px;
-    outline: 2px solid #222;
+    outline: 2px solid ${theme.color.black};
     outline-offset: -2px;
     color: #000;
     background-color: transparent;
     letter-spacing: 1px;
     text-decoration: none;
     text-transform: uppercase;
-    margin-right: 10px;
+    margin-right: ${theme.space.xs};
   }
 
   span {

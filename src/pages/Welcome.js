@@ -1,11 +1,12 @@
 const { css } = require('emotion')
+const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 const polyglot = require('../i18n.js')
 const Layout = require('../components/Layout.js')
 
 const welcome = css`
   li {
-    margin-bottom: 5px;
+    margin-bottom: ${theme.space.xxs};
   }
 `
 

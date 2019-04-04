@@ -1,6 +1,5 @@
 # TODO
 
-- styles.js
 - html template linting?
 - unit tests for all components
 - prod vs dev
@@ -24,3 +23,4 @@
 - css library
 - clean up the server config stuff
 - tests for response headers
+- styles.js

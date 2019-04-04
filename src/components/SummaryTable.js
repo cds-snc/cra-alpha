@@ -1,4 +1,5 @@
 const { css } = require('emotion')
+const { theme, visuallyHidden } = require('../styles.js')
 const { html } = require('../utils.js')
 
 const summaryRow = css`
@@ -9,8 +10,8 @@ const summaryRow = css`
 
   /* on smaller screens */
   @media (max-width: 640px) {
-    margin-bottom: 15px;
-    border-bottom: 1px solid #bfc1c3;
+    margin-bottom: ${theme.space.sm};
+    border-bottom: 1px solid ${theme.color.grey};
   }
 
   .key,
@@ -21,7 +22,7 @@ const summaryRow = css`
   }
 
   .key {
-    margin-bottom: 5px;
+    margin-bottom: ${theme.space.xxs};
   }
 
   .value {
@@ -30,7 +31,7 @@ const summaryRow = css`
 
   .action {
     margin: 0;
-    margin-bottom: 15px;
+    margin-bottom: ${theme.space.sm};
   }
 
   /* on larger screens */
@@ -39,10 +40,10 @@ const summaryRow = css`
     .value,
     .action {
       display: table-cell;
-      padding-right: 20px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid black;
+      padding-right: ${theme.space.lg};
+      padding-top: ${theme.space.xs};
+      padding-bottom: ${theme.space.xs};
+      border-bottom: 1px solid ${theme.color.black};
     }
 
     .key {
@@ -62,8 +63,12 @@ const summaryRow = css`
 
   /* on smaller screens */
   @media (max-width: 640px) {
+    .key {
+      font-weight: 700;
+    }
+
     .value {
-      margin-bottom: 15px;
+      margin-bottom: ${theme.space.sm};
     }
   }
 `
@@ -79,8 +84,8 @@ const SummaryRow = ({ row: { key, value } = {} }) => {
       <dd class="action">
         <a href="/edit">
           Change
-          <span class="visuallyHidden"
-            >${` ${value && value.toLowerCase()}`}</span
+          <span class="${visuallyHidden}"
+            >${` ${key && key.toLowerCase()}`}</span
           >
         </a>
       </dd>
