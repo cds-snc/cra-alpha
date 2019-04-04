@@ -1,6 +1,7 @@
 const { html } = require('../utils.js')
 const { css } = require('emotion')
 const Layout = require('../components/Layout.js')
+const SummaryTable = require('../components/SummaryTable.js')
 const Button = require('../components/Button.js')
 
 const dashboard = css`
@@ -8,21 +9,6 @@ const dashboard = css`
 
   > div {
     margin-bottom: 30px;
-  }
-
-  p {
-    padding: 0;
-    margin: 0;
-    margin-bottom: 10px;
-  }
-
-  pre {
-    margin: 0;
-    font-size: 1.1em;
-    display: inline-block;
-    border: 2px solid grey;
-    padding: 5px 10px 3px;
-    background-color: #f9f9f9;
   }
 
   .logout {
@@ -36,32 +22,23 @@ const submitButton = css`
   width: 200px;
 `
 
-const Dashboard = ({ data: { sin, dobDay, dobMonth, dobYear } = {} }) =>
+const makeRows = ({ sin, dobDay, dobMonth, dobYear, name, address }) => {
+  return [
+    { key: 'Name', value: name },
+    { key: 'Social Insurance Number', value: sin },
+    { key: 'Date of Birth', value: [dobDay, dobMonth, dobYear].join('-') },
+    { key: 'Mailing address', value: address },
+  ]
+}
+
+const Dashboard = ({ data = {} }) =>
   html`
     <${Layout}>
       <div class=${dashboard}>
         <a class="logout" href="/logout">Log out</a>
         <h1>Dashboard</h1>
         <div>
-          <p>Name</p>
-          <p><pre>Matthew Morris</pre></p>
-        </div>
-        <div>
-          <p>Social Insurance Number</p>
-          <p><pre>${sin}</pre></p>
-        </div>
-        <div>
-          <p>Date of Birth</p>
-          <p><pre>${`${dobDay}-${dobMonth}-${dobYear}`}</pre></p>
-        </div>
-        <div>
-          <p>Address</p>
-          <p><pre>
-380 Lewis St
-Ottawa
-Ontario
-K2P 2P6
-          </pre></p>
+          <${SummaryTable} rows=${makeRows(data)} //>
         </div>
 
         <br />

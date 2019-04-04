@@ -90,9 +90,12 @@ app.get('/dashboard', (req, res) => {
 
   const Dashboard = require('./pages/Dashboard')
 
+  const name = 'Matthew Morris'
+  const address = '380 Lewis St\nOttawa\nOntario\nK2P 2P6'
+
   const content = render(
     html`
-      <${Dashboard} data=${data} />
+      <${Dashboard} data=${{ ...data, name, address }} />
     `,
   )
 
