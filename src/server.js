@@ -124,7 +124,8 @@ app.get('/logout', (req, res) => {
 app.get('/alpha', (req, res) => {
   const content =
     '<h1>Alpha</h1> \
-    <p>This site will be changing often as we learn from folks like you.</p>'
+    <p>This site will be changing often as we learn from folks like you.</p> \
+    <p>[First name] [Last name]</p>'
 
   res.send(renderPage({ title: 'Alpha', locale, content }))
 })
