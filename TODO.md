@@ -7,7 +7,6 @@
 - tests for headers + redirects
 - better i18n
 - an api-like thing for logging + data
-- clean up the server config stuff
 - clean up page rendering inside routes
 
 # DONE
@@ -19,3 +18,4 @@
 - i18n
 - linting
 - css library
+- clean up the server config stuff

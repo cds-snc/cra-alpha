@@ -3,35 +3,21 @@ const logger = require('morgan')
 const helmet = require('helmet')
 const cookieSession = require('cookie-session')
 const render = require('preact-render-to-string')
-const { html } = require('./utils')
+const { html, cookieSessionConfig } = require('./utils')
 const polyglot = require('./i18n.js')
 const renderPage = require('./pages/_document.js')
 
 const app = express()
 app
+  // serve anything in the 'public' directory as a static file
+  .use(express.static('public'))
   .use(logger('dev'))
   // set security-minded response headers: https://helmetjs.github.io/
   .use(helmet())
   // both of these are needed to parse post request params
   .use(express.urlencoded({ extended: true }))
   .use(express.json())
-  .use(express.static('public'))
-
-const halfAnHour = 1000 * 60 * 30
-const sessionName = `az-htm-${process.env.COOKIE_SECRET ||
-  Math.floor(new Date().getTime() / halfAnHour)}`
-
-app.use(
-  cookieSession({
-    name: sessionName,
-    secret: sessionName,
-    cookie: {
-      httpOnly: true,
-      maxAge: halfAnHour,
-      sameSite: true,
-    },
-  }),
-)
+  .use(cookieSession(cookieSessionConfig))
 
 const getSessionData = (session = {}, enforceExists = false) => {
   const { sin, dobDay, dobMonth, dobYear } = session
