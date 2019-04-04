@@ -29,5 +29,5 @@ action "Run Jest unit tests" {
 action "If master branch" {
   uses = "actions/bin/filter@24a566c2524e05ebedadef0a285f72dc9b631411"
   needs = ["Run Jest unit tests", "Run JS linter", "Lint Dockerfile"]
-  args = "branch master"
+  args = "branch workflow"
 }
