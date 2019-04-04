@@ -4,7 +4,7 @@
 - html template linting?
 - unit tests for all components
 - prod vs dev
-- tests for headers + redirects
+- tests for redirects
 - better i18n
 - an api-like thing for logging + data
 - clean up page rendering inside routes
@@ -19,3 +19,4 @@
 - linting
 - css library
 - clean up the server config stuff
+- tests for response headers
