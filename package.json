@@ -16,7 +16,7 @@
     "dev": "nodemon index.js",
     "lint": "node_modules/eslint/bin/eslint.js index.js src",
     "start": "NODE_ENV=production node index.js",
-    "test": "node node_modules/jest/bin/jest.js src/__tests__/server.test.js"
+    "test": "node node_modules/jest/bin/jest.js src"
   },
   "keywords": [
     "htm"
