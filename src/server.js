@@ -15,6 +15,7 @@ app
   // both of these are needed to parse post request params
   .use(express.urlencoded({ extended: true }))
   .use(express.json())
+  .use(express.static('public'))
 
 const halfAnHour = 1000 * 60 * 30
 const sessionName = `az-htm-${process.env.COOKIE_SECRET ||
