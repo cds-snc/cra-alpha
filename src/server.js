@@ -87,6 +87,16 @@ app.get('/dashboard', (req, res) => {
   res.send(renderPage({ title: 'Dashboard', locale, content }))
 })
 
+app.get('/edit', (req, res) => {
+  const content = `
+    <h1>Editing coming soon</h1>
+    <p>Editing isn’t working yet, so for now you have to print out this website, change your info, and then mail it to Nancy McKenna.</p>
+    <a href="/dashboard">← Go back</a>
+    `
+
+  res.send(renderPage({ title: '[WIP] Edit', locale, content }))
+})
+
 app.get('/confirmation', (req, res) => {
   const data = getSessionData(req.session, true)
 

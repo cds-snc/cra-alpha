@@ -8,6 +8,10 @@
 - better i18n
 - an api-like thing for logging + data
 - clean up page rendering inside routes
+- 404 page
+- 500 page
+- clean up the routes part of the server file
+- pass locale easily to any component
 
 # DONE
 

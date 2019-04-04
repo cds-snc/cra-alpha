@@ -77,7 +77,7 @@ const SummaryRow = ({ row: { key, value } = {} }) => {
         ${value}
       </dd>
       <dd class="action">
-        <a class="govuk-link" href="#">
+        <a href="/edit">
           Change
           <span class="visuallyHidden"
             >${` ${value && value.toLowerCase()}`}</span

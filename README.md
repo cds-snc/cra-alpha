@@ -33,11 +33,9 @@ npm start
 npm start
 ```
 
-The app should be running at [http://localhost:3000/](http://localhost:3000/).
+The app should be running at [http://localhost:3000/](http://localhost:3000/). With `npm run dev`, saving a file will restart the server automatically.
 
 On a Mac, press `Control` + `C` to quit the running application.
-
-(That said, the server restarts when you make changes to files, so you don't have to stop running to see updates.)
 
 ### Run tests with npm
 

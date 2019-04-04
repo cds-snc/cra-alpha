@@ -27,7 +27,7 @@ const Welcome = ({ locale }) =>
           up to date, you will be able to file your return immediately.
         </p>
 
-        <a href="/login">Get started →</a>
+        <a href="/login">Get started <span aria-hidden="true">→</span></a>
       </div>
     <//>
   `

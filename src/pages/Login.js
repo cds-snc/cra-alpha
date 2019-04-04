@@ -38,7 +38,7 @@ const Login = ({ data: { sin = '', ...props } = {} }) =>
           <${DateOfBirth} ...${props} />
         </div>
 
-        <${Button} style=${loginButton}>Login<//>
+        <${Button} style=${loginButton}>Log in<//>
       </form>
     <//>
   `
