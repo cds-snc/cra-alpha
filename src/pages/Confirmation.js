@@ -14,7 +14,8 @@ const confirmation = css`
 const confirmationNumber = css`
   border: 2px solid black;
   padding: 40px 0;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   text-align: center;
 
   .confirmationNumber--title {

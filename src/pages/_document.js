@@ -34,7 +34,7 @@ const document = ({ title, locale, content }) => {
           }
 
           @media (max-width: 640px) {
-            body { font-size: 1.2em; }
+            body { font-size: 1.1em; }
           }
 
           .visuallyHidden {

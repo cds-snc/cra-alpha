@@ -10,7 +10,7 @@ const alphaBanner = css`
   p {
     display: table;
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.7em;
     line-height: 1.25;
   }
 

@@ -62,6 +62,10 @@ const summaryRow = css`
 
   /* on smaller screens */
   @media (max-width: 640px) {
+    .key {
+      font-weight: 700;
+    }
+
     .value {
       margin-bottom: 15px;
     }
