@@ -1,6 +1,6 @@
 workflow "Build and test on push" {
   on = "push"
-  resolves = ["Push container to Docker Hub"]
+  resolves = ["Update container image in Azure App Service for Containers"]
 }
 
 action "Lint Dockerfile" {
