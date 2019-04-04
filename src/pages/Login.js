@@ -9,12 +9,12 @@ const Button = require('../components/Button.js')
 const form = css`
   width: 100%;
   max-width: 450px;
-  padding: 30px;
-  margin-top: 50px;
+  padding: ${theme.space.lg};
+  margin-top: ${theme.space.xl};
   border: 2px solid ${theme.color.greyLight};
 
   > div {
-    margin-bottom: 40px;
+    margin-bottom: ${theme.space.xl};
   }
 `
 

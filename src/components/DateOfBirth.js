@@ -3,15 +3,13 @@ const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 const Input = require('./Input.js')
 
-const marginBottom = '10px'
-
 const fieldset = css`
   margin: 0;
   padding: 0;
   border: none;
 
   legend {
-    margin-bottom: ${marginBottom};
+    margin-bottom: ${theme.space.xs};
     font-weight: 700;
   }
 
@@ -23,12 +21,12 @@ const fieldset = css`
   .hint {
     color: ${theme.color.grey};
     font-size: 0.9em;
-    margin-bottom: ${marginBottom};
+    margin-bottom: ${theme.space.xs};
   }
 
   #dateInput > div {
     display: inline-block;
-    margin-right: 18px;
+    margin-right: ${theme.space.md};
   }
 `
 

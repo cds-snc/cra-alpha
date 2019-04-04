@@ -9,13 +9,13 @@ const confirmation = css`
 `
 const confirmationNumber = css`
   border: 2px solid ${theme.color.black};
-  padding: 40px 0;
+  padding: ${theme.space.xl} 0;
   width: 100%;
   max-width: 400px;
   text-align: center;
 
   .confirmationNumber--title {
-    margin-bottom: 20px;
+    margin-bottom: ${theme.space.md};
   }
 
   .confirmationNumber {

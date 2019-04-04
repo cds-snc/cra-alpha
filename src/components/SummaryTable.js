@@ -10,7 +10,7 @@ const summaryRow = css`
 
   /* on smaller screens */
   @media (max-width: 640px) {
-    margin-bottom: 15px;
+    margin-bottom: ${theme.space.sm};
     border-bottom: 1px solid ${theme.color.grey};
   }
 
@@ -22,7 +22,7 @@ const summaryRow = css`
   }
 
   .key {
-    margin-bottom: 5px;
+    margin-bottom: ${theme.space.xxs};
   }
 
   .value {
@@ -31,7 +31,7 @@ const summaryRow = css`
 
   .action {
     margin: 0;
-    margin-bottom: 15px;
+    margin-bottom: ${theme.space.sm};
   }
 
   /* on larger screens */
@@ -40,9 +40,9 @@ const summaryRow = css`
     .value,
     .action {
       display: table-cell;
-      padding-right: 20px;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-right: ${theme.space.lg};
+      padding-top: ${theme.space.xs};
+      padding-bottom: ${theme.space.xs};
       border-bottom: 1px solid ${theme.color.black};
     }
 
@@ -68,7 +68,7 @@ const summaryRow = css`
     }
 
     .value {
-      margin-bottom: 15px;
+      margin-bottom: ${theme.space.sm};
     }
   }
 `

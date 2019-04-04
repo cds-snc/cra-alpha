@@ -1,5 +1,6 @@
-const { html } = require('../utils.js')
 const { css } = require('emotion')
+const { theme } = require('../styles.js')
+const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
@@ -9,7 +10,7 @@ const dashboard = css`
   position: relative;
 
   > div {
-    margin-bottom: 30px;
+    margin-bottom: ${theme.space.lg};
   }
 `
 

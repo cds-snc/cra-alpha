@@ -5,7 +5,7 @@ const { html } = require('../utils.js')
 const input = css`
   label {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: ${theme.space.xs};
   }
 
   input {

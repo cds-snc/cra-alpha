@@ -3,9 +3,9 @@ const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 
 const alphaBanner = css`
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-top: -20px;
+  padding-top: ${theme.space.xs};
+  padding-bottom: ${theme.space.xs};
+  margin-top: -${theme.space.md};
   border-bottom: 1px solid ${theme.color.greyLight};
 
   p {
@@ -27,7 +27,7 @@ const alphaBanner = css`
     letter-spacing: 1px;
     text-decoration: none;
     text-transform: uppercase;
-    margin-right: 10px;
+    margin-right: ${theme.space.xs};
   }
 
   span {

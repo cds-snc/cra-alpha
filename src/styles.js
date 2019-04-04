@@ -11,6 +11,15 @@ const theme = {
     focus: '#FFBF47',
     green: 'aquamarine',
   },
+  space: {
+    xxs: '5px',
+    xs: '10px',
+    sm: '15px',
+    md: '20px',
+    lg: '30px',
+    xl: '40px',
+    xxl: '60px',
+  },
 }
 
 const visuallyHidden = css`
