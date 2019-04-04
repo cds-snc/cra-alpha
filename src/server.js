@@ -122,12 +122,12 @@ app.get('/logout', (req, res) => {
   res.redirect(302, '/login')
 })
 
-/* TODO: delete this by Monday, April 8th */
+/* TODO: delete this by Thursday, April 11th */
 app.get('/alpha', (req, res) => {
   const content =
     '<h1>Alpha</h1> \
     <p>This site will be changing often as we learn from folks like you.</p> \
-    <p>[First name] [Last name]</p>'
+    <p>[Full name]</p>'
 
   res.send(renderPage({ title: 'Alpha', locale, content }))
 })
