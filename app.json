@@ -1,0 +1,11 @@
+{
+  "name": "cra-alpha",
+  "description": "We believe that preparing returns on behalf of people who are eligible for CVITP will result in more people receiving benefits",
+  "formation": {},
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
