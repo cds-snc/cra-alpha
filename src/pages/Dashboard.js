@@ -1,6 +1,7 @@
 const { html } = require('../utils.js')
 const { css } = require('emotion')
 const Layout = require('../components/Layout.js')
+const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
 const Button = require('../components/Button.js')
 
@@ -9,12 +10,6 @@ const dashboard = css`
 
   > div {
     margin-bottom: 30px;
-  }
-
-  .logout {
-    position: absolute;
-    top: 20px;
-    right: 0;
   }
 `
 
@@ -35,7 +30,7 @@ const Dashboard = ({ data = {} }) =>
   html`
     <${Layout}>
       <div class=${dashboard}>
-        <a class="logout" href="/logout">Log out</a>
+        <${LogoutLink} />
         <h1>Dashboard</h1>
         <div>
           <${SummaryTable} rows=${makeRows(data)} //>
