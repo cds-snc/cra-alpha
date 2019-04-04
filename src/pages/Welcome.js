@@ -17,6 +17,7 @@ const Welcome = ({ locale }) =>
         <h1>Claim tax benefits (CTB)</h1>
         <p>${polyglot.t(`${locale}.welcome`)}.</p>
 
+        <p>HEROKU REVIEW APP</p>
         <p>You will need to know:</p>
         <ul>
           <li>Your Social Insurance Number</li>
