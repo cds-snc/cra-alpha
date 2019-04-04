@@ -21,7 +21,7 @@ action "Run JS linter" {
 action "If master branch" {
   uses = "actions/bin/filter@24a566c2524e05ebedadef0a285f72dc9b631411"
   needs = ["Run JS linter", "Lint Dockerfile"]
-  args = "branch workflow"
+  args = "branch master"
 }
 
 action "Login to Docker Hub" {
