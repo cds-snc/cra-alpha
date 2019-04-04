@@ -111,6 +111,15 @@ app.get('/logout', (req, res) => {
   res.redirect(302, '/login')
 })
 
+/* TODO: delete this by Monday, April 8th */
+app.get('/alpha', (req, res) => {
+  const content =
+    '<h1>Alpha</h1> \
+    <p>This site will be changing often as we learn from folks like you.</p>'
+
+  res.send(renderPage({ title: 'Alpha', locale, content }))
+})
+
 // basic HTTP server via express
 const port = 3000
 app.listen(port, err => {
