@@ -8,7 +8,8 @@ const phrases = {
   },
   fr: {
     alpha: 'Ce site va changer souvent à mesure que nous apprendrons de vous.',
-    welcome: 'Faites votre déclaration pour obtenir vos déductions',
+    welcome:
+      'Veuillez compléter votre déclaration pour obtenir vos prestations',
   },
 }
 
