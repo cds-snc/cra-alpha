@@ -31,8 +31,8 @@ describe('Test server responses', () => {
     expect(response.headers['x-powered-by']).toBeUndefined()
   })
 
-  test('it should return "Alpha" in the h1 tag for /alpha', async () => {
+  test('it should return "CRA Alpha" in the h1 tag for /alpha', async () => {
     const response = await request(app).get('/alpha')
-    expect(response.text).toContain('<h1>Alpha</h1>')
+    expect(response.text).toContain('<h1>CRA Alpha</h1>')
   })
 })
