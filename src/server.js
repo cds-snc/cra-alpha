@@ -125,7 +125,7 @@ app.get('/logout', (req, res) => {
 /* TODO: delete this by Thursday, April 11th */
 app.get('/alpha', (req, res) => {
   const content =
-    '<h1>Alpha</h1> \
+    '<h1>CRA Alpha</h1> \
     <p>This site will be changing often as we learn from folks like you.</p> \
     <p>[Full name]</p>'
 
