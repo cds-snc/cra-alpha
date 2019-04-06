@@ -6,8 +6,15 @@ const render = require('preact-render-to-string')
 const { html, cookieSessionConfig } = require('./utils')
 const renderPage = require('./pages/_document.js')
 
+let locale = 'en'
+
 const app = express()
 app
+  // set locale using express middleware
+  .use(function(req, res, next) {
+    locale = ['en', 'fr'].includes(req.query.locale) ? req.query.locale : locale
+    next()
+  })
   // serve anything in the 'public' directory as a static file
   .use(express.static('public'))
   // set security-minded response headers: https://helmetjs.github.io/
@@ -30,12 +37,8 @@ const getSessionData = (session = {}, enforceExists = false) => {
   return { sin, dobDay, dobMonth, dobYear }
 }
 
-let locale = 'en'
-
 app.get('/', (req, res) => {
   const Welcome = require('./pages/Welcome.js')
-
-  locale = ['en', 'fr'].includes(req.query.locale) ? req.query.locale : locale
 
   const content = render(
     html`
