@@ -1,5 +1,6 @@
 const { renderStylesToString } = require('emotion-server')
-const { metaIfSHA } = require('../utils.js')
+const render = require('preact-render-to-string')
+const { html, metaIfSHA } = require('../utils.js')
 
 const document = ({ title, locale, content }) => {
   return `
@@ -45,8 +46,29 @@ const document = ({ title, locale, content }) => {
   `
 }
 
-const renderPage = ({ title, locale, content }) => {
+const _renderDocument = ({ title, locale, content }) => {
   return document({ title, locale, content: renderStylesToString(content) })
 }
 
-module.exports = renderPage
+const renderPage = ({ locale, pageComponent, title = '', props }) => {
+  const Page = require(`./${pageComponent}.js`)
+
+  const content = render(
+    html`
+      <${Page} ...${props} />
+    `,
+  )
+
+  // if title is not explicitly passed in, use the name of the page component
+  title = title || pageComponent
+  return _renderDocument({
+    title,
+    locale,
+    content: renderStylesToString(content),
+  })
+}
+
+module.exports = {
+  renderPage,
+  _renderDocument,
+}
