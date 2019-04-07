@@ -2,12 +2,18 @@ const express = require('express')
 const logger = require('morgan')
 const helmet = require('helmet')
 const cookieSession = require('cookie-session')
-const render = require('preact-render-to-string')
-const { html, cookieSessionConfig } = require('./utils')
-const renderPage = require('./pages/_document.js')
+const { cookieSessionConfig } = require('./utils')
+const { renderPage, _renderDocument } = require('./pages/_document.js')
+
+let locale = 'en'
 
 const app = express()
 app
+  // set locale using express middleware
+  .use(function(req, res, next) {
+    locale = ['en', 'fr'].includes(req.query.locale) ? req.query.locale : locale
+    next()
+  })
   // serve anything in the 'public' directory as a static file
   .use(express.static('public'))
   // set security-minded response headers: https://helmetjs.github.io/
@@ -30,32 +36,19 @@ const getSessionData = (session = {}, enforceExists = false) => {
   return { sin, dobDay, dobMonth, dobYear }
 }
 
-let locale = 'en'
-
 app.get('/', (req, res) => {
-  const Welcome = require('./pages/Welcome.js')
-
-  locale = ['en', 'fr'].includes(req.query.locale) ? req.query.locale : locale
-
-  const content = render(
-    html`
-      <${Welcome} locale=${locale} />
-    `,
-  )
-
-  res.send(renderPage({ title: 'Welcome', locale, content }))
+  res.send(renderPage({ locale, pageComponent: 'Welcome', props: { locale } }))
 })
 
 app.get('/login', (req, res) => {
-  const Login = require('./pages/Login.js')
-
-  const content = render(
-    html`
-      <${Login} data=${getSessionData(req.session)} />
-    `,
+  res.send(
+    renderPage({
+      locale,
+      title: 'Log in',
+      pageComponent: 'Login',
+      props: { data: getSessionData(req.session) },
+    }),
   )
-
-  res.send(renderPage({ title: 'Log in', locale, content }))
 })
 
 app.post('/login', (req, res) => {
@@ -75,18 +68,16 @@ app.get('/dashboard', (req, res) => {
     return res.redirect(302, '/login')
   }
 
-  const Dashboard = require('./pages/Dashboard')
-
   const name = 'Matthew Morris'
   const address = '380 Lewis St\nOttawa\nOntario\nK2P 2P6'
 
-  const content = render(
-    html`
-      <${Dashboard} data=${{ ...data, name, address }} />
-    `,
+  res.send(
+    renderPage({
+      locale,
+      pageComponent: 'Dashboard',
+      props: { data: { ...data, name, address } },
+    }),
   )
-
-  res.send(renderPage({ title: 'Dashboard', locale, content }))
 })
 
 app.get('/edit', (req, res) => {
@@ -96,7 +87,7 @@ app.get('/edit', (req, res) => {
     <a href="/dashboard">← Go back</a>
     `
 
-  res.send(renderPage({ title: '[WIP] Edit', locale, content }))
+  res.send(_renderDocument({ title: '[WIP] Edit', locale, content }))
 })
 
 app.get('/confirmation', (req, res) => {
@@ -106,15 +97,12 @@ app.get('/confirmation', (req, res) => {
     return res.redirect(302, '/login')
   }
 
-  const Confirmation = require('./pages/Confirmation')
-
-  const content = render(
-    html`
-      <${Confirmation} />
-    `,
+  res.send(
+    renderPage({
+      locale,
+      pageComponent: 'Confirmation',
+    }),
   )
-
-  res.send(renderPage({ title: 'Confirmation', locale, content }))
 })
 
 app.get('/logout', (req, res) => {
@@ -129,7 +117,7 @@ app.get('/alpha', (req, res) => {
     <p>This site will be changing often as we learn from folks like you.</p> \
     <p>[Full name]</p>'
 
-  res.send(renderPage({ title: 'Alpha', locale, content }))
+  res.send(_renderDocument({ title: 'Alpha', locale, content }))
 })
 
 module.exports = app
