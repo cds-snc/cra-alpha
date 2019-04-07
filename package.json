@@ -34,11 +34,11 @@
     "preact-render-to-string": "^4.1.0"
   },
   "devDependencies": {
-    "cheerio": "^1.0.0-rc.2",
+    "cheerio": "^1.0.0-rc.3",
     "eslint": "^5.16.0",
     "eslint-plugin-jest": "^22.4.1",
-    "jest": "^24.6.0",
-    "nodemon": "^1.18.10",
+    "jest": "^24.7.1",
+    "nodemon": "^1.18.11",
     "supertest": "^4.0.2"
   },
   "now": {
