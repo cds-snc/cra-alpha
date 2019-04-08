@@ -110,7 +110,7 @@ app.get('/logout', (req, res) => {
   res.redirect(302, '/login')
 })
 
-/* TODO: delete this by Thursday, April 11th */
+/* TODO: delete this by Monday, April 15th */
 app.get('/alpha', (req, res) => {
   const content =
     '<h1>Alpha</h1> \
@@ -118,6 +118,26 @@ app.get('/alpha', (req, res) => {
     <p>[Full name]</p>'
 
   res.send(_renderDocument({ title: 'Alpha', locale, content }))
+})
+
+/* TODO: delete this by Wednesday, April 17th */
+app.get('/user', (req, res) => {
+  const data = {
+    name: 'Matthew Morris',
+    address: '380 Lewis St\nOttawa\nOntario\nK2P 2P6',
+    sin: '123-456-789',
+    dobDay: '28',
+    dobMonth: '02',
+    dobYear: '1992',
+  }
+
+  res.send(
+    renderPage({
+      locale,
+      pageComponent: 'Dashboard',
+      props: { data, test: true },
+    }),
+  )
 })
 
 module.exports = app
