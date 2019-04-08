@@ -27,7 +27,7 @@ Pretty slick. 😎
 npm install
 
 # run application in 'dev' mode
-npm start
+npm run dev
 
 # run application in 'prod' mode
 npm start
