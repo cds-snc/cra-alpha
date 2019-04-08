@@ -27,19 +27,26 @@ const makeRows = ({ sin, dobDay, dobMonth, dobYear, name, address }) => {
   ]
 }
 
-const Dashboard = ({ data = {} }) =>
+const Dashboard = ({ data = {}, test = false }) =>
   html`
     <${Layout}>
       <div class=${dashboard}>
-        <${LogoutLink} />
+        ${!test &&
+          html`
+            <${LogoutLink} />
+          `}
         <h1>Dashboard</h1>
         <div>
           <${SummaryTable} rows=${makeRows(data)} //>
         </div>
 
         <br />
+
         <form method="get" action="/confirmation">
-        <${Button} style=${submitButton}>Submit taxes<//>
+        ${!test &&
+          html`
+            <${Button} style=${submitButton}>Submit taxes<//>
+          `}
         </form>
       </div>
     </${Layout}>
