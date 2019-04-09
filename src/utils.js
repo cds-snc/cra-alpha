@@ -45,33 +45,6 @@ const loginSchema = {
       errorMessage: 'Social Insurance number needs to look like 111-222-333',
     },
   },
-  dobDay: {
-    in: ['body'],
-    isEmpty: { errorMessage: 'Day can’t be empty', negated: true },
-    isNumeric: { errorMessage: 'Day can’t contain letters' },
-    isInt: {
-      errorMessage: 'Day must be between 1 and 31',
-      options: { min: 1, max: 31 },
-    },
-  },
-  dobMonth: {
-    in: ['body'],
-    isEmpty: { errorMessage: 'Month can’t be empty', negated: true },
-    isNumeric: { errorMessage: 'Month can’t contain letters' },
-    isInt: {
-      errorMessage: 'Month must be between 1 and 12',
-      options: { min: 1, max: 12 },
-    },
-  },
-  dobYear: {
-    in: ['body'],
-    isEmpty: { errorMessage: 'Year can’t be empty', negated: true },
-    isNumeric: { errorMessage: 'Year can’t contain letters' },
-    isInt: {
-      errorMessage: 'Year must be between 1900 and 2019',
-      options: { min: 1900, max: 2019 },
-    },
-  },
 }
 
 // define a schema for dashboard field validation

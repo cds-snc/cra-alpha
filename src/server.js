@@ -33,13 +33,13 @@ app
 process.env.NODE_ENV !== 'test' && app.use(logger('dev'))
 
 const getSessionData = (session = {}, enforceExists = false) => {
-  const { sin, dobDay, dobMonth, dobYear } = session
+  const { sin } = session
 
-  if (enforceExists && (!sin || !dobDay || !dobMonth || !dobYear)) {
+  if (enforceExists && !sin) {
     return false
   }
 
-  return { sin, dobDay, dobMonth, dobYear }
+  return { sin }
 }
 
 app.get('/', (req, res) => {
@@ -87,12 +87,13 @@ app.get('/dashboard', (req, res) => {
 
   const name = 'Matthew Morris'
   const address = '380 Lewis St\nOttawa\nOntario\nK2P 2P6'
+  const dob = '28-02-1992'
 
   res.send(
     renderPage({
       locale,
       pageComponent: 'Dashboard',
-      props: { data: { ...data, name, address } },
+      props: { data: { ...data, name, address, dob } },
     }),
   )
 })
@@ -102,6 +103,7 @@ app.post('/dashboard', checkSchema(dashboardSchema), (req, res) => {
   if (!errors.isEmpty()) {
     const name = 'Matthew Morris'
     const address = '380 Lewis St\nOttawa\nOntario\nK2P 2P6'
+    const dob = '28-02-1992'
 
     return res.status(422).send(
       renderPage({
@@ -109,7 +111,7 @@ app.post('/dashboard', checkSchema(dashboardSchema), (req, res) => {
         pageComponent: 'Dashboard',
         title: 'Error: Dashboard',
         props: {
-          data: { ...getSessionData(req.session), name, address },
+          data: { ...getSessionData(req.session), name, address, dob },
           errors: errorArray2ErrorObject(errors),
         },
       }),
@@ -173,9 +175,7 @@ app.get('/user', (req, res) => {
     name: 'Matthew Morris',
     address: '380 Lewis St\nOttawa\nOntario\nK2P 2P6',
     sin: '123-456-789',
-    dobDay: '28',
-    dobMonth: '02',
-    dobYear: '1992',
+    dob: '28-02-1992',
   }
 
   res.send(
@@ -193,9 +193,7 @@ app.post('/user', checkSchema(dashboardSchema), (req, res) => {
     name: 'Matthew Morris',
     address: '380 Lewis St\nOttawa\nOntario\nK2P 2P6',
     sin: '123-456-789',
-    dobDay: '28',
-    dobMonth: '02',
-    dobYear: '1992',
+    dob: '28-02-1992',
   }
 
   const errors = validationResult(req)

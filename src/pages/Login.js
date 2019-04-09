@@ -3,7 +3,6 @@ const { css } = require('emotion')
 const { theme } = require('../styles.js')
 const Layout = require('../components/Layout.js')
 const Input = require('../components/forms/Input.js')
-const DateOfBirth = require('../components/forms/DateOfBirth.js')
 const Button = require('../components/forms/Button.js')
 
 const form = css`
@@ -24,20 +23,15 @@ const loginButton = css`
 
 /* eslint-disable no-irregular-whitespace */
 
-const Login = ({ data: { sin = '', ...props } = {}, errors = {} }) =>
+const Login = ({ data: { sin = '' } = {}, errors = {} }) =>
   html`
     <${Layout}>
       <h1>Log in to see your tax-filing information</h1>
-      <p>Please enter your Social Insurance Number and Date of Birth.</p>
-      ${console.log(errors)}
+      <p>Please enter your Social Insurance Number.</p>
 
       <form class=${form} method="post">
         <div>
           <${Input} id="sin" value=${sin}>SIN (Social Insurance Number)<//>
-        </div>
-
-        <div>
-          <${DateOfBirth} ...${props} />
         </div>
 
         <${Button} style=${loginButton}>Log in<//>
