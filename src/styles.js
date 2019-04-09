@@ -10,6 +10,7 @@ const theme = {
     black: '#000000',
     focus: '#ffbf47',
     green: 'aquamarine',
+    error: '#b10e1e',
   },
   space: {
     xxs: '5px',

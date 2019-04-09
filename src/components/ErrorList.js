@@ -1,13 +1,14 @@
 const { css } = require('emotion')
+const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 
 const listItem = css`
-  li {
-    margin-bottom: 5px;
+  &:not(:last-of-type) {
+    margin-bottom: ${theme.space.xxs};
   }
 
   a {
-    color: #b10e1e;
+    color: ${theme.color.error};
   }
 `
 
@@ -18,14 +19,14 @@ const ListItem = ({ param, msg }) => html`
 `
 
 const errorList = css`
-  color: black;
-  padding: 15px;
-  margin-bottom: 30px;
-  border: 4px solid #b10e1e;
+  color: ${theme.color.black};
+  padding: ${theme.space.sm};
+  margin-bottom: ${theme.space.lg};
+  border: 4px solid ${theme.color.error};
 
   h2 {
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: ${theme.space.sm};
   }
 
   ul {
@@ -36,12 +37,12 @@ const errorList = css`
 
   /* on larger screens */
   @media (min-width: 640px) {
-    border: 5px solid #b10e1e;
-    margin-bottom: 50px;
-    padding: 20px;
+    border-width: 5px;
+    margin-bottom: ${theme.space.xl};
+    padding: ${theme.space.md};
 
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: ${theme.space.md};
     }
   }
 `
