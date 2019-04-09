@@ -4,6 +4,7 @@ const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
+const Checkbox = require('../components/forms/Checkbox.js')
 const Button = require('../components/forms/Button.js')
 
 const dashboard = css`
@@ -27,7 +28,7 @@ const makeRows = ({ sin, dobDay, dobMonth, dobYear, name, address }) => {
   ]
 }
 
-const Dashboard = ({ data = {}, test = false }) =>
+const Dashboard = ({ data = {}, consent = false, test = false }) =>
   html`
     <${Layout}>
       <div class=${dashboard}>
@@ -43,6 +44,7 @@ const Dashboard = ({ data = {}, test = false }) =>
         <br />
 
         <form method="get" action="/confirmation">
+        <${Checkbox} id="consent" value="consent" consent=${consent}>I totally consent to this<//>
         ${!test &&
           html`
             <${Button} style=${submitButton}>Submit taxes<//>

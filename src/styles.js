@@ -8,7 +8,7 @@ const theme = {
     grayLight: '#bfc1c3',
     white: '#ffffff',
     black: '#000000',
-    focus: '#FFBF47',
+    focus: '#ffbf47',
     green: 'aquamarine',
   },
   space: {
