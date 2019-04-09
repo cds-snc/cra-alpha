@@ -2,6 +2,7 @@ const { css } = require('emotion')
 const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
+const ErrorList = require('../components/ErrorList.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
 const ValidationError = require('../components/forms/ValidationError.js')
@@ -12,7 +13,7 @@ const dashboard = css`
   position: relative;
 
   > div {
-    margin-bottom: ${theme.space.lg};
+    margin-bottom: ${theme.space.xl};
   }
 `
 
@@ -32,6 +33,12 @@ const makeRows = ({ sin, dobDay, dobMonth, dobYear, name, address }) => {
 const Dashboard = ({ data = {}, errors = {}, userInfo = false }) =>
   html`
     <${Layout}>
+
+      ${Object.keys(errors).length > 0 &&
+        html`
+          <${ErrorList} errors=${errors} //>
+        `}
+
       <div class=${dashboard}>
         ${!userInfo &&
           html`
@@ -41,8 +48,6 @@ const Dashboard = ({ data = {}, errors = {}, userInfo = false }) =>
         <div>
           <${SummaryTable} rows=${makeRows(data)} //>
         </div>
-
-        <br />
 
         <p>
           Once you have provided your consent, go ahead and submit. (<a

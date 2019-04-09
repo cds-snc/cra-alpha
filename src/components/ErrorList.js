@@ -22,6 +22,7 @@ const errorList = css`
   color: ${theme.color.black};
   padding: ${theme.space.sm};
   margin-bottom: ${theme.space.lg};
+  margin-top: ${theme.space.md};
   border: 4px solid ${theme.color.error};
 
   h2 {
