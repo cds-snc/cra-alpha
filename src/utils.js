@@ -33,6 +33,21 @@ const cookieSessionConfig = {
 }
 
 // define a schema for login field validation: https://express-validator.github.io/docs/schema-validation.html
+const loginSchema = {
+  sin: {
+    in: ['body'],
+    isEmpty: {
+      errorMessage: 'Social Insurance Number can’t be empty',
+      negated: true,
+    },
+    matches: {
+      options: /^\d{3}-\d{3}-\d{3}$/,
+      errorMessage: 'Social Insurance Number needs to look like 111-222-333',
+    },
+  },
+}
+
+// define a schema for dashboard field validation
 const dashboardSchema = {
   consent: {
     in: ['body'],
@@ -68,6 +83,7 @@ module.exports = {
   html,
   metaIfSHA,
   cookieSessionConfig,
+  loginSchema,
   dashboardSchema,
   errorArray2ErrorObject,
 }

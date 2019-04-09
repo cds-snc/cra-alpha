@@ -20,12 +20,11 @@ const dashboard = css`
 const submitButton = css`
   width: 200px;
 `
-
-const makeRows = ({ sin, dobDay, dobMonth, dobYear, name, address }) => {
+const makeRows = ({ sin, dob, name, address }) => {
   return [
     { key: 'Name', value: name },
     { key: 'Social Insurance Number', value: sin },
-    { key: 'Date of Birth', value: [dobDay, dobMonth, dobYear].join('-') },
+    { key: 'Date of Birth', value: dob },
     { key: 'Mailing address', value: address },
   ]
 }

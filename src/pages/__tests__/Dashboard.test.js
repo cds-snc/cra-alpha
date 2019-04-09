@@ -8,9 +8,7 @@ describe('<Dashboard>', () => {
   const data = {
     name: 'Fred Smith',
     sin: '123-456-789',
-    dobDay: '18',
-    dobMonth: '06',
-    dobYear: '1971',
+    dob: '18-06-1971',
     address: 'Mississauga',
   }
 
