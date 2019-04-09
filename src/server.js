@@ -2,7 +2,12 @@ const express = require('express')
 const logger = require('morgan')
 const helmet = require('helmet')
 const cookieSession = require('cookie-session')
-const { cookieSessionConfig } = require('./utils')
+const { validationResult, checkSchema } = require('express-validator/check')
+const {
+  cookieSessionConfig,
+  dashboardSchema,
+  errorArray2ErrorObject,
+} = require('./utils.js')
 const { renderPage, _renderDocument } = require('./pages/_document.js')
 
 let locale = 'en'
@@ -78,6 +83,28 @@ app.get('/dashboard', (req, res) => {
       props: { data: { ...data, name, address } },
     }),
   )
+})
+
+app.post('/dashboard', checkSchema(dashboardSchema), (req, res) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    const name = 'Matthew Morris'
+    const address = '380 Lewis St\nOttawa\nOntario\nK2P 2P6'
+
+    return res.status(422).send(
+      renderPage({
+        locale,
+        pageComponent: 'Dashboard',
+        title: 'Error: Dashboard',
+        props: {
+          data: { ...getSessionData(req.session), name, address },
+          errors: errorArray2ErrorObject(errors),
+        },
+      }),
+    )
+  }
+
+  return res.redirect(302, '/confirmation')
 })
 
 app.get('/edit', (req, res) => {
