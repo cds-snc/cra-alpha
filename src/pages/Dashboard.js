@@ -29,11 +29,11 @@ const makeRows = ({ sin, dobDay, dobMonth, dobYear, name, address }) => {
   ]
 }
 
-const Dashboard = ({ data = {}, errors = {}, test = false }) =>
+const Dashboard = ({ data = {}, errors = {}, userInfo = false }) =>
   html`
     <${Layout}>
       <div class=${dashboard}>
-        ${!test &&
+        ${!userInfo &&
           html`
             <${LogoutLink} />
           `}
@@ -44,18 +44,22 @@ const Dashboard = ({ data = {}, errors = {}, test = false }) =>
 
         <br />
 
+        <p>
+          Once you have provided your consent, go ahead and submit. (<a
+            href="/consent"
+            target="_blank"
+            >Read more about consent.</a
+          >)
+        </p>
         <form method="post">
           ${errors.consent &&
             html`
               <${ValidationError} ...${errors.consent} />
             `}
-
-          <${Checkbox} id="consent" value="consent">I totally consent to this<//>
-          ${!test &&
-            html`
-              <${Button} style=${submitButton}>Submit taxes<//>
-            `}
+          <${Checkbox} id="consent">I totally consent to this<//>
+          <${Button} style=${submitButton}>Submit taxes<//>
         </form>
+
       </div>
     </${Layout}>
   `
