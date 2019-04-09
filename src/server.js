@@ -5,6 +5,7 @@ const cookieSession = require('cookie-session')
 const { validationResult, checkSchema } = require('express-validator/check')
 const {
   cookieSessionConfig,
+  loginSchema,
   dashboardSchema,
   errorArray2ErrorObject,
 } = require('./utils.js')
@@ -56,11 +57,22 @@ app.get('/login', (req, res) => {
   )
 })
 
-app.post('/login', (req, res) => {
+app.post('/login', checkSchema(loginSchema), (req, res) => {
   req.session = getSessionData(req.body)
 
-  if (!getSessionData(req.session, true)) {
-    return res.redirect(302, '/login')
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(422).send(
+      renderPage({
+        locale,
+        title: 'Error: Log in',
+        pageComponent: 'Login',
+        props: {
+          data: getSessionData(req.session),
+          errors: errorArray2ErrorObject(errors),
+        },
+      }),
+    )
   }
 
   res.redirect(302, '/dashboard')

@@ -24,11 +24,12 @@ const loginButton = css`
 
 /* eslint-disable no-irregular-whitespace */
 
-const Login = ({ data: { sin = '', ...props } = {} }) =>
+const Login = ({ data: { sin = '', ...props } = {}, errors = {} }) =>
   html`
     <${Layout}>
       <h1>Log in to see your tax-filing information</h1>
       <p>Please enter your Social Insurance Number and Date of Birth.</p>
+      ${console.log(errors)}
 
       <form class=${form} method="post">
         <div>
