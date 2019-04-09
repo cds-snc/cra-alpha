@@ -2,9 +2,9 @@ const { html } = require('../utils.js')
 const { css } = require('emotion')
 const { theme } = require('../styles.js')
 const Layout = require('../components/Layout.js')
-const Input = require('../components/Input.js')
-const DateOfBirth = require('../components/DateOfBirth.js')
-const Button = require('../components/Button.js')
+const Input = require('../components/forms/Input.js')
+const DateOfBirth = require('../components/forms/DateOfBirth.js')
+const Button = require('../components/forms/Button.js')
 
 const form = css`
   width: 100%;
