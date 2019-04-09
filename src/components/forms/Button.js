@@ -1,6 +1,6 @@
 const { css } = require('emotion')
-const { theme } = require('../styles.js')
-const { html } = require('../utils.js')
+const { theme } = require('../../styles.js')
+const { html } = require('../../utils.js')
 
 const button = css`
   font: 400 1em sans-serif;
