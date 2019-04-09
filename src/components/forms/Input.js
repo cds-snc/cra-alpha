@@ -1,6 +1,7 @@
 const { css } = require('emotion')
 const { theme } = require('../../styles.js')
 const { html } = require('../../utils.js')
+const ValidationError = require('./ValidationError')
 
 const input = css`
   label {
@@ -33,6 +34,7 @@ const Input = ({
   type = 'text',
   bold = true,
   style = {},
+  error = undefined,
   ...props
 }) =>
   html`
@@ -40,11 +42,16 @@ const Input = ({
       <label style=${{ fontWeight: bold ? 700 : 400 }} for=${id}>
         ${children}
       </label>
+      ${error &&
+        html`
+          <${ValidationError} param=${error.param} msg=${error.msg} />
+        `}
       <input
         style=${{ ...style }}
         id=${id}
         name=${name || id}
         type=${type}
+        aria-describedby="${error ? `${error.param}-error` : false}}"
         ...${props}
       />
     </span>

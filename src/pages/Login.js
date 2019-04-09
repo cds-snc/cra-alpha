@@ -31,7 +31,9 @@ const Login = ({ data: { sin = '' } = {}, errors = {} }) =>
 
       <form class=${form} method="post">
         <div>
-          <${Input} id="sin" value=${sin}>SIN (Social Insurance Number)<//>
+          <${Input} id="sin" value=${sin} error=${errors.sin}
+            >SIN (Social Insurance Number)<//
+          >
         </div>
 
         <${Button} style=${loginButton}>Log in<//>

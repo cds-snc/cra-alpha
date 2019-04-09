@@ -37,12 +37,12 @@ const loginSchema = {
   sin: {
     in: ['body'],
     isEmpty: {
-      errorMessage: 'Social Insurance number can’t be empty',
+      errorMessage: 'Social Insurance Number can’t be empty',
       negated: true,
     },
     matches: {
       options: /^\d{3}-\d{3}-\d{3}$/,
-      errorMessage: 'Social Insurance number needs to look like 111-222-333',
+      errorMessage: 'Social Insurance Number needs to look like 111-222-333',
     },
   },
 }
