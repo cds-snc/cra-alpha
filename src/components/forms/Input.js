@@ -39,7 +39,10 @@ const Input = ({
 }) =>
   html`
     <span class=${input}>
-      <label style=${{ fontWeight: bold ? 700 : 400 }} for=${id}>
+      <label
+        style=${{ fontWeight: !bold || bold === 'false' ? 400 : 700 }}
+        for=${id}
+      >
         ${children}
       </label>
       ${error &&
