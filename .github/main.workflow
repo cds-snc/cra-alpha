@@ -81,8 +81,8 @@ workflow "Lighthouse scan" {
 
 action "Run lighthouse scan on landing page" {
   uses = "docker://cdssnc/lighthouse-score-github-action"
-  env = {
-    LIGHTHOUSE_SCORES = "[99, 99, 99, 99, 99]"
-  }
   secrets = ["LIGHTHOUSE_SECRET", "LIGHTHOUSE_URL"]
+  env = {
+    LIGHTHOUSE_SCORES = "[99,99,90,90,50]"
+  }
 }
