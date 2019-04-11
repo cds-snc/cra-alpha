@@ -7,17 +7,12 @@ const Dashboard = require('../Dashboard.js')
 describe('<Dashboard>', () => {
   const data = {
     name: 'Fred Smith',
-    sin: '123-456-789',
-    dob: '18-06-1971',
     address: 'Mississauga',
+    maritalStatus: 'Married',
+    children: 5,
   }
 
-  const expectedStrings = [
-    'Fred Smith',
-    '123-456-789',
-    '18-06-1971',
-    'Mississauga',
-  ]
+  const expectedStrings = Object.values(data)
 
   test('renders h1 as expected', () => {
     const $ = cheerio.load(

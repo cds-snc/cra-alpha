@@ -9,6 +9,7 @@ const {
   dashboardSchema,
   errorArray2ErrorObject,
 } = require('./utils.js')
+const API = require('./api.js')
 const { renderPage, _renderDocument } = require('./pages/_document.js')
 
 let locale = 'en'
@@ -33,13 +34,16 @@ app
 process.env.NODE_ENV !== 'test' && app.use(logger('dev'))
 
 const getSessionData = (session = {}, enforceExists = false) => {
-  const { sin } = session
+  const { name, address, maritalStatus, children, income } = session
 
-  if (enforceExists && !sin) {
+  if (
+    enforceExists &&
+    (!name || !address || !maritalStatus || !children || !income)
+  ) {
     return false
   }
 
-  return { sin }
+  return { name, address, maritalStatus, children, income }
 }
 
 app.get('/', (req, res) => {
@@ -58,10 +62,12 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', checkSchema(loginSchema), (req, res) => {
-  req.session = getSessionData(req.body)
+  let { name } = getSessionData(req.body)
+  let user = API.getUser(name)
+  req.session = user || { name }
 
   const errors = validationResult(req)
-  if (!errors.isEmpty()) {
+  if (!user && !errors.isEmpty()) {
     return res.status(422).send(
       renderPage({
         locale,
@@ -85,15 +91,11 @@ app.get('/dashboard', (req, res) => {
     return res.redirect(302, '/login')
   }
 
-  const name = 'Matthew Morris'
-  const address = '380 Lewis St\nOttawa\nOntario\nK2P 2P6'
-  const dob = '28-02-1992'
-
   res.send(
     renderPage({
       locale,
       pageComponent: 'Dashboard',
-      props: { data: { ...data, name, address, dob } },
+      props: { data },
     }),
   )
 })
@@ -101,17 +103,13 @@ app.get('/dashboard', (req, res) => {
 app.post('/dashboard', checkSchema(dashboardSchema), (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
-    const name = 'Matthew Morris'
-    const address = '380 Lewis St\nOttawa\nOntario\nK2P 2P6'
-    const dob = '28-02-1992'
-
     return res.status(422).send(
       renderPage({
         locale,
         pageComponent: 'Dashboard',
         title: 'Error: Dashboard',
         props: {
-          data: { ...getSessionData(req.session), name, address, dob },
+          data: getSessionData(req.session),
           errors: errorArray2ErrorObject(errors),
         },
       }),
@@ -150,6 +148,7 @@ app.get('/confirmation', (req, res) => {
     renderPage({
       locale,
       pageComponent: 'Confirmation',
+      props: { data },
     }),
   )
 })
@@ -171,12 +170,7 @@ app.get('/alpha', (req, res) => {
 
 /* TODO: delete this by Wednesday, April 17th */
 app.get('/user', (req, res) => {
-  const data = {
-    name: 'Matthew Morris',
-    address: '380 Lewis St\nOttawa\nOntario\nK2P 2P6',
-    sin: '123-456-789',
-    dob: '28-02-1992',
-  }
+  const data = API.getUser('kim')
 
   res.send(
     renderPage({
@@ -189,12 +183,7 @@ app.get('/user', (req, res) => {
 
 /* TODO: delete this by Wednesday, April 17th */
 app.post('/user', checkSchema(dashboardSchema), (req, res) => {
-  const data = {
-    name: 'Matthew Morris',
-    address: '380 Lewis St\nOttawa\nOntario\nK2P 2P6',
-    sin: '123-456-789',
-    dob: '28-02-1992',
-  }
+  const data = API.getUser('kim')
 
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
