@@ -20,12 +20,12 @@ const dashboard = css`
 const submitButton = css`
   width: 200px;
 `
-const makeRows = ({ sin, dob, name, address }) => {
+const makeRows = ({ name, address, maritalStatus, children }) => {
   return [
     { key: 'Name', value: name },
-    { key: 'Social Insurance Number', value: sin },
-    { key: 'Date of Birth', value: dob },
     { key: 'Mailing address', value: address },
+    { key: 'Marital status', value: maritalStatus },
+    { key: 'Number of children', value: children },
   ]
 }
 

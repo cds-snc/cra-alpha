@@ -4,6 +4,8 @@ const { html } = require('../../utils.js')
 const ValidationError = require('./ValidationError')
 
 const input = css`
+  display: block;
+
   label {
     display: block;
     margin-bottom: ${theme.space.xs};
@@ -27,6 +29,12 @@ const input = css`
   }
 `
 
+const withError = css`
+  margin-left: -12px;
+  padding-left: 12px;
+  border-left: 3px solid ${theme.color.error};
+`
+
 const Input = ({
   id,
   children,
@@ -38,7 +46,11 @@ const Input = ({
   ...props
 }) =>
   html`
-    <span class=${input}>
+    <span
+      class=${css`
+        ${input} ${error && withError}
+      `}
+    >
       <label
         style=${{ fontWeight: !bold || bold === 'false' ? 400 : 700 }}
         for=${id}
