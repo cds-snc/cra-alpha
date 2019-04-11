@@ -73,16 +73,3 @@ action "Update container image in Azure App Service for Containers" {
     AZURE_SCRIPT = "az webapp config container set --resource-group cdscracollab-innovation-rg --name cra-alpha --docker-custom-image-name cdssnc/cra-alpha:$GITHUB_SHA"
   }
 }
-
-workflow "Lighthouse scan" {
-  on = "deployment_status"
-  resolves = ["Run lighthouse scan on landing page"]
-}
-
-action "Run lighthouse scan on landing page" {
-  uses = "docker://cdssnc/lighthouse-score-github-action"
-  env = {
-    LIGHTHOUSE_SCORES = "[99, 99, 99, 99, 99]"
-  }
-  secrets = ["LIGHTHOUSE_SECRET", "LIGHTHOUSE_URL"]
-}
