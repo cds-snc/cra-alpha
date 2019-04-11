@@ -33,6 +33,35 @@ const cookieSessionConfig = {
   },
 }
 
+/*
+ this function takes an object, pulls out specific keys, and returns
+ an object with only those keys.
+
+ If a second parameter is passed in with a truthy value,
+ it will return false if any of those keys have not been set.
+*/
+const getSessionData = (session = {}, enforceExists = false) => {
+  const { name, address, maritalStatus, children, income } = session
+
+  if (
+    enforceExists &&
+    (!name || !address || !maritalStatus || !children || !income)
+  ) {
+    return false
+  }
+
+  return { name, address, maritalStatus, children, income }
+}
+
+/* Middleware */
+const checkLogin = (req, res, next) => {
+  if (getSessionData(req.session, true)) {
+    return next()
+  }
+
+  res.redirect(302, '/login')
+}
+
 // define a schema for login field validation: https://express-validator.github.io/docs/schema-validation.html
 const loginSchema = {
   name: {
@@ -84,6 +113,8 @@ module.exports = {
   html,
   metaIfSHA,
   cookieSessionConfig,
+  getSessionData,
+  checkLogin,
   loginSchema,
   dashboardSchema,
   errorArray2ErrorObject,
