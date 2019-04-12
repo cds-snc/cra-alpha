@@ -24,8 +24,8 @@ const document = ({ title, locale, content }) => {
           }
 
           body {
-            margin: 20px;
-            font-size: 1.4em;
+            margin: 0;
+            font-size: 1.3em;
             font-family: sans-serif;
             line-height: 1.33;
           }
@@ -36,7 +36,7 @@ const document = ({ title, locale, content }) => {
           }
 
           @media (max-width: 640px) {
-            body { font-size: 1.1em; }
+            body { font-size: 1.05em; }
           }
         </style>
       </head>

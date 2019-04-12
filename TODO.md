@@ -1,15 +1,14 @@
 # TODO
 
-- html template linting?
-- unit tests for all components
-- tests for redirects
 - better i18n
-- an api-like thing for user data
 - 404 page
 - 500 page
 - clean up the routes part of the server file
 - pass locale easily to any component
 - add media queries to styles.js
+- generic form edit pages
+- functional tests
+- pa11y tests
 
 # DONE
 
@@ -26,3 +25,6 @@
 - prod vs dev
 - clean up page rendering inside routes
 - form validation
+- unit tests for all components
+- tests for redirects
+- an api-like thing for user data
