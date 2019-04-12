@@ -46,7 +46,7 @@ const Dashboard = ({ data = {}, errors = {}, userInfo = false }) =>
           `}
         <h1>Dashboard</h1>
         <div>
-          <${SummaryTable} rows=${makeRows(data)} //>
+          <${SummaryTable} rows=${makeRows(data)} ifEditable=${false} //>
         </div>
 
         <p>

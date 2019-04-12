@@ -78,4 +78,23 @@ describe('<SummaryTable>', () => {
       getCell({ cheerio: $, rowNum: 1, find: '.action a' }).attr('href'),
     ).toEqual('/edit')
   })
+
+  test('renders without change links', () => {
+    const rows = [
+      { key: 'Full name', value: 'Fred Smith' },
+      { key: 'Date of birth', value: '18-06-1971' },
+    ]
+
+    const $ = cheerio.load(
+      render(
+        html`
+          <${SummaryTable} rows=${rows} ifEditable=${false} />
+        `,
+      ),
+    )
+
+    expect($('.action').length).toBe(0)
+    expect($.html()).not.toContain('Change date of birth')
+    expect($.html()).not.toContain('Change full name')
+  })
 })
