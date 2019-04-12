@@ -21,7 +21,7 @@ var API = (function() {
     _matches: ['louis', 'lou', 'l'],
     name: 'Louis Stephen St. Laurent',
     address: '459-455 Boulevard de la Carrière\nGatineau\nQuébec\nJ8Y 6V7',
-    maritalStatus: 'Windowed',
+    maritalStatus: 'Widowed',
     children: '5',
     income: '$15,000',
   }

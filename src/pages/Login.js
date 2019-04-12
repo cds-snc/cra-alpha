@@ -32,7 +32,7 @@ const Login = ({ data: { name = '' } = {}, errors = {} }) =>
           <${ErrorList} errors=${errors} //>
         `}
       <h1>Log in to see your tax-filing information</h1>
-      <p>Please enter your Social Insurance Number.</p>
+      <p>Please enter your first name.</p>
 
       <form class=${form} method="post">
         <div>
