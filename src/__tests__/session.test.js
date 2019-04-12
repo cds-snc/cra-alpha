@@ -63,14 +63,11 @@ it('It should fail to log in to the dashboard an empty name', async () => {
   expect(response.text).toContain('Name can’t be empty')
 })
 
-it('It should log into the dashboard with "/kim" or "/avril', async () => {
-  const urls = ['/kim', '/avril']
-  urls.map(async url => {
-    const response = await session(app).get(url)
+it('It should log into the dashboard with "/kim"', async () => {
+  const response = await session(app).get('/kim')
 
-    expect(response.statusCode).toBe(302)
-    expect(response.headers['location']).toEqual('/dashboard')
-  })
+  expect(response.statusCode).toBe(302)
+  expect(response.headers['location']).toEqual('/dashboard')
 })
 
 const authUrls = ['/dashboard', '/edit', '/confirmation']

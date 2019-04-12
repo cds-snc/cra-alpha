@@ -139,7 +139,7 @@ app.get('/consent', (req, res) => {
   res.send(_renderDocument({ title: '[WIP] Consent', locale, content }))
 })
 
-app.get(['/kim', '/avril'], (req, res) => {
+app.get('/kim', (req, res) => {
   req.session = API.getUser('kim')
   res.redirect(302, '/dashboard')
 })
