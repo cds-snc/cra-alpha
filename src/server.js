@@ -6,6 +6,8 @@ const { validationResult, checkSchema } = require('express-validator/check')
 const {
   cookieSessionConfig,
   loginSchema,
+  getSessionData,
+  checkLogin,
   dashboardSchema,
   errorArray2ErrorObject,
 } = require('./utils.js')
@@ -32,19 +34,6 @@ app
 
 // if NODE_ENV does not equal 'test', add a request logger
 process.env.NODE_ENV !== 'test' && app.use(logger('dev'))
-
-const getSessionData = (session = {}, enforceExists = false) => {
-  const { name, address, maritalStatus, children, income } = session
-
-  if (
-    enforceExists &&
-    (!name || !address || !maritalStatus || !children || !income)
-  ) {
-    return false
-  }
-
-  return { name, address, maritalStatus, children, income }
-}
 
 app.get('/', (req, res) => {
   res.send(renderPage({ locale, pageComponent: 'Welcome', props: { locale } }))
@@ -84,12 +73,8 @@ app.post('/login', checkSchema(loginSchema), (req, res) => {
   res.redirect(302, '/dashboard')
 })
 
-app.get('/dashboard', (req, res) => {
-  const data = getSessionData(req.session, true)
-
-  if (!data) {
-    return res.redirect(302, '/login')
-  }
+app.get('/dashboard', checkLogin, (req, res) => {
+  const data = getSessionData(req.session)
 
   res.send(
     renderPage({
@@ -100,7 +85,7 @@ app.get('/dashboard', (req, res) => {
   )
 })
 
-app.post('/dashboard', checkSchema(dashboardSchema), (req, res) => {
+app.post('/dashboard', checkLogin, checkSchema(dashboardSchema), (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(422).send(
@@ -119,15 +104,7 @@ app.post('/dashboard', checkSchema(dashboardSchema), (req, res) => {
   return res.redirect(302, '/confirmation')
 })
 
-app.get('/consent', (req, res) => {
-  const content =
-    '<h1>Consent</h1> \
-    <p>Permission for something to happen or agreement to do something.</p>'
-
-  res.send(_renderDocument({ title: '[WIP] Consent', locale, content }))
-})
-
-app.get('/edit', (req, res) => {
+app.get('/edit', checkLogin, (req, res) => {
   const content = `
     <h1>Editing coming soon</h1>
     <p>Editing isn’t working yet, so for now you have to print out this website, change your info, and then mail it to Nancy McKenna.</p>
@@ -137,12 +114,8 @@ app.get('/edit', (req, res) => {
   res.send(_renderDocument({ title: '[WIP] Edit', locale, content }))
 })
 
-app.get('/confirmation', (req, res) => {
-  const data = getSessionData(req.session, true)
-
-  if (!data) {
-    return res.redirect(302, '/login')
-  }
+app.get('/confirmation', checkLogin, (req, res) => {
+  const data = getSessionData(req.session)
 
   res.send(
     renderPage({
@@ -158,6 +131,19 @@ app.get('/logout', (req, res) => {
   res.redirect(302, '/login')
 })
 
+app.get('/consent', (req, res) => {
+  const content =
+    '<h1>Consent</h1> \
+    <p>Permission for something to happen or agreement to do something.</p>'
+
+  res.send(_renderDocument({ title: '[WIP] Consent', locale, content }))
+})
+
+app.get('/kim', (req, res) => {
+  req.session = API.getUser('kim')
+  res.redirect(302, '/dashboard')
+})
+
 /* TODO: delete this by Monday, April 15th */
 app.get('/alpha', (req, res) => {
   const content =
@@ -166,44 +152,6 @@ app.get('/alpha', (req, res) => {
     <p>[Full name]</p>'
 
   res.send(_renderDocument({ title: 'Alpha', locale, content }))
-})
-
-/* TODO: delete this by Wednesday, April 17th */
-app.get('/user', (req, res) => {
-  const data = API.getUser('kim')
-
-  res.send(
-    renderPage({
-      locale,
-      pageComponent: 'Dashboard',
-      props: { data, userInfo: true },
-    }),
-  )
-})
-
-/* TODO: delete this by Wednesday, April 17th */
-app.post('/user', checkSchema(dashboardSchema), (req, res) => {
-  const data = API.getUser('kim')
-
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return res.status(422).send(
-      renderPage({
-        locale,
-        pageComponent: 'Dashboard',
-        title: 'Error: Dashboard',
-        props: {
-          data,
-          userInfo: true,
-          errors: errorArray2ErrorObject(errors),
-        },
-      }),
-    )
-  }
-
-  req.session = getSessionData(data)
-
-  return res.redirect(302, '/confirmation')
 })
 
 module.exports = app

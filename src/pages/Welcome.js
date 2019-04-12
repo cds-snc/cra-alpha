@@ -19,8 +19,7 @@ const Welcome = ({ locale }) =>
 
         <p>You will need to know:</p>
         <ul>
-          <li>Your Social Insurance Number</li>
-          <li>Your Date of Birth</li>
+          <li>Your first name</li>
         </ul>
 
         <p>

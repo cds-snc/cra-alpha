@@ -10,6 +10,7 @@ describe('<Dashboard>', () => {
     address: 'Mississauga',
     maritalStatus: 'Married',
     children: 5,
+    income: '$10000',
   }
 
   const expectedStrings = Object.values(data)

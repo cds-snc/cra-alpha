@@ -72,7 +72,7 @@ const summaryRow = css`
     }
   }
 `
-const SummaryRow = ({ row: { key, value } = {} }) => {
+const SummaryRow = ({ row: { key, value } = {}, ifEditable = true }) => {
   return html`
     <div class=${summaryRow}>
       <dt class="key">
@@ -81,21 +81,25 @@ const SummaryRow = ({ row: { key, value } = {} }) => {
       <dd class="value">
         ${value}
       </dd>
-      <dd class="action">
-        <a href="/edit">
-          Change
-          <span class="${visuallyHidden}"
-            >${` ${key && key.toLowerCase()}`}</span
-          >
-        </a>
-      </dd>
+      ${ifEditable &&
+        ifEditable !== 'false' &&
+        html`
+          <dd class="action">
+            <a href="/edit">
+              Change
+              <span class="${visuallyHidden}"
+                >${` ${key && key.toLowerCase()}`}</span
+              >
+            </a>
+          </dd>
+        `}
     </div>
   `
 }
 
-const renderSummaryRow = row =>
+const renderSummaryRow = (row, props) =>
   html`
-    <${SummaryRow} row=${row} //>
+    <${SummaryRow} row=${row} ...${props} //>
   `
 
 const summaryTable = css`
@@ -109,10 +113,10 @@ const summaryTable = css`
   }
 `
 
-const SummaryTable = ({ rows }) =>
+const SummaryTable = ({ rows, ...props }) =>
   html`
     <dl class=${summaryTable}>
-      ${rows.map(renderSummaryRow)}
+      ${rows.map(row => renderSummaryRow(row, props))}
     </dl>
   `
 
