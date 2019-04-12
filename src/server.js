@@ -139,6 +139,11 @@ app.get('/consent', (req, res) => {
   res.send(_renderDocument({ title: '[WIP] Consent', locale, content }))
 })
 
+app.get(['/kim', '/avril'], (req, res) => {
+  req.session = API.getUser('kim')
+  res.redirect(302, '/dashboard')
+})
+
 /* TODO: delete this by Monday, April 15th */
 app.get('/alpha', (req, res) => {
   const content =
