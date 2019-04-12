@@ -22,6 +22,7 @@ const Welcome = ({ locale }) =>
           <li>Your first name</li>
         </ul>
 
+        <p>Hi John!</p>
         <p>
           Then, you will see the information CRA has on file about you. If it is
           up to date, you will be able to file your return immediately.
