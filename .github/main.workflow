@@ -30,16 +30,16 @@ action "If master branch" {
   args = "branch master"
 }
 
-action "Login to Docker Hub" {
-  uses = "actions/docker/login@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  needs = ["If master branch"]
-  secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
-}
-
 action "Build a Docker container" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
   needs = ["If master branch"]
   args = "build -t base --build-arg GITHUB_SHA_ARG=$GITHUB_SHA ."
+}
+
+action "Login to Docker Hub" {
+  uses = "actions/docker/login@8cdf801b322af5f369e00d85e9cf3a7122f49108"
+  needs = ["If master branch"]
+  secrets = ["DOCKER_USERNAME", "DOCKER_PASSWORD"]
 }
 
 action "Tag :latest" {
@@ -71,5 +71,18 @@ action "Update container image in Azure App Service for Containers" {
   needs = ["Login to Azure"]
   env = {
     AZURE_SCRIPT = "az webapp config container set --resource-group cdscracollab-innovation-rg --name cra-alpha --docker-custom-image-name cdssnc/cra-alpha:$GITHUB_SHA"
+  }
+}
+
+workflow "Lighthouse scan" {
+  on = "deployment_status"
+  resolves = ["Run lighthouse scan on landing page"]
+}
+
+action "Run lighthouse scan on landing page" {
+  uses = "docker://cdssnc/lighthouse-score-github-action"
+  secrets = ["LIGHTHOUSE_SECRET", "LIGHTHOUSE_URL"]
+  env = {
+    LIGHTHOUSE_SCORES = "[99, 99, 90, 99, 50]"
   }
 }
