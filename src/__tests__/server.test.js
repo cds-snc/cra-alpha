@@ -35,9 +35,4 @@ describe('Test server responses', () => {
     const response = await request(app).get('/alpha')
     expect(response.text).toContain('<h1>Alpha</h1>')
   })
-
-  test('it should return "Dashboard" in the h1 tag for /user', async () => {
-    const response = await request(app).get('/user')
-    expect(response.text).toContain('<h1>Dashboard</h1>')
-  })
 })

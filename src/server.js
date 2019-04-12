@@ -149,42 +149,4 @@ app.get('/alpha', (req, res) => {
   res.send(_renderDocument({ title: 'Alpha', locale, content }))
 })
 
-/* TODO: delete this by Wednesday, April 17th */
-app.get('/user', (req, res) => {
-  const data = API.getUser('kim')
-
-  res.send(
-    renderPage({
-      locale,
-      pageComponent: 'Dashboard',
-      props: { data, userInfo: true },
-    }),
-  )
-})
-
-/* TODO: delete this by Wednesday, April 17th */
-app.post('/user', checkSchema(dashboardSchema), (req, res) => {
-  const data = API.getUser('kim')
-
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return res.status(422).send(
-      renderPage({
-        locale,
-        pageComponent: 'Dashboard',
-        title: 'Error: Dashboard',
-        props: {
-          data,
-          userInfo: true,
-          errors: errorArray2ErrorObject(errors),
-        },
-      }),
-    )
-  }
-
-  req.session = getSessionData(data)
-
-  return res.redirect(302, '/confirmation')
-})
-
 module.exports = app
