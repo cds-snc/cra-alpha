@@ -15,8 +15,8 @@ describe('<ValidationError>', () => {
         `,
       ),
     )
-    expect($('span').length).toBe(1)
-    expect($('span').attr('id')).toEqual('name-error')
-    expect($('span').text()).toEqual('Please provide a name')
+
+    expect($('span#name-error').length).toBe(1)
+    expect($('span#name-error').text()).toEqual('Error: Please provide a name')
   })
 })

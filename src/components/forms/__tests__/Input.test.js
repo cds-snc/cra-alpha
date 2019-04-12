@@ -88,7 +88,7 @@ describe('<Input>', () => {
     expect($('label').text()).toBe('Name of city')
 
     expect($('span#city-error').length).toBe(1)
-    expect($('span#city-error').text()).toBe('Not a good city')
+    expect($('span#city-error').text()).toBe('Error: Not a good city')
     expect($('input').attr('aria-describedby')).toEqual('city-error')
 
     // expect validation message is after the label

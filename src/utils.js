@@ -72,7 +72,7 @@ const loginSchema = {
     },
     isIn: {
       options: [API.getMatches()],
-      errorMessage: 'Can’t find user with that name. Try “Avril”.',
+      errorMessage: 'Can’t find that name. 🤷 (Try “Avril”)',
     },
   },
 }

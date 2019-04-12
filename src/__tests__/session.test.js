@@ -46,15 +46,25 @@ const invalidNames = [
 ]
 
 invalidNames.map(name => {
-  it(`It should fail to log in the dashboard with name: "${name}"`, async () => {
+  it(`It should fail to log in to the dashboard with name: "${name}"`, async () => {
     const response = await session(app)
       .post('/login')
       .send({ name })
 
     expect(response.statusCode).toBe(422)
     expect(response.text).toContain('There is a problem')
-    expect(response.text).toContain('Can’t find user with that name.')
+    expect(response.text).toContain('Can’t find that name. 🤷')
   })
+})
+
+it('It should fail to log in to the dashboard an empty name', async () => {
+  const response = await session(app)
+    .post('/login')
+    .send({ name: '' })
+
+  expect(response.statusCode).toBe(422)
+  expect(response.text).toContain('There is a problem')
+  expect(response.text).toContain('Name can’t be empty')
 })
 
 const authUrls = ['/dashboard', '/edit', '/confirmation']
