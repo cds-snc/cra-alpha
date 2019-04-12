@@ -5,7 +5,6 @@ const { html } = require('../utils.js')
 const alphaBanner = css`
   padding-top: ${theme.space.xs};
   padding-bottom: ${theme.space.xs};
-  margin-top: -${theme.space.md};
   border-bottom: 1px solid ${theme.color.greyLight};
 
   p {
