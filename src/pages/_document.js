@@ -10,6 +10,7 @@ const document = ({ title, locale, content }) => {
         ${metaIfSHA() || ''}
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="[WIP] A benefit signup prototype by the Canadian Digital Service">
         <link rel="shortcut icon" href="favicon.png" type="image/x-icon" sizes="32x32"  />
         <title>${title}</title>
         <style>
