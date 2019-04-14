@@ -26,7 +26,7 @@ describe('<Dashboard>', () => {
       ),
     )
     expect($('h1').length).toBe(1)
-    expect($('h1').text()).toEqual('Dashboard')
+    expect($('h1').text()).toEqual('Hi, Fred')
 
     expect($('button').length).toBe(1)
     expect($('button').text()).toEqual('Submit taxes')
@@ -44,7 +44,7 @@ describe('<Dashboard>', () => {
           `,
         ),
       )
-      expect($('h1').text()).toEqual('Dashboard')
+      expect($('h1').text()).toEqual('Hi, Fred')
 
       expect($('dl').text()).toContain(str)
     })

@@ -8,6 +8,7 @@ const validNames = [
   'k',
   'K',
   'KIM',
+  '\t\t  \n KIM', // leading whitespace doesn't matter
   'KIM    \t\t  \n ', // trailing whitespace doesn't matter
   'kim', // captialization isn't important
   'Avril',
@@ -34,7 +35,6 @@ const invalidNames = [
   'b', // only some letters are allowed
   'kk',
   'Ki',
-  ' KIM', // leading whitespace will fail
   'Avri', // impartial names are generally going to fail
   'Douglas', // middle names don't work
   'Campbell', // last names don't work

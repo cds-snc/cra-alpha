@@ -79,6 +79,7 @@ app.get('/dashboard', checkLogin, (req, res) => {
   res.send(
     renderPage({
       locale,
+      title: 'Your dashboard',
       pageComponent: 'Dashboard',
       props: { data },
     }),

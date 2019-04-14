@@ -1,6 +1,7 @@
 const { css } = require('emotion')
 const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
+const { getFirstName } = require('../api.js')
 const Layout = require('../components/Layout.js')
 const ErrorList = require('../components/ErrorList.js')
 const LogoutLink = require('../components/LogoutLink.js')
@@ -46,7 +47,7 @@ const Dashboard = ({ data = {}, errors = {} }) =>
 
       <div class=${dashboard}>
         <${LogoutLink} />
-        <h1>Dashboard</h1>
+        <h1>Hi, ${getFirstName(data.name)}</h1>
 
         <${SummaryTable} title="About you" rows=${aboutYouRows(data)} ifEditable=${false} //>
         <${SummaryTable} title="Your family" rows=${yourFamilyRows(data)} ifEditable=${false} //>

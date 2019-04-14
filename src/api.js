@@ -37,6 +37,8 @@ var API = (function() {
 
   const _users = [_john, _arthur, _louis, _kim]
 
+  const getFirstName = (name = '') => name.trim().split(' ')[0]
+
   const getUser = name => {
     let found = null
 
@@ -44,7 +46,7 @@ var API = (function() {
       return found
     }
 
-    const firstName = name.split(' ')[0].toLowerCase()
+    const firstName = getFirstName(name).toLowerCase()
 
     _users.forEach(user => {
       if (user._matches.includes(firstName)) {
@@ -60,6 +62,7 @@ var API = (function() {
   }
 
   return {
+    getFirstName,
     getUser,
     getMatches,
   }
