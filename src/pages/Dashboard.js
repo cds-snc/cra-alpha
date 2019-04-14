@@ -30,7 +30,7 @@ const makeRows = ({ name, address, maritalStatus, children, income }) => {
   ]
 }
 
-const Dashboard = ({ data = {}, errors = {}, userInfo = false }) =>
+const Dashboard = ({ data = {}, errors = {} }) =>
   html`
     <${Layout}>
 
@@ -40,10 +40,7 @@ const Dashboard = ({ data = {}, errors = {}, userInfo = false }) =>
         `}
 
       <div class=${dashboard}>
-        ${!userInfo &&
-          html`
-            <${LogoutLink} />
-          `}
+        <${LogoutLink} />
         <h1>Dashboard</h1>
         <div>
           <${SummaryTable} rows=${makeRows(data)} ifEditable=${false} //>
