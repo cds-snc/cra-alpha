@@ -6,8 +6,6 @@ const Layout = require('../components/Layout.js')
 const ErrorList = require('../components/ErrorList.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
-const ValidationError = require('../components/forms/ValidationError.js')
-const Checkbox = require('../components/forms/Checkbox.js')
 const Button = require('../components/forms/Button.js')
 
 const dashboard = css`
@@ -48,25 +46,23 @@ const Dashboard = ({ data = {}, errors = {} }) =>
       <div class=${dashboard}>
         <${LogoutLink} />
         <h1>Hi, ${getFirstName(data.name)}</h1>
+        <p>
+        Here’s what we know about you based on your previous tax returns and information from your employer, BLORB CORP.
+        </p>
+        <p>If any of this information is wrong, you’ll have a chance to update it.</p>
 
         <${SummaryTable} title="About you" rows=${aboutYouRows(data)} ifEditable=${false} //>
         <${SummaryTable} title="Your family" rows=${yourFamilyRows(data)} ifEditable=${false} //>
         <${SummaryTable} title="Your income" rows=${yourIncomeRows(data)} ifEditable=${false} //>
 
         <p>
-          Once you have provided your consent, go ahead and submit. (<a
-            href="/consent"
-            target="_blank"
-            >Read more about consent.</a
-          >)
+        On the following pages, you can review each section and correct any outdated information.
+        Once your information is up-to-date, you will be ready to submit your tax return.
         </p>
-        <form method="post">
-          ${errors.consent &&
-            html`
-              <${ValidationError} ...${errors.consent} />
-            `}
-          <${Checkbox} id="consent">I totally consent to this<//>
-          <${Button} style=${submitButton}>Submit taxes<//>
+        <p>There are 3 sections in total, and it should take approximately <strong>10 minutes</strong> to complete them.</p>
+
+        <form action="/confirmation">
+          <${Button} style=${submitButton}>Get started<//>
         </form>
 
       </div>

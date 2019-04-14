@@ -29,7 +29,7 @@ describe('<Dashboard>', () => {
     expect($('h1').text()).toEqual('Hi, Fred')
 
     expect($('button').length).toBe(1)
-    expect($('button').text()).toEqual('Submit taxes')
+    expect($('button').text()).toEqual('Get started')
 
     expect($('a[href="/logout"]').length).toBe(1)
     expect($('a[href="/logout"]').text()).toEqual('Log out')
