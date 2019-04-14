@@ -15,6 +15,8 @@ describe('<Dashboard>', () => {
 
   const expectedStrings = Object.values(data)
 
+  const expectedH2s = ['About you', 'Your family', 'Your income']
+
   test('renders h1 as expected', () => {
     const $ = cheerio.load(
       render(
@@ -44,11 +46,24 @@ describe('<Dashboard>', () => {
       )
       expect($('h1').text()).toEqual('Dashboard')
 
+      expect($('dl').text()).toContain(str)
+    })
+  })
+
+  expectedH2s.map((str, i) => {
+    test(`renders h2 with "${str}"`, () => {
+      const $ = cheerio.load(
+        render(
+          html`
+            <${Dashboard} data=${data} />
+          `,
+        ),
+      )
       expect(
-        $('h1')
-          .next()
-          .html(),
-      ).toContain(str)
+        $('h2')
+          .eq(i)
+          .text(),
+      ).toEqual(str)
     })
   })
 })

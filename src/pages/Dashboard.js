@@ -20,14 +20,19 @@ const dashboard = css`
 const submitButton = css`
   width: 200px;
 `
-const makeRows = ({ name, address, maritalStatus, children, income }) => {
+const aboutYouRows = ({ name, address }) => {
+  return [{ key: 'Name', value: name }, { key: 'Mailing address', value: address }]
+}
+
+const yourFamilyRows = ({ maritalStatus, children }) => {
   return [
-    { key: 'Name', value: name },
-    { key: 'Mailing address', value: address },
     { key: 'Marital status', value: maritalStatus },
     { key: 'Number of children', value: children },
-    { key: 'Annual income', value: income },
   ]
+}
+
+const yourIncomeRows = ({ income }) => {
+  return [{ key: 'Annual income', value: income }]
 }
 
 const Dashboard = ({ data = {}, errors = {} }) =>
@@ -42,9 +47,10 @@ const Dashboard = ({ data = {}, errors = {} }) =>
       <div class=${dashboard}>
         <${LogoutLink} />
         <h1>Dashboard</h1>
-        <div>
-          <${SummaryTable} rows=${makeRows(data)} ifEditable=${false} //>
-        </div>
+
+        <${SummaryTable} title="About you" rows=${aboutYouRows(data)} ifEditable=${false} //>
+        <${SummaryTable} title="Your family" rows=${yourFamilyRows(data)} ifEditable=${false} //>
+        <${SummaryTable} title="Your income" rows=${yourIncomeRows(data)} ifEditable=${false} //>
 
         <p>
           Once you have provided your consent, go ahead and submit. (<a
