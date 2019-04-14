@@ -87,9 +87,7 @@ const SummaryRow = ({ row: { key, value } = {}, ifEditable = true }) => {
           <dd class="action">
             <a href="/edit">
               Change
-              <span class="${visuallyHidden}"
-                >${` ${key && key.toLowerCase()}`}</span
-              >
+              <span class="${visuallyHidden}">${` ${key && key.toLowerCase()}`}</span>
             </a>
           </dd>
         `}
@@ -105,15 +103,14 @@ const renderSummaryRow = (row, props) =>
 const summaryTable = css`
   dl {
     margin: 0;
+    margin-bottom: ${theme.space.xl};
   }
 
   h2 {
-    margin-bottom: ${theme.space.md};
-  }
-
-  h2 + dl {
-    border-top: 1px solid white;
-    padding-top: ${theme.space.sm};
+    font-size: 1.3em;
+    margin: ${theme.space.lg} 0 ${theme.space.xs} 0;
+    padding-bottom: ${theme.space.xxs};
+    border-bottom: 1px solid black;
   }
 
   /* on larger screens */
@@ -124,8 +121,9 @@ const summaryTable = css`
       table-layout: fixed;
     }
 
-    h2 + dl {
-      padding-top: 0;
+    h2 {
+      margin-bottom: 0;
+      padding-bottom: ${theme.space.xs};
     }
   }
 `

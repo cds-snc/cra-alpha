@@ -144,24 +144,6 @@ app.get('/kim', (req, res) => {
   res.redirect(302, '/dashboard')
 })
 
-app.get('/table', (req, res) => {
-  const rows = [
-    { key: 'Name', value: 'Avril Douglas Campbell' },
-    {
-      key: 'Mailing address',
-      value: '850 Argyle Street\nPort Alberni\nBritish Columbia\nV9Y 1V8',
-    },
-  ]
-
-  res.send(
-    renderPage({
-      locale,
-      pageComponent: 'Empty',
-      props: { rows, title: 'Personal info' },
-    }),
-  )
-})
-
 /* TODO: delete this by Monday, April 15th */
 app.get('/alpha', (req, res) => {
   const content =
