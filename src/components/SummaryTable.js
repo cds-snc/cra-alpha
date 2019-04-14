@@ -103,21 +103,44 @@ const renderSummaryRow = (row, props) =>
   `
 
 const summaryTable = css`
-  margin: 0;
+  dl {
+    margin: 0;
+  }
+
+  h2 {
+    margin-bottom: ${theme.space.md};
+  }
+
+  h2 + dl {
+    border-top: 1px solid white;
+    padding-top: ${theme.space.sm};
+  }
 
   /* on larger screens */
   @media (min-width: 640px) {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
+    dl {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    h2 + dl {
+      padding-top: 0;
+    }
   }
 `
 
-const SummaryTable = ({ rows, ...props }) =>
+const SummaryTable = ({ rows, title = false, ...props }) =>
   html`
-    <dl class=${summaryTable}>
-      ${rows.map(row => renderSummaryRow(row, props))}
-    </dl>
+    <div class=${summaryTable}>
+      ${title &&
+        html`
+          <h2>${title}</h2>
+        `}
+      <dl title=${title}>
+        ${rows.map(row => renderSummaryRow(row, props))}
+      </dl>
+    </div>
   `
 
 module.exports = SummaryTable
