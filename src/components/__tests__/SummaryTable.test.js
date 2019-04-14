@@ -9,31 +9,44 @@ const getCell = ({ cheerio, rowNum = 0, find }) =>
     .eq(rowNum)
     .find(find)
 
-describe('<SummaryTable>', () => {
-  test('renders <dl> element and 1 row', () => {
-    const rows = [{ key: 'Full name', value: 'Fred Smith' }]
+const renderTable = props => {
+  return cheerio.load(
+    render(
+      html`
+        <${SummaryTable} ...${props} />
+      `,
+    ),
+  )
+}
 
-    const $ = cheerio.load(
-      render(
-        html`
-          <${SummaryTable} rows=${rows} />
-        `,
-      ),
-    )
+describe('<SummaryTable>', () => {
+  const rows = [{ key: 'Full name', value: 'Fred Smith' }]
+
+  test('renders <dl> element and 1 row', () => {
+    const $ = renderTable({ rows })
+
     expect($('dl').length).toBe(1)
     expect($('dl div').length).toBe(1)
   })
 
-  test('renders correct cells with 1 row', () => {
-    const rows = [{ key: 'Full name', value: 'Fred Smith' }]
+  test('renders without a title', () => {
+    const $ = renderTable({ rows })
 
-    const $ = cheerio.load(
-      render(
-        html`
-          <${SummaryTable} rows=${rows} />
-        `,
-      ),
-    )
+    expect($('dl').length).toBe(1)
+    expect($('dl').attr('title')).toBeUndefined()
+    expect($('h2').length).toBe(0)
+  })
+
+  test('renders with a title', () => {
+    const $ = renderTable({ rows, title: 'About you' })
+
+    expect($('dl').length).toBe(1)
+    expect($('dl').attr('title')).toEqual('About you')
+    expect($('h2').text()).toEqual('About you')
+  })
+
+  test('renders correct cells with 1 row', () => {
+    const $ = renderTable({ rows })
 
     // first row
     expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual(
@@ -51,18 +64,8 @@ describe('<SummaryTable>', () => {
   })
 
   test('renders correct cells with 2 rows', () => {
-    const rows = [
-      { key: 'Full name', value: 'Fred Smith' },
-      { key: 'Date of birth', value: '18-06-1971' },
-    ]
-
-    const $ = cheerio.load(
-      render(
-        html`
-          <${SummaryTable} rows=${rows} />
-        `,
-      ),
-    )
+    let moreRows = rows.concat([{ key: 'Date of birth', value: '18-06-1971' }])
+    const $ = renderTable({ rows: moreRows })
 
     // second row
     expect(getCell({ cheerio: $, rowNum: 1, find: '.key' }).text()).toEqual(
@@ -80,18 +83,8 @@ describe('<SummaryTable>', () => {
   })
 
   test('renders without change links', () => {
-    const rows = [
-      { key: 'Full name', value: 'Fred Smith' },
-      { key: 'Date of birth', value: '18-06-1971' },
-    ]
-
-    const $ = cheerio.load(
-      render(
-        html`
-          <${SummaryTable} rows=${rows} ifEditable=${false} />
-        `,
-      ),
-    )
+    let moreRows = rows.concat([{ key: 'Date of birth', value: '18-06-1971' }])
+    const $ = renderTable({ rows: moreRows, ifEditable: false })
 
     expect($('.action').length).toBe(0)
     expect($.html()).not.toContain('Change date of birth')

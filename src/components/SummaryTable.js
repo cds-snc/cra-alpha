@@ -87,9 +87,7 @@ const SummaryRow = ({ row: { key, value } = {}, ifEditable = true }) => {
           <dd class="action">
             <a href="/edit">
               Change
-              <span class="${visuallyHidden}"
-                >${` ${key && key.toLowerCase()}`}</span
-              >
+              <span class="${visuallyHidden}">${` ${key && key.toLowerCase()}`}</span>
             </a>
           </dd>
         `}
@@ -103,21 +101,44 @@ const renderSummaryRow = (row, props) =>
   `
 
 const summaryTable = css`
-  margin: 0;
+  dl {
+    margin: 0;
+    margin-bottom: ${theme.space.xl};
+  }
+
+  h2 {
+    font-size: 1.3em;
+    margin: ${theme.space.lg} 0 ${theme.space.xs} 0;
+    padding-bottom: ${theme.space.xxs};
+    border-bottom: 1px solid black;
+  }
 
   /* on larger screens */
   @media (min-width: 640px) {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
+    dl {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      padding-bottom: ${theme.space.xs};
+    }
   }
 `
 
-const SummaryTable = ({ rows, ...props }) =>
+const SummaryTable = ({ rows, title = false, ...props }) =>
   html`
-    <dl class=${summaryTable}>
-      ${rows.map(row => renderSummaryRow(row, props))}
-    </dl>
+    <div class=${summaryTable}>
+      ${title &&
+        html`
+          <h2>${title}</h2>
+        `}
+      <dl title=${title}>
+        ${rows.map(row => renderSummaryRow(row, props))}
+      </dl>
+    </div>
   `
 
 module.exports = SummaryTable
