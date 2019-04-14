@@ -13,7 +13,7 @@ const main = css`
 const blackBar = css`
   width: 100%;
   background-color: black;
-  height: 50px;
+  height: ${theme.space.sm};
 `
 
 const Layout = ({ children }) =>
