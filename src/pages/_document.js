@@ -65,7 +65,7 @@ const renderPage = ({ locale, pageComponent, title = '', props }) => {
   return _renderDocument({
     title,
     locale,
-    content: renderStylesToString(content),
+    content,
   })
 }
 
