@@ -16,10 +16,10 @@ const form = css`
   > div {
     margin-bottom: ${theme.space.xl};
   }
-`
 
-const loginButton = css`
-  max-width: 150px;
+  button {
+    max-width: 150px;
+  }
 `
 
 /* eslint-disable no-irregular-whitespace */
@@ -39,7 +39,7 @@ const Login = ({ data: { name = '' } = {}, errors = {} }) =>
           <${Input} id="name" value=${name} error=${errors.name}>First name<//>
         </div>
 
-        <${Button} style=${loginButton}>Log in<//>
+        <${Button}>Log in<//>
       </form>
     <//>
   `
