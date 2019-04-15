@@ -6,7 +6,7 @@ const Layout = require('../components/Layout.js')
 const ErrorList = require('../components/ErrorList.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
-const Button = require('../components/forms/Button.js')
+const ButtonLink = require('../components/ButtonLink.js')
 
 const dashboard = css`
   position: relative;
@@ -60,13 +60,12 @@ const Dashboard = ({ data = {}, errors = {} }) =>
           Once your information is up-to-date, you will be ready to submit your tax return.
         </p>
         <p>
-          There are 3 sections in total, and it should take approximately
-          <strong>10 minutes</strong> to complete them.
+          There are <strong>3 sections</strong> in total, and it should take approximately
+          ${' '}<strong>10 minutes</strong>
+          ${' '}to complete.
         </p>
 
-        <form action="/confirmation">
-          <${Button} style=${submitButton}>Get started<//>
-        </form>
+        <${ButtonLink} href="/confirmation" style=${submitButton}>Get started<//>
       </div>
     <//>
   `

@@ -37,7 +37,27 @@ const visuallyHidden = css`
   white-space: nowrap !important;
 `
 
+const buttonStyles = css`
+  font: 400 1em sans-serif;
+  line-height: 1.1875;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-top: 0;
+  padding: 7px 10px;
+  border-radius: 0;
+  color: ${theme.color.black};
+  background-color: ${theme.color.green};
+  border: 2px solid ${theme.color.grey};
+  text-align: center;
+  vertical-align: top;
+  cursor: pointer;
+  -webkit-appearance: none;
+  text-decoration: none;
+`
+
 module.exports = {
   theme,
   visuallyHidden,
+  buttonStyles,
 }

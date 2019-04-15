@@ -28,8 +28,8 @@ describe('<Dashboard>', () => {
     expect($('h1').length).toBe(1)
     expect($('h1').text()).toEqual('Hi, Fred')
 
-    expect($('button').length).toBe(1)
-    expect($('button').text()).toEqual('Get started')
+    expect($('a.buttonLink').length).toBe(1)
+    expect($('a.buttonLink').text()).toEqual('Get started')
 
     expect($('a[href="/logout"]').length).toBe(1)
     expect($('a[href="/logout"]').text()).toEqual('Log out')
