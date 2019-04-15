@@ -37,7 +37,6 @@ const yourIncomeRows = ({ income }) => {
 const Dashboard = ({ data = {}, errors = {} }) =>
   html`
     <${Layout}>
-
       ${Object.keys(errors).length > 0 &&
         html`
           <${ErrorList} errors=${errors} //>
@@ -47,7 +46,8 @@ const Dashboard = ({ data = {}, errors = {} }) =>
         <${LogoutLink} />
         <h1>Hi, ${getFirstName(data.name)}</h1>
         <p>
-        Here’s what we know about you based on your previous tax returns and information from your employer, BLORB CORP.
+          Here’s what we know about you based on your previous tax returns and information from your
+          employer, BLORB CORP.
         </p>
         <p>If any of this information is wrong, you’ll have a chance to update it.</p>
 
@@ -56,17 +56,19 @@ const Dashboard = ({ data = {}, errors = {} }) =>
         <${SummaryTable} title="Your income" rows=${yourIncomeRows(data)} ifEditable=${false} //>
 
         <p>
-        On the following pages, you can review each section and correct any outdated information.
-        Once your information is up-to-date, you will be ready to submit your tax return.
+          On the following pages, you can review each section and correct any outdated information.
+          Once your information is up-to-date, you will be ready to submit your tax return.
         </p>
-        <p>There are 3 sections in total, and it should take approximately <strong>10 minutes</strong> to complete them.</p>
+        <p>
+          There are 3 sections in total, and it should take approximately
+          <strong>10 minutes</strong> to complete them.
+        </p>
 
         <form action="/confirmation">
           <${Button} style=${submitButton}>Get started<//>
         </form>
-
       </div>
-    </${Layout}>
+    <//>
   `
 
 module.exports = Dashboard
