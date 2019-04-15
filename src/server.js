@@ -132,6 +132,50 @@ app.get('/edit', checkLogin, (req, res) => {
   res.send(_renderDocument({ title: '[WIP] Edit', locale, content }))
 })
 
+app.get('/edit/name', checkLogin, (req, res) => {
+  const name = require('./questions/name.js')
+
+  res.send(
+    renderPage({
+      locale,
+      pageComponent: 'Edit',
+      props: {
+        ...name,
+        data: getSessionData(req.session),
+      },
+    }),
+  )
+})
+
+const pickEditSchema = (req, res, next) => {
+  const question = require(`./questions/${req.params.id}.js`)
+  return checkSchema(question.schema)[0](req, res, next)
+}
+
+app.post('/edit/:id', checkLogin, pickEditSchema, (req, res) => {
+  const question = require(`./questions/${req.params.id}.js`)
+
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(422).send(
+      renderPage({
+        locale,
+        title: 'Error: Edit',
+        pageComponent: 'Edit',
+        props: {
+          ...question,
+          data: getSessionData(req.session),
+          errors: errorArray2ErrorObject(errors),
+        },
+      }),
+    )
+  }
+
+  // update session with new value
+  req.session[req.params.id] = req.body[req.params.id]
+  return res.redirect(302, '/dashboard')
+})
+
 app.get('/confirmation', checkLogin, (req, res) => {
   const data = getSessionData(req.session)
 
