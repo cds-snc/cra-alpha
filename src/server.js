@@ -53,7 +53,6 @@ app.get('/login', (req, res) => {
 app.post('/login', checkSchema(loginSchema), (req, res) => {
   let { name } = getSessionData(req.body)
   let user = API.getUser(name)
-  req.session = user || { name }
 
   const errors = validationResult(req)
   if (!user && !errors.isEmpty()) {
@@ -63,13 +62,14 @@ app.post('/login', checkSchema(loginSchema), (req, res) => {
         title: 'Error: Log in',
         pageComponent: 'Login',
         props: {
-          data: getSessionData(req.session),
+          data: { name },
           errors: errorArray2ErrorObject(errors),
         },
       }),
     )
   }
 
+  req.session = user
   res.redirect(302, '/dashboard')
 })
 
