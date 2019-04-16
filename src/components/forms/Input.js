@@ -9,15 +9,20 @@ const input = css`
     margin-bottom: ${theme.space.xs};
   }
 
-  input {
+  input,
+  textarea {
     font: 400 1em sans-serif;
     border: 2px solid ${theme.color.black};
     width: 100%;
-    height: 40px;
     margin-top: 0;
     padding: 5px;
     border-radius: 0;
     -webkit-appearance: none;
+    vertical-align: top;
+  }
+
+  input {
+    height: 40px;
 
     &[type='number']::-webkit-inner-spin-button,
     &[type='number']::-webkit-outer-spin-button {
@@ -42,22 +47,50 @@ const TextInput = ({
   ...props
 }) => html`
   <input
-    style=${{ ...style }}
     id=${id}
     name=${name || id}
     type=${type}
+    style=${{ ...style }}
     aria-describedby="${error ? `${error.param}-error` : false}}"
     ...${props}
   />
 `
 
+const TextArea = ({
+  id,
+  name = '',
+  style = {},
+  value = '',
+  error = undefined,
+  rows = 5,
+  ...props
+}) => html`
+  <textarea
+    id=${id}
+    name=${name || id}
+    rows=${rows}
+    style=${{ ...style }}
+    aria-describedby="${error ? `${error.param}-error` : false}}"
+    ...${props}
+  >
+${value}</textarea
+  >
+`
+
+const renderInput = ({ type, ...props }) =>
+  type === 'textarea'
+    ? html`
+        <${TextArea} ...${props} />
+      `
+    : html`
+        <${TextInput} type=${type} ...${props} />
+      `
+
 const Input = ({
   id,
   children,
-  name = '',
   type = 'text',
   bold = true,
-  style = {},
   error = undefined,
   ...props
 }) =>
@@ -77,14 +110,7 @@ const Input = ({
         html`
           <${ValidationError} param=${error.param} msg=${error.msg} />
         `}
-      <${TextInput}
-        id=${id}
-        style=${style}
-        type=${type}
-        name=${name}
-        error=${error}
-        ...${props}
-      />
+      ${renderInput({ type, id, error, ...props })}
     </div>
   `
 
