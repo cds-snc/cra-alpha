@@ -4,8 +4,6 @@ const { html } = require('../../utils.js')
 const ValidationError = require('./ValidationError')
 
 const input = css`
-  display: block;
-
   label {
     display: block;
     margin-bottom: ${theme.space.xs};
@@ -35,6 +33,24 @@ const withError = css`
   border-left: 3px solid ${theme.color.error};
 `
 
+const TextInput = ({
+  id,
+  name = '',
+  type = 'text',
+  style = {},
+  error = undefined,
+  ...props
+}) => html`
+  <input
+    style=${{ ...style }}
+    id=${id}
+    name=${name || id}
+    type=${type}
+    aria-describedby="${error ? `${error.param}-error` : false}}"
+    ...${props}
+  />
+`
+
 const Input = ({
   id,
   children,
@@ -46,7 +62,7 @@ const Input = ({
   ...props
 }) =>
   html`
-    <span
+    <div
       class=${css`
         ${input} ${error && withError}
       `}
@@ -61,15 +77,15 @@ const Input = ({
         html`
           <${ValidationError} param=${error.param} msg=${error.msg} />
         `}
-      <input
-        style=${{ ...style }}
+      <${TextInput}
         id=${id}
-        name=${name || id}
+        style=${style}
         type=${type}
-        aria-describedby="${error ? `${error.param}-error` : false}}"
+        name=${name}
+        error=${error}
         ...${props}
       />
-    </span>
+    </div>
   `
 
 module.exports = Input
