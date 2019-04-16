@@ -4,7 +4,7 @@ const { html } = require('../../utils.js')
 
 const AlphaBanner = require('../AlphaBanner.js')
 
-test('AlphaBanner renders as expected', () => {
+test('<AlphaBanner> renders as expected', () => {
   const $ = cheerio.load(
     render(
       html`

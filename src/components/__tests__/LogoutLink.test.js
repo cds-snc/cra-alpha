@@ -4,7 +4,7 @@ const { html } = require('../../utils.js')
 
 const LogoutLink = require('../LogoutLink.js')
 
-test('LogoutLink renders as expected', () => {
+test('<LogoutLink> renders as expected', () => {
   const $ = cheerio.load(
     render(
       html`
