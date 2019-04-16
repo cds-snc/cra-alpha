@@ -23,6 +23,12 @@ const theme = {
   },
 }
 
+const pageMargin = css`
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 ${theme.space.md};
+`
+
 const visuallyHidden = css`
   position: absolute !important;
   width: 1px !important;
@@ -60,4 +66,5 @@ module.exports = {
   theme,
   visuallyHidden,
   buttonStyles,
+  pageMargin,
 }

@@ -4,7 +4,7 @@ const { html } = require('../../utils.js')
 
 const Layout = require('../Layout.js')
 
-test('Layout wraps children with <main> element', () => {
+test('<Layout> wraps children with <main> element', () => {
   const $ = cheerio.load(
     render(
       html`
