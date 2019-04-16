@@ -1,5 +1,6 @@
-const name = {
+module.exports = {
   id: 'name',
+  label: 'Full name',
   description: 'Please enter your full name.',
   type: 'text',
   schema: {
@@ -12,5 +13,3 @@ const name = {
     },
   },
 }
-
-module.exports = name
