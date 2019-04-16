@@ -29,7 +29,7 @@ const edit = css`
   }
 `
 
-const Edit = ({ id, description, type, data, errors = {} }) =>
+const Edit = ({ id, label = '', description, type, data, errors = {} }) =>
   html`
     <${Layout}>
       <div class=${edit}>
@@ -41,7 +41,7 @@ const Edit = ({ id, description, type, data, errors = {} }) =>
             <${ErrorList} errors=${errors} //>
           `}
 
-        <h1>Edit ${id}</h1>
+        <h1>Edit ${label.toLowerCase()}</h1>
         <p>${description}</p>
 
         <form method="post">
@@ -51,7 +51,7 @@ const Edit = ({ id, description, type, data, errors = {} }) =>
               type=${type}
               value=${data[id]}
               error=${errors[id]}
-              >${id}<//
+              >${label}<//
             >
           </div>
 
