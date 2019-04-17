@@ -65,7 +65,7 @@ const Dashboard = ({ data = {}, errors = {} }) =>
           ${' '}to complete.
         </p>
 
-        <${ButtonLink} href="/confirmation" style=${submitButton}>Get started<//>
+        <${ButtonLink} href="/T4" style=${submitButton}>Get started<//>
       </div>
     <//>
   `
