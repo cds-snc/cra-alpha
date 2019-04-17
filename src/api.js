@@ -5,7 +5,13 @@ var API = (function() {
     address: '21275 Lakeshore Dr\nSainte-Anne-de-Bellevue\nQuébec\nH9X 3L9',
     maritalStatus: 'Widowed',
     children: '8',
-    income: '$10,000',
+    income: [
+      { key: 'Employer Name', value: 'Acme Corp' },
+      { Year: 2019 },
+      { Box12: '123456789' },
+      { key: 'Box14', value: 10000 },
+      { key: 'Box22', value: 1000 },
+    ],
   }
 
   const _arthur = {
@@ -14,7 +20,13 @@ var API = (function() {
     address: '23 St Clair Ave East\nToronto\nOntario\nM4T 1M4',
     maritalStatus: 'Married',
     children: '3',
-    income: '$20,000',
+    income: [
+      { key: 'Employer Name', value: 'Alpha Corp' },
+      { Year: 2019 },
+      { Box12: '123789456' },
+      { key: 'Box14', value: 100000 },
+      { key: 'Box22', value: 10000 },
+    ],
   }
 
   const _louis = {
@@ -23,7 +35,13 @@ var API = (function() {
     address: '459-455 Boulevard de la Carrière\nGatineau\nQuébec\nJ8Y 6V7',
     maritalStatus: 'Widowed',
     children: '5',
-    income: '$15,000',
+    income: [
+      { key: 'Employer Name', value: 'Acme Corp' },
+      { Year: 2019 },
+      { Box12: '456123789' },
+      { key: 'Box14', value: 50000 },
+      { key: 'Box22', value: 5000 },
+    ],
   }
 
   const _kim = {
@@ -32,7 +50,13 @@ var API = (function() {
     address: '850 Argyle Street\nPort Alberni\nBritish Columbia\nV9Y 1V8',
     maritalStatus: 'Married',
     children: '0',
-    income: '$25,000',
+    income: [
+      { key: 'Employer Name', value: 'Acme Corp' },
+      { Year: 2019 },
+      { Box12: '321654987' },
+      { key: 'Box14', value: 54321 },
+      { key: 'Box22', value: 12345 },
+    ],
   }
 
   const _users = [_john, _arthur, _louis, _kim]
