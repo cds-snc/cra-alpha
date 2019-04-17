@@ -1,22 +1,10 @@
-const { css } = require('emotion')
-const { theme } = require('../styles.js')
+const { dashboardStyles } = require('../styles.js')
 const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
 
-const dashboard = css`
-  position: relative;
-
-  > div {
-    margin-bottom: ${theme.space.xl};
-  }
-`
-
-const submitButton = css`
-  width: 200px;
-`
 const aboutYouRows = ({ name, address }) => {
   return [{ key: 'Name', value: name }, { key: 'Mailing address', value: address }]
 }
@@ -24,7 +12,7 @@ const aboutYouRows = ({ name, address }) => {
 const AboutYou = ({ data = {} }) =>
   html`
     <${Layout}>
-      <div class=${dashboard}>
+      <div class=${dashboardStyles}>
         <${LogoutLink} />
         <h1>About you</h1>
         <p>
@@ -40,7 +28,7 @@ const AboutYou = ({ data = {} }) =>
           ${' '}to complete.
         </p>
 
-        <${ButtonLink} href="/confirmation" style=${submitButton}>Continue<//>
+        <${ButtonLink} href="/confirmation">Continue<//>
       </div>
     <//>
   `

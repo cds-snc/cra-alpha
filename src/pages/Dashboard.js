@@ -1,5 +1,4 @@
-const { css } = require('emotion')
-const { theme } = require('../styles.js')
+const { dashboardStyles } = require('../styles.js')
 const { html } = require('../utils.js')
 const { getFirstName } = require('../api.js')
 const Layout = require('../components/Layout.js')
@@ -7,17 +6,6 @@ const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
 
-const dashboard = css`
-  position: relative;
-
-  > div {
-    margin-bottom: ${theme.space.xl};
-  }
-`
-
-const submitButton = css`
-  width: 200px;
-`
 const aboutYouRows = ({ name, address }) => {
   return [{ key: 'Name', value: name }, { key: 'Mailing address', value: address }]
 }
@@ -42,7 +30,7 @@ const yourIncomeRows = ({ income }) => {
 const Dashboard = ({ data = {} }) =>
   html`
     <${Layout}>
-      <div class=${dashboard}>
+      <div class=${dashboardStyles}>
         <${LogoutLink} />
         <h1>Hi, ${getFirstName(data.name)}</h1>
         <p>
@@ -65,7 +53,7 @@ const Dashboard = ({ data = {} }) =>
           ${' '}to complete.
         </p>
 
-        <${ButtonLink} href="/about-you" style=${submitButton}>Get started<//>
+        <${ButtonLink} href="/about-you">Get started<//>
       </div>
     <//>
   `
