@@ -8,7 +8,6 @@ const {
   loginSchema,
   getSessionData,
   checkLogin,
-  dashboardSchema,
   errorArray2ErrorObject,
 } = require('./utils.js')
 const API = require('./api.js')
@@ -95,25 +94,6 @@ app.get('/dashboard', checkLogin, (req, res) => {
       props: { data },
     }),
   )
-})
-
-app.post('/dashboard', checkLogin, checkSchema(dashboardSchema), (req, res) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return res.status(422).send(
-      renderPage({
-        locale,
-        pageComponent: 'Dashboard',
-        title: 'Error: Dashboard',
-        props: {
-          data: getSessionData(req.session),
-          errors: errorArray2ErrorObject(errors),
-        },
-      }),
-    )
-  }
-
-  return res.redirect(302, '/confirmation')
 })
 
 app.get('/edit', checkLogin, (req, res) => {

@@ -3,7 +3,6 @@ const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 const { getFirstName } = require('../api.js')
 const Layout = require('../components/Layout.js')
-const ErrorList = require('../components/ErrorList.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
@@ -40,14 +39,9 @@ const yourIncomeRows = ({ income }) => {
   ]
 }
 
-const Dashboard = ({ data = {}, errors = {} }) =>
+const Dashboard = ({ data = {} }) =>
   html`
     <${Layout}>
-      ${Object.keys(errors).length > 0 &&
-        html`
-          <${ErrorList} errors=${errors} //>
-        `}
-
       <div class=${dashboard}>
         <${LogoutLink} />
         <h1>Hi, ${getFirstName(data.name)}</h1>
@@ -71,7 +65,7 @@ const Dashboard = ({ data = {}, errors = {} }) =>
           ${' '}to complete.
         </p>
 
-        <${ButtonLink} href="/T4" style=${submitButton}>Get started<//>
+        <${ButtonLink} href="/about-you" style=${submitButton}>Get started<//>
       </div>
     <//>
   `
