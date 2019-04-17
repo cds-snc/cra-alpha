@@ -96,6 +96,19 @@ app.get('/dashboard', checkLogin, (req, res) => {
   )
 })
 
+app.get('/about-you', checkLogin, (req, res) => {
+  const data = getSessionData(req.session)
+
+  res.send(
+    renderPage({
+      locale,
+      title: 'About you',
+      pageComponent: 'AboutYou',
+      props: { data },
+    }),
+  )
+})
+
 app.get('/edit', checkLogin, (req, res) => {
   const content = `
     <h1>Editing coming soon</h1>
