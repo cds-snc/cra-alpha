@@ -1,5 +1,5 @@
 const { css } = require('emotion')
-const { theme } = require('../styles.js')
+const { theme, mediaQueries } = require('../styles.js')
 const { html } = require('../utils.js')
 
 const alphaBanner = css`
@@ -18,7 +18,7 @@ const alphaBanner = css`
     font-weight: 700;
     display: inline-block;
     padding: 4px 8px;
-    padding-bottom: 1px;
+    padding-bottom: 3px;
     outline: 2px solid ${theme.color.black};
     outline-offset: -2px;
     color: #000;
@@ -33,6 +33,12 @@ const alphaBanner = css`
     display: table-cell;
     vertical-align: baseline;
   }
+
+  ${mediaQueries.sm(css`
+    p {
+      font-size: 0.75em;
+    }
+  `)};
 `
 
 const AlphaBanner = () =>

@@ -1,5 +1,7 @@
 const { css } = require('emotion')
 
+/* Utilities */
+
 const theme = {
   color: {
     grey: '#595959',
@@ -22,6 +24,23 @@ const theme = {
     xxl: '60px',
   },
 }
+
+const mediaQueries = {
+  sm: content =>
+    css`
+      @media screen and (max-width: 640px) {
+        ${content};
+      }
+    `,
+  lg: content =>
+    css`
+      @media screen and (min-width: 640px) {
+        ${content};
+      }
+    `,
+}
+
+/* Reused styles */
 
 const pageMargin = css`
   max-width: 900px;
@@ -64,6 +83,7 @@ const buttonStyles = css`
 
 module.exports = {
   theme,
+  mediaQueries,
   visuallyHidden,
   buttonStyles,
   pageMargin,
