@@ -23,8 +23,8 @@ const Welcome = ({ locale }) =>
         </ul>
 
         <p>
-          Then, you will see the information CRA has on file about you. If it is
-          up to date, you will be able to file your return immediately.
+          Then, you will see the information CRA has on file about you. If it is up to date, you
+          will be able to file your return immediately.
         </p>
 
         <a href="/login">Get started <span aria-hidden="true">→</span></a>

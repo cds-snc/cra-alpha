@@ -3,13 +3,11 @@ const { theme, visuallyHidden } = require('../styles.js')
 const { html } = require('../utils.js')
 
 const summaryRow = css`
-  /* on larger screens */
-  @media (min-width: 640px) {
+  @media (${theme.mq.lg}) {
     display: table-row;
   }
 
-  /* on smaller screens */
-  @media (max-width: 640px) {
+  @media (${theme.mq.sm}) {
     margin-bottom: ${theme.space.sm};
     border-bottom: 1px solid ${theme.color.grey};
   }
@@ -34,8 +32,7 @@ const summaryRow = css`
     margin-bottom: ${theme.space.sm};
   }
 
-  /* on larger screens */
-  @media (min-width: 640px) {
+  @media (${theme.mq.lg}) {
     .key,
     .value,
     .action {
@@ -61,8 +58,7 @@ const summaryRow = css`
     }
   }
 
-  /* on smaller screens */
-  @media (max-width: 640px) {
+  @media (${theme.mq.sm}) {
     .key {
       font-weight: 700;
     }

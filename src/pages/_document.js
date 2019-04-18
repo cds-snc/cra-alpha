@@ -1,5 +1,6 @@
 const { renderStylesToString } = require('emotion-server')
 const render = require('preact-render-to-string')
+const { theme } = require('../styles.js')
 const { html, metaIfSHA } = require('../utils.js')
 
 const document = ({ title, locale, content }) => {
@@ -35,7 +36,7 @@ const document = ({ title, locale, content }) => {
             margin-bottom: 25px;
           }
 
-          @media (max-width: 640px) {
+          @media (${theme.mq.sm}) {
             body { font-size: 1.05em; }
           }
         </style>
