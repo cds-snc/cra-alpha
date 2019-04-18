@@ -1,5 +1,5 @@
 const { css } = require('emotion')
-const { theme, mediaQueries } = require('../styles.js')
+const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
 
 const alphaBanner = css`
@@ -34,7 +34,7 @@ const alphaBanner = css`
     vertical-align: baseline;
   }
 
-  ${mediaQueries.sm(css`
+  ${theme.mq.sm(css`
     p {
       font-size: 0.75em;
     }
