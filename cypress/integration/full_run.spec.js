@@ -1,3 +1,5 @@
+const { getFirstName } = require('../../src/api.js')
+
 describe('Full run through', function() {
   it('successfully loads the home page', function() {
     cy.visit('/')
@@ -12,35 +14,37 @@ describe('Full run through', function() {
     cy.url().should('contain', '/login')
     cy.get('h1').should('contain', 'Log in to see your tax-filing information')
 
-    cy.get('form label').should('have.attr', 'for', 'name')
-    cy.get('form input#name')
-      .type('Avril')
-      .should('have.value', 'Avril')
-    cy.get('form button')
-      .should('contain', 'Log in')
-      .click()
+    cy.fixture('user').then(user => {
+      cy.get('form label').should('have.attr', 'for', 'name')
+      cy.get('form input#name')
+        .type(user.name)
+        .should('have.value', user.name)
+      cy.get('form button')
+        .should('contain', 'Log in')
+        .click()
 
-    // DASHBOARD PAGE
-    cy.url().should('contain', '/dashboard')
-    cy.get('h1').should('contain', 'Hi, Avril')
+      // DASHBOARD PAGE
+      cy.url().should('contain', '/dashboard')
+      cy.get('h1').should('contain', `Hi, ${getFirstName(user.name)}`)
 
-    cy.get('h2')
-      .first()
-      .should('contain', 'About you')
-    cy.get('dl[title="About you"]')
-      .find('dd')
-      .first()
-      .should('contain', 'Avril Douglas Campbell')
+      cy.get('h2')
+        .first()
+        .should('contain', 'About you')
 
-    cy.get('a.buttonLink')
-      .should('contain', 'Get started')
-      .click()
+      Object.values(user).forEach(value => {
+        cy.get('dd.value').should('contain', value)
+      })
 
-    // CONFIRMATION PAGE
-    cy.url().should('contain', '/confirmation')
-    cy.get('h1').should('contain', 'Success!')
-    cy.get('h1')
-      .next('p')
-      .should('contain', 'Good job, Avril!')
+      cy.get('a.buttonLink')
+        .should('contain', 'Get started')
+        .click()
+
+      // CONFIRMATION PAGE
+      cy.url().should('contain', '/confirmation')
+      cy.get('h1').should('contain', 'Success!')
+      cy.get('h1')
+        .next('p')
+        .should('contain', `Good job, ${getFirstName(user.name)}!`)
+    })
   })
 })
