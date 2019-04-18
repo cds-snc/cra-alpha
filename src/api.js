@@ -5,13 +5,13 @@ var API = (function() {
     address: '21275 Lakeshore Dr\nSainte-Anne-de-Bellevue\nQuébec\nH9X 3L9',
     maritalStatus: 'Widowed',
     children: '8',
-    income: [
-      { key: 'Employer Name', value: 'Acme Corp' },
-      { Year: 2019 },
-      { Box12: '123456789' },
-      { key: 'Box14', value: 10000 },
-      { key: 'Box22', value: 1000 },
-    ],
+    income: {
+      employerName: 'Acme Corp',
+      year: 2019,
+      box12: '321987645',
+      box14: 10000,
+      box22: 1000,
+    },
   }
 
   const _arthur = {
@@ -20,13 +20,13 @@ var API = (function() {
     address: '23 St Clair Ave East\nToronto\nOntario\nM4T 1M4',
     maritalStatus: 'Married',
     children: '3',
-    income: [
-      { key: 'Employer Name', value: 'Alpha Corp' },
-      { Year: 2019 },
-      { Box12: '123789456' },
-      { key: 'Box14', value: 100000 },
-      { key: 'Box22', value: 10000 },
-    ],
+    income: {
+      employerName: 'Beta Corp',
+      year: 2019,
+      box12: '321654987',
+      box14: 20000,
+      box22: 1500,
+    },
   }
 
   const _louis = {
@@ -35,13 +35,13 @@ var API = (function() {
     address: '459-455 Boulevard de la Carrière\nGatineau\nQuébec\nJ8Y 6V7',
     maritalStatus: 'Widowed',
     children: '5',
-    income: [
-      { key: 'Employer Name', value: 'Acme Corp' },
-      { Year: 2019 },
-      { Box12: '456123789' },
-      { key: 'Box14', value: 50000 },
-      { key: 'Box22', value: 5000 },
-    ],
+    income: {
+      employerName: 'Aplha Corp',
+      year: 2019,
+      box12: '254528961',
+      box14: 50000,
+      box22: 4000,
+    },
   }
 
   const _kim = {
@@ -50,13 +50,13 @@ var API = (function() {
     address: '850 Argyle Street\nPort Alberni\nBritish Columbia\nV9Y 1V8',
     maritalStatus: 'Married',
     children: '0',
-    income: [
-      { key: 'Employer Name', value: 'Acme Corp' },
-      { Year: 2019 },
-      { Box12: '321654987' },
-      { key: 'Box14', value: 54321 },
-      { key: 'Box22', value: 12345 },
-    ],
+    income: {
+      employerName: 'Bravo Corp',
+      year: 2019,
+      box12: '532658742',
+      box14: 100000,
+      box22: 12000,
+    },
   }
 
   const _users = [_john, _arthur, _louis, _kim]
