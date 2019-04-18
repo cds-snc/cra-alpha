@@ -24,18 +24,8 @@ const theme = {
     xxl: '60px',
   },
   mq: {
-    sm: content =>
-      css`
-        @media screen and (max-width: 640px) {
-          ${content};
-        }
-      `,
-    lg: content =>
-      css`
-        @media screen and (min-width: 640px) {
-          ${content};
-        }
-      `,
+    sm: 'max-width: 640px',
+    lg: 'min-width: 640px',
   },
 }
 

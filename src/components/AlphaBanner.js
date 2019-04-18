@@ -34,11 +34,11 @@ const alphaBanner = css`
     vertical-align: baseline;
   }
 
-  ${theme.mq.sm(css`
+  @media (${theme.mq.sm}) {
     p {
       font-size: 0.75em;
     }
-  `)};
+  }
 `
 
 const AlphaBanner = () =>
