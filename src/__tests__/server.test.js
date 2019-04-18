@@ -30,9 +30,4 @@ describe('Test server responses', () => {
     const response = await request(app).get('/consent')
     expect(response.text).toContain('<h1>Consent</h1>')
   })
-
-  test('it should return "Alpha" in the h1 tag for /alpha', async () => {
-    const response = await request(app).get('/alpha')
-    expect(response.text).toContain('<h1>Alpha</h1>')
-  })
 })
