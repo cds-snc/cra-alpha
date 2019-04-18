@@ -156,14 +156,4 @@ app.get('/kim', (req, res) => {
   res.redirect(302, '/dashboard')
 })
 
-/* TODO: delete this by Monday, April 15th */
-app.get('/alpha', (req, res) => {
-  const content =
-    '<h1>Alpha</h1> \
-    <p>This site will be changing often as we learn from folks like you.</p> \
-    <p>[Full name]</p>'
-
-  res.send(_renderDocument({ title: 'Alpha', locale, content }))
-})
-
 module.exports = app
