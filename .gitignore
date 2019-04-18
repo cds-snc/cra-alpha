@@ -1,6 +1,6 @@
 node_modules
 .DS_Store
-cypress/integration/examples
+cypress/examples
 cypress/support
 cypress/plugins
 
