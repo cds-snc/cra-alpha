@@ -13,7 +13,8 @@
     "url": "git://github.com/cds-snc/cra-alpha.git"
   },
   "scripts": {
-    "cypress:open": "cypress open",
+    "cypress:open": "./node_modules/.bin/cypress open",
+    "cypress": "start-server-and-test start http://localhost:3000 cypress:open",
     "dev": "nodemon index.js",
     "lint": "node_modules/eslint/bin/eslint.js index.js src",
     "start": "NODE_ENV=production node index.js",
@@ -43,6 +44,7 @@
     "eslint-plugin-jest": "^22.4.1",
     "jest": "^24.7.1",
     "nodemon": "^1.18.11",
+    "start-server-and-test": "^1.7.13",
     "supertest": "^4.0.2",
     "supertest-session": "^4.0.0"
   },
