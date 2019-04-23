@@ -19,8 +19,16 @@ describe('<Dashboard>', () => {
     },
   }
 
-  const expectedStrings = Object.values(data)
+  const getStringVals = obj => {
+    // returns a multi-dimensional array like:
+    // [ 'Fred Smith', 'Mississauga', [ 'BLORB Corp', 2019, '321987645' ] ]
+    let arr = Object.values(obj).map(val => (typeof val !== 'object' ? val : getStringVals(val)))
 
+    // flatten array: [ 'Fred Smith', 'Mississauga', 'BLORB Corp', 2019, '321987645' ]
+    return [].concat.apply([], arr)
+  }
+
+  const expectedStrings = getStringVals(data)
   const expectedH2s = ['About you', 'Your family', 'Your income']
 
   test('renders h1 as expected', () => {
@@ -42,35 +50,18 @@ describe('<Dashboard>', () => {
   })
 
   expectedStrings.map(str => {
-    //If we have an object inside our data object (for example income info) we need to loop thru it and not just process the top most value
-    if (typeof str === 'object') {
-      const second_str = Object.values(str)
-      second_str.map(second_str => {
-        test(`renders ${second_str} on page`, () => {
-          const $ = cheerio.load(
-            render(
-              html`
-                <${Dashboard} data=${data} />
-              `,
-            ),
-          )
-          expect($('dl').text()).toContain(second_str)
-        })
-      })
-    } else {
-      test(`renders ${str} on page`, () => {
-        const $ = cheerio.load(
-          render(
-            html`
-              <${Dashboard} data=${data} />
-            `,
-          ),
-        )
-        expect($('h1').text()).toEqual('Hi, Fred')
+    test(`renders ${str} on page`, () => {
+      const $ = cheerio.load(
+        render(
+          html`
+            <${Dashboard} data=${data} />
+          `,
+        ),
+      )
+      expect($('h1').text()).toEqual('Hi, Fred')
 
-        expect($('dl').text()).toContain(str)
-      })
-    }
+      expect($('dl').text()).toContain(str)
+    })
   })
 
   expectedH2s.map((str, i) => {
