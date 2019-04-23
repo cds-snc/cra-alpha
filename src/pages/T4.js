@@ -34,7 +34,7 @@ const t4Data = ({ employerName, year, box12, box14, box22 } = {}) => {
   ]
 }
 
-const T4 = ({ data = {}, errors = {} }) =>
+const T4 = ({ data = {} }) =>
   html`
     <${Layout}>
       <div class=${t4CSS}>
