@@ -38,17 +38,6 @@ app.get('/', (req, res) => {
   res.send(renderPage({ locale, pageComponent: 'Welcome', props: { locale } }))
 })
 
-app.get('/T4', (req, res) => {
-  res.send(
-    renderPage({
-      locale,
-      pageComponent: 'T4',
-      title: 'Your Income',
-      props: { data: getSessionData(req.session) },
-    }),
-  )
-})
-
 app.get('/login', (req, res) => {
   res.send(
     renderPage({
@@ -105,6 +94,30 @@ app.get('/about-you', checkLogin, (req, res) => {
       title: 'About you',
       pageComponent: 'AboutYou',
       props: { data },
+    }),
+  )
+})
+
+app.get('/your-family', checkLogin, (req, res) => {
+  const data = getSessionData(req.session)
+
+  res.send(
+    renderPage({
+      locale,
+      title: 'You and your family',
+      pageComponent: 'YourFamily',
+      props: { data },
+    }),
+  )
+})
+
+app.get('/T4', (req, res) => {
+  res.send(
+    renderPage({
+      locale,
+      pageComponent: 'T4',
+      title: 'Your Income',
+      props: { data: getSessionData(req.session) },
     }),
   )
 })
