@@ -5,7 +5,6 @@
 - 500 page
 - clean up the routes part of the server file
 - pass locale easily to any component
-- add media queries to styles.js
 - generic form edit pages
 - functional tests
 - pa11y tests
@@ -28,3 +27,4 @@
 - unit tests for all components
 - tests for redirects
 - an api-like thing for user data
+- add media queries to styles.js

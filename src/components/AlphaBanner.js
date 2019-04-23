@@ -18,7 +18,7 @@ const alphaBanner = css`
     font-weight: 700;
     display: inline-block;
     padding: 4px 8px;
-    padding-bottom: 1px;
+    padding-bottom: 3px;
     outline: 2px solid ${theme.color.black};
     outline-offset: -2px;
     color: #000;
@@ -32,6 +32,12 @@ const alphaBanner = css`
   span {
     display: table-cell;
     vertical-align: baseline;
+  }
+
+  @media (${theme.mq.sm}) {
+    p {
+      font-size: 0.75em;
+    }
   }
 `
 

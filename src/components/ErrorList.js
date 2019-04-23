@@ -37,7 +37,7 @@ const errorList = css`
   }
 
   /* on larger screens */
-  @media (min-width: 640px) {
+  @media (${theme.mq.lg}) {
     border-width: 5px;
     margin-bottom: ${theme.space.xl};
     padding: ${theme.space.md};

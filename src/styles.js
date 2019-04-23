@@ -1,5 +1,7 @@
 const { css } = require('emotion')
 
+/* Utilities */
+
 const theme = {
   color: {
     grey: '#595959',
@@ -21,7 +23,13 @@ const theme = {
     xl: '40px',
     xxl: '60px',
   },
+  mq: {
+    sm: 'max-width: 640px',
+    lg: 'min-width: 640px',
+  },
 }
+
+/* Reused styles */
 
 const pageMargin = css`
   max-width: 900px;

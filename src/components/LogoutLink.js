@@ -7,7 +7,7 @@ const logout = css`
   top: ${theme.space.md};
   right: 0;
 
-  @media (max-width: 640px) {
+  @media (${theme.mq.sm}) {
     top: ${theme.space.sm};
   }
 `
