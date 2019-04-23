@@ -24,9 +24,7 @@ const consentButtonCSS = css`
   width: 200px;
 `
 
-//todo How to get t4 info? Where does it get injected from? user object passed with an array of t4s?
-//is this passed in to the Dashbord object which then passes it to summary table?
-const t4Data = ({ employerName, year, box12, box14, box22 }) => {
+const t4Data = ({ employerName, year, box12, box14, box22 } = {}) => {
   return [
     { key: 'Employer Name', value: employerName },
     { key: 'Year', value: year },
