@@ -1,5 +1,15 @@
 const { getFirstName } = require('../../src/api.js')
 
+const checkTableRows = (cy, rows) => {
+  rows.map((row, index) => {
+    cy.get('dt.key')
+      .eq(index)
+      .should('contain', row.key)
+      .next('dd')
+      .should('contain', row.value)
+  })
+}
+
 describe('Full run through', function() {
   it('successfully loads the home page', function() {
     cy.visit('/')
@@ -42,17 +52,10 @@ describe('Full run through', function() {
       // ABOUT YOU PAGE
       cy.get('h1').should('contain', 'About you')
 
-      cy.get('dt.key')
-        .eq(0)
-        .should('contain', 'Name')
-        .next('dd')
-        .should('contain', user.name)
-
-      cy.get('dt.key')
-        .eq(1)
-        .should('contain', 'Mailing address')
-        .next('dd')
-        .should('contain', user.address)
+      checkTableRows(cy, [
+        { key: 'Name', value: user.name },
+        { key: 'Mailing address', value: user.address },
+      ])
 
       cy.get('a.buttonLink')
         .should('contain', 'Continue')
@@ -60,17 +63,11 @@ describe('Full run through', function() {
 
       // YOUR FAMILY PAGE
       cy.get('h1').should('contain', 'You and your family')
-      cy.get('dt.key')
-        .eq(0)
-        .should('contain', 'Marital status')
-        .next('dd')
-        .should('contain', user.maritalStatus)
 
-      cy.get('dt.key')
-        .eq(1)
-        .should('contain', 'Number of children')
-        .next('dd')
-        .should('contain', user.children)
+      checkTableRows(cy, [
+        { key: 'Marital status', value: user.maritalStatus },
+        { key: 'Number of children', value: user.children },
+      ])
 
       cy.get('a.buttonLink')
         .should('contain', 'Continue')
@@ -78,11 +75,6 @@ describe('Full run through', function() {
 
       // YOUR INCOME PAGE
       cy.get('h1').should('contain', 'Your income')
-      cy.get('dt.key')
-        .eq(0)
-        .should('contain', 'Employer Name')
-        .next('dd')
-        .should('contain', user.employerName)
 
       cy.get('a#consentButton')
         .should('contain', 'This information is accurate')
