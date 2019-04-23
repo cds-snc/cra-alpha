@@ -41,7 +41,7 @@ const T4 = ({ data = {}, errors = {} }) =>
         <${LogoutLink} />
         <h1>Your Income</h1>
         <div>
-        <img src='/t4.png' />
+        <img src='/t4.png' title='Sample T4 form' />
         </div>
 
 <${SummaryTable} title="Income Data" rows=${t4Data(data.income)} ifEditable=${false} //>
