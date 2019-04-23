@@ -39,6 +39,55 @@ describe('Full run through', function() {
         .should('contain', 'Get started')
         .click()
 
+      // ABOUT YOU PAGE
+      cy.get('h1').should('contain', 'About you')
+
+      cy.get('dt.key')
+        .eq(0)
+        .should('contain', 'Name')
+        .next('dd')
+        .should('contain', user.name)
+
+      cy.get('dt.key')
+        .eq(1)
+        .should('contain', 'Mailing address')
+        .next('dd')
+        .should('contain', user.address)
+
+      cy.get('a.buttonLink')
+        .should('contain', 'Continue')
+        .click()
+
+      // YOUR FAMILY PAGE
+      cy.get('h1').should('contain', 'You and your family')
+      cy.get('dt.key')
+        .eq(0)
+        .should('contain', 'Marital status')
+        .next('dd')
+        .should('contain', user.maritalStatus)
+
+      cy.get('dt.key')
+        .eq(1)
+        .should('contain', 'Number of children')
+        .next('dd')
+        .should('contain', user.children)
+
+      cy.get('a.buttonLink')
+        .should('contain', 'Continue')
+        .click()
+
+      // YOUR INCOME PAGE
+      cy.get('h1').should('contain', 'Your income')
+      cy.get('dt.key')
+        .eq(0)
+        .should('contain', 'Employer Name')
+        .next('dd')
+        .should('contain', user.employerName)
+
+      cy.get('a#consentButton')
+        .should('contain', 'This information is accurate')
+        .click()
+
       // CONFIRMATION PAGE
       cy.url().should('contain', '/confirmation')
       cy.get('h1').should('contain', 'Success!')
