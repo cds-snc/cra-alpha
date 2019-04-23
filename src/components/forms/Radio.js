@@ -2,23 +2,23 @@ const { css } = require('emotion')
 const { theme } = require('../../styles.js')
 const { html } = require('../../utils.js')
 
-const checkboxWidth = theme.space.xl
+const radioCircumference = '44px'
 
-const checkboxStyles = css`
+const radioStyles = css`
   display: block;
   position: relative;
-  min-height: ${checkboxWidth};
+  min-height: ${theme.space.xl};
   margin-bottom: ${theme.space.xl};
-  padding: 0 0 0 ${checkboxWidth};
+  padding: 0 0 0 ${theme.space.xl};
   clear: left;
 
   input {
     position: absolute;
     z-index: 1;
-    top: 0;
-    left: 0;
-    width: ${checkboxWidth};
-    height: ${checkboxWidth};
+    top: -2px;
+    left: -2px;
+    width: ${radioCircumference};
+    height: ${radioCircumference};
     cursor: pointer;
     margin: 0;
     opacity: 0;
@@ -39,35 +39,32 @@ const checkboxStyles = css`
       position: absolute;
       top: 0;
       left: 0;
-      width: ${checkboxWidth};
-      height: ${checkboxWidth};
+      width: ${theme.space.xl};
+      height: ${theme.space.xl};
       border: 2px solid currentColor;
       background: transparent;
+      border-radius: 50%;
     }
 
     &::after {
       content: '';
       position: absolute;
-      top: 11px;
-      left: 9px;
-      width: 18px;
-      height: 7px;
-      -webkit-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-      transform: rotate(-45deg);
-      border: solid;
-      border-width: 0 0 5px 5px;
-      border-top-color: transparent;
+      top: 10px;
+      left: 10px;
+      width: 0;
+      height: 0;
+      border: 10px solid currentColor;
+      border-radius: 50%;
       opacity: 0;
-      background: transparent;
+      background: currentColor;
     }
   }
 
   input:focus + label::before {
     outline: 3px solid transparent;
     outline-offset: 3px;
-    -webkit-box-shadow: 0 0 0 3px ${theme.color.focus};
-    box-shadow: 0 0 0 3px ${theme.color.focus};
+    -webkit-box-shadow: 0 0 0 4px ${theme.color.focus};
+    box-shadow: 0 0 0 4px ${theme.color.focus};
   }
 
   input:checked + label::after {
@@ -75,14 +72,14 @@ const checkboxStyles = css`
   }
 `
 
-const Checkbox = ({ children, id, value = '', name = '', checked = false }) =>
+const Radio = ({ children, id, value = '', name = '', checked = false }) =>
   html`
-    <div class=${checkboxStyles}>
-      <input id=${id} name=${name || id} type="checkbox" value=${value || id} checked=${checked} />
+    <div class=${radioStyles}>
+      <input id=${id} name=${name || id} type="radio" value=${value || id} checked=${checked} />
       <label for=${id}>
         ${children}
       </label>
     </div>
   `
 
-module.exports = Checkbox
+module.exports = Radio
