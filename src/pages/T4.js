@@ -39,7 +39,7 @@ const T4 = ({ data = {}, errors = {} }) =>
     <${Layout}>
       <div class=${t4CSS}>
         <${LogoutLink} />
-        <h1>Income</h1>
+        <h1>Your Income</h1>
         <div>
         <img src='/t4.png' />
         </div>
