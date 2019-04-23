@@ -6,7 +6,7 @@ var API = (function() {
     maritalStatus: 'Widowed',
     children: '8',
     income: {
-      employerName: 'Blorb Corp',
+      employerName: 'BRAVO Corp',
       year: 2019,
       box12: '321987645',
       box14: 10000,
@@ -21,7 +21,7 @@ var API = (function() {
     maritalStatus: 'Married',
     children: '3',
     income: {
-      employerName: 'Beta Corp',
+      employerName: 'BETA Corp',
       year: 2019,
       box12: '321654987',
       box14: 20000,
@@ -36,7 +36,7 @@ var API = (function() {
     maritalStatus: 'Widowed',
     children: '5',
     income: {
-      employerName: 'Aplha Corp',
+      employerName: 'ALPHA Corp',
       year: 2019,
       box12: '254528961',
       box14: 35000,
@@ -51,7 +51,7 @@ var API = (function() {
     maritalStatus: 'Married',
     children: '0',
     income: {
-      employerName: 'Bravo Corp',
+      employerName: 'BLORB Corp',
       year: 2019,
       box12: '532658742',
       box14: 12345,

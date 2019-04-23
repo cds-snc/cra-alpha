@@ -11,7 +11,7 @@ describe('<Dashboard>', () => {
     maritalStatus: 'Married',
     children: 5,
     income: {
-      employerName: 'Blorb Corp',
+      employerName: 'BLORB Corp',
       year: 2019,
       box12: '321987645',
       box14: 10000,

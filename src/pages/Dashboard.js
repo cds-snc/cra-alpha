@@ -35,7 +35,7 @@ const Dashboard = ({ data = {} }) =>
         <h1>Hi, ${getFirstName(data.name)}</h1>
         <p>
           Here’s what we know about you based on your previous tax returns and information from your
-          employer, BLORB CORP.
+          employer, ${data.income.employerName}.
         </p>
         <p>If any of this information is wrong, you’ll have a chance to update it.</p>
 
