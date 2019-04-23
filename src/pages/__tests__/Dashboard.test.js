@@ -10,7 +10,13 @@ describe('<Dashboard>', () => {
     address: 'Mississauga',
     maritalStatus: 'Married',
     children: 5,
-    income: '$10000',
+    income: {
+      employerName: 'Blorb Corp',
+      year: 2019,
+      box12: '321987645',
+      box14: 10000,
+      box22: 1000,
+    },
   }
 
   const expectedStrings = Object.values(data)
