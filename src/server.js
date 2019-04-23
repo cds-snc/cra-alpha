@@ -39,6 +39,17 @@ app.get('/', (req, res) => {
   res.send(renderPage({ locale, pageComponent: 'Welcome', props: { locale } }))
 })
 
+app.get('/T4', (req, res) => {
+  res.send(
+    renderPage({
+      locale,
+      pageComponent: 'T4',
+      title: 'Your Income',
+      props: { data: getSessionData(req.session) },
+    }),
+  )
+})
+
 app.get('/login', (req, res) => {
   res.send(
     renderPage({

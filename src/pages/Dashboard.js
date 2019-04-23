@@ -31,7 +31,13 @@ const yourFamilyRows = ({ maritalStatus, children }) => {
 }
 
 const yourIncomeRows = ({ income }) => {
-  return [{ key: 'Annual income', value: income }]
+  return [
+    { key: 'Employer Name', value: income.employerName },
+    { key: 'Year', value: income.year },
+    { key: 'Box12', value: income.box12 },
+    { key: 'Box14', value: income.box14 },
+    { key: 'Box22', value: income.box22 },
+  ]
 }
 
 const Dashboard = ({ data = {}, errors = {} }) =>
@@ -65,7 +71,7 @@ const Dashboard = ({ data = {}, errors = {} }) =>
           ${' '}to complete.
         </p>
 
-        <${ButtonLink} href="/confirmation" style=${submitButton}>Get started<//>
+        <${ButtonLink} href="/T4" style=${submitButton}>Get started<//>
       </div>
     <//>
   `

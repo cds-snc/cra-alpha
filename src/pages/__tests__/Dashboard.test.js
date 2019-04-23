@@ -10,7 +10,13 @@ describe('<Dashboard>', () => {
     address: 'Mississauga',
     maritalStatus: 'Married',
     children: 5,
-    income: '$10000',
+    income: {
+      employerName: 'Blorb Corp',
+      year: 2019,
+      box12: '321987645',
+      box14: 10000,
+      box22: 1000,
+    },
   }
 
   const expectedStrings = Object.values(data)
@@ -36,18 +42,35 @@ describe('<Dashboard>', () => {
   })
 
   expectedStrings.map(str => {
-    test(`renders ${str} on page`, () => {
-      const $ = cheerio.load(
-        render(
-          html`
-            <${Dashboard} data=${data} />
-          `,
-        ),
-      )
-      expect($('h1').text()).toEqual('Hi, Fred')
+    //If we have an object inside our data object (for example income info) we need to loop thru it and not just process the top most value
+    if (typeof str === 'object') {
+      const second_str = Object.values(str)
+      second_str.map(second_str => {
+        test(`renders ${second_str} on page`, () => {
+          const $ = cheerio.load(
+            render(
+              html`
+                <${Dashboard} data=${data} />
+              `,
+            ),
+          )
+          expect($('dl').text()).toContain(second_str)
+        })
+      })
+    } else {
+      test(`renders ${str} on page`, () => {
+        const $ = cheerio.load(
+          render(
+            html`
+              <${Dashboard} data=${data} />
+            `,
+          ),
+        )
+        expect($('h1').text()).toEqual('Hi, Fred')
 
-      expect($('dl').text()).toContain(str)
-    })
+        expect($('dl').text()).toContain(str)
+      })
+    }
   })
 
   expectedH2s.map((str, i) => {
