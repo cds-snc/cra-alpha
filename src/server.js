@@ -116,7 +116,7 @@ app.get('/T4', (req, res) => {
     renderPage({
       locale,
       pageComponent: 'T4',
-      title: 'Your Income',
+      title: 'Your income',
       props: { data: getSessionData(req.session) },
     }),
   )

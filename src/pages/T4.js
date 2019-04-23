@@ -26,7 +26,7 @@ const T4 = ({ data = {} }) =>
     <${Layout}>
       <div class=${dashboardStyles}>
         <${LogoutLink} />
-        <h1>Your Income</h1>
+        <h1>Your income</h1>
         <div>
         <img src='/t4.png' title='Sample T4 form' />
         </div>
