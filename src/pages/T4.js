@@ -17,11 +17,11 @@ const t4CSS = css`
 const changesButtonCSS = css`
   width: 200px;
   background-color: pink;
+  float: right;
 `
 
 const consentButtonCSS = css`
   width: 200px;
-  float: right;
 `
 
 //todo How to get t4 info? Where does it get injected from? user object passed with an array of t4s?
@@ -47,8 +47,8 @@ const T4 = ({ data = {}, errors = {} }) =>
         </div>
 
 <${SummaryTable} title="Income Data" rows=${t4Data(data.income)} ifEditable=${false} //>
-<${ButtonLink} href="/confirmation" style=${changesButtonCSS}>I need to make changes<//>
 <${ButtonLink} href="/confirmation" style=${consentButtonCSS}>This information is accurate<//>
+<${ButtonLink} href="/confirmation" style=${changesButtonCSS}>I need to make changes<//>
       </div>
     </${Layout}>
   `
