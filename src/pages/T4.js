@@ -45,8 +45,8 @@ const T4 = ({ data = {} }) =>
         </div>
 
 <${SummaryTable} title="Income Data" rows=${t4Data(data.income)} ifEditable=${false} //>
-<${ButtonLink} href="/confirmation" style=${consentButtonCSS}>This information is accurate<//>
-<${ButtonLink} href="/confirmation" style=${changesButtonCSS}>I need to make changes<//>
+<${ButtonLink} id='consentButton' href="/confirmation" style=${consentButtonCSS}>This information is accurate<//>
+<${ButtonLink} id='changesReqButton' href="/confirmation" style=${changesButtonCSS}>I need to make changes<//>
       </div>
     </${Layout}>
   `

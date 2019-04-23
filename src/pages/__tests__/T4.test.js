@@ -28,11 +28,11 @@ describe('<T4>', () => {
     expect($('h1').length).toBe(1)
     expect($('h1').text()).toEqual('Your Income')
 
-    expect($('a.consentButton').length).toBe(1)
-    expect($('a.consentButton').text()).toEqual('This information is accurate')
+    expect($('#consentButton').length).toBe(1)
+    expect($('#consentButton').text()).toEqual('This information is accurate')
 
-    expect($('a.changesReqButton').length).toBe(1)
-    expect($('a.changesReqButton').text()).toEqual('I need to make changes')
+    expect($('#changesReqButton').length).toBe(1)
+    expect($('#changesReqButton').text()).toEqual('I need to make changes')
 
     expect($('a[href="/logout"]').length).toBe(1)
     expect($('a[href="/logout"]').text()).toEqual('Log out')
