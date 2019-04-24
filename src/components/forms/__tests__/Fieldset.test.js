@@ -37,6 +37,39 @@ describe('<Fieldset>', () => {
     ).toEqual('location-0')
   })
 
+  test('renders with a validation error', () => {
+    const error = { param: 'location', msg: 'Not a good option' }
+
+    const $ = cheerio.load(
+      render(
+        html`
+          <${Fieldset} id="location" options=${['Option 1']} error=${error}
+            ><h1>Where do you live?</h1><//
+          >
+        `,
+      ),
+    )
+    expect($('fieldset').length).toBe(1)
+    expect($('fieldset legend h1').length).toBe(1)
+
+    expect($('span#location-error').length).toBe(1)
+    expect($('span#location-error').text()).toBe('Error: Not a good option')
+    expect($('fieldset').attr('aria-describedby')).toEqual('location-error')
+
+    // expect validation message is after the legend
+    expect(
+      $('legend')
+        .next()
+        .attr('id'),
+    ).toEqual('location-error')
+    // expect validation message is before the div containing the inputs
+    expect(
+      $('fieldset > div')
+        .prev()
+        .attr('id'),
+    ).toEqual('location-error')
+  })
+
   test('renders rows of radios', () => {
     const options = ['Zurich', 'St. Petersburg', 'Stockholm']
 

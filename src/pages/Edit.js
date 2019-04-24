@@ -27,7 +27,9 @@ const getFormField = ({ type, id, label, data, errors, options }) => {
   switch (type) {
     case 'radio':
       return html`
-        <${Fieldset} id=${id} options=${options} value=${data[id]}><h1>${label}</h1><//>
+        <${Fieldset} id=${id} options=${options} error=${errors[id]} value=${data[id]}
+          ><h1>${label}</h1><//
+        >
       `
 
     case 'number':
