@@ -86,24 +86,14 @@ const renderInput = ({ type, ...props }) =>
         <${TextInput} type=${type} ...${props} />
       `
 
-const Input = ({
-  id,
-  children,
-  type = 'text',
-  bold = true,
-  error = undefined,
-  ...props
-}) =>
+const Input = ({ id, children, type = 'text', bold = true, error = undefined, ...props }) =>
   html`
     <div
       class=${css`
         ${input} ${error && withError}
       `}
     >
-      <label
-        style=${{ fontWeight: !bold || bold === 'false' ? 400 : 700 }}
-        for=${id}
-      >
+      <label style=${{ fontWeight: !bold || bold === 'false' ? 400 : 700 }} for=${id}>
         ${children}
       </label>
       ${error &&

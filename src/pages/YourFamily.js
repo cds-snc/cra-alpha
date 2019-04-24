@@ -8,7 +8,7 @@ const ButtonLink = require('../components/ButtonLink.js')
 const yourFamilyRows = ({ maritalStatus, children }) => {
   return [
     { key: 'Marital status', value: maritalStatus, id: 'maritalStatus' },
-    { key: 'Number of children', value: children },
+    { key: 'Number of children', value: children, id: 'children' },
   ]
 }
 

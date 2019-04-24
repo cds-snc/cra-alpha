@@ -29,6 +29,13 @@ const getFormField = ({ type, id, label, data, errors, options }) => {
       return html`
         <${Fieldset} id=${id} options=${options} value=${data[id]}><h1>${label}</h1><//>
       `
+
+    case 'number':
+      return html`
+        <${Input} id=${id} type=${type} value=${data[id]} error=${errors[id]} style=${{ width: 50 }}
+          >${label}<//
+        >
+      `
     case 'textarea':
     case 'text':
       return html`
