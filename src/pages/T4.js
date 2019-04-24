@@ -6,6 +6,10 @@ const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
 
+const imgCSS = css`
+  max-width: 100%;
+`
+
 const changesButtonCSS = css`
   background-color: pink;
   float: right;
@@ -28,7 +32,7 @@ const T4 = ({ data = {} }) =>
         <${LogoutLink} />
         <h1>Your income</h1>
         <div>
-        <img src='/t4.png' title='Sample T4 form' />
+        <img class=${imgCSS} src='/t4.png' title='Sample T4 form' />
         </div>
 
 <${SummaryTable} title="Income Data" rows=${t4Data(data.income)} ifEditable=${false} //>
