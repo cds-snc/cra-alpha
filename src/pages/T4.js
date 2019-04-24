@@ -36,6 +36,12 @@ const T4 = ({ data = {} }) =>
         </div>
 
         <${SummaryTable} title="Income Data" rows=${t4Data(data.income)} ifEditable=${false} //>
+
+        <p>
+          This is the <strong>last section</strong>. You will have the oppertunity to review all
+          your information, and get an estimate of your return before submitting your taxes.
+        </p>
+
         <${ButtonLink} id="consentButton" href="/confirmation">This information is accurate<//>
         <${ButtonLink} id="changesReqButton" href="/confirmation" style=${changesButtonCSS}
           >I need to make changes<//
