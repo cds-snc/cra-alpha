@@ -8,7 +8,7 @@ const radioStyles = css`
   display: block;
   position: relative;
   min-height: ${theme.space.xl};
-  margin-bottom: ${theme.space.xl};
+  margin-bottom: ${theme.space.sm};
   padding: 0 0 0 ${theme.space.xl};
   clear: left;
 
