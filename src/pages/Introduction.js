@@ -1,4 +1,4 @@
-const { dashboardStyles } = require('../styles.js')
+const { loggedInStyles } = require('../styles.js')
 const { html } = require('../utils.js')
 const { getFirstName } = require('../api.js')
 const Layout = require('../components/Layout.js')
@@ -27,10 +27,10 @@ const yourIncomeRows = ({ income }) => {
   ]
 }
 
-const Dashboard = ({ data = {} }) =>
+const Introduction = ({ data = {} }) =>
   html`
     <${Layout}>
-      <div class=${dashboardStyles}>
+      <div class=${loggedInStyles}>
         <${LogoutLink} />
         <h1>Hi, ${getFirstName(data.name)}</h1>
         <p>
@@ -58,4 +58,4 @@ const Dashboard = ({ data = {} }) =>
     <//>
   `
 
-module.exports = Dashboard
+module.exports = Introduction

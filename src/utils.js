@@ -43,10 +43,7 @@ const cookieSessionConfig = {
 const getSessionData = (session = {}, enforceExists = false) => {
   const { name, address, maritalStatus, children, income } = session
 
-  if (
-    enforceExists &&
-    (!name || !address || !maritalStatus || !children || !income)
-  ) {
+  if (enforceExists && (!name || !address || !maritalStatus || !children || !income)) {
     return false
   }
 
@@ -77,8 +74,8 @@ const loginSchema = {
   },
 }
 
-// define a schema for dashboard field validation
-const dashboardSchema = {
+// define a schema for introduction field validation
+const introductionSchema = {
   consent: {
     in: ['body'],
     matches: {
@@ -116,6 +113,6 @@ module.exports = {
   getSessionData,
   checkLogin,
   loginSchema,
-  dashboardSchema,
+  introductionSchema,
   errorArray2ErrorObject,
 }

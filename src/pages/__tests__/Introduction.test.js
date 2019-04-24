@@ -2,9 +2,9 @@ const render = require('preact-render-to-string')
 const cheerio = require('cheerio')
 const { html } = require('../../utils.js')
 
-const Dashboard = require('../Dashboard.js')
+const Introduction = require('../Introduction.js')
 
-describe('<Dashboard>', () => {
+describe('<Introduction>', () => {
   const data = {
     name: 'Fred Smith',
     address: 'Mississauga',
@@ -35,7 +35,7 @@ describe('<Dashboard>', () => {
     const $ = cheerio.load(
       render(
         html`
-          <${Dashboard} data=${data} />
+          <${Introduction} data=${data} />
         `,
       ),
     )
@@ -54,7 +54,7 @@ describe('<Dashboard>', () => {
       const $ = cheerio.load(
         render(
           html`
-            <${Dashboard} data=${data} />
+            <${Introduction} data=${data} />
           `,
         ),
       )
@@ -69,7 +69,7 @@ describe('<Dashboard>', () => {
       const $ = cheerio.load(
         render(
           html`
-            <${Dashboard} data=${data} />
+            <${Introduction} data=${data} />
           `,
         ),
       )

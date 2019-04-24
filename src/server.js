@@ -69,17 +69,17 @@ app.post('/login', checkSchema(loginSchema), (req, res) => {
   }
 
   req.session = user
-  res.redirect(302, '/dashboard')
+  res.redirect(302, '/introduction')
 })
 
-app.get('/dashboard', checkLogin, (req, res) => {
+app.get('/introduction', checkLogin, (req, res) => {
   const data = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
-      title: 'Your dashboard',
-      pageComponent: 'Dashboard',
+      title: 'Your information',
+      pageComponent: 'Introduction',
       props: { data },
     }),
   )
@@ -126,7 +126,7 @@ app.get('/edit', checkLogin, (req, res) => {
   const content = `
     <h1>Editing coming soon</h1>
     <p>Editing isn’t working yet, so for now you have to print out this website, change your info, and then mail it to Nancy McKenna.</p>
-    <a href="/dashboard">← Go back</a>
+    <a href="/introduction">← Go back</a>
     `
 
   res.send(_renderDocument({ title: '[WIP] Edit', locale, content }))
@@ -159,7 +159,7 @@ app.get('/consent', (req, res) => {
 
 app.get('/kim', (req, res) => {
   req.session = API.getUser('kim')
-  res.redirect(302, '/dashboard')
+  res.redirect(302, '/introduction')
 })
 
 module.exports = app
