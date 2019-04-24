@@ -45,49 +45,68 @@ describe('<SummaryTable>', () => {
     expect($('h2').text()).toEqual('About you')
   })
 
-  test('renders correct cells with 1 row', () => {
-    const $ = renderTable({ rows })
+  describe('it renders cells with 1 row', () => {
+    test('INCLUDING edit links', () => {
+      let rowsWithId = [{ key: 'Full name', value: 'Fred Smith', id: 'name' }]
 
-    // first row
-    expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual(
-      'Full name',
-    )
-    expect(getCell({ cheerio: $, rowNum: 0, find: '.value' }).text()).toEqual(
-      'Fred Smith',
-    )
-    expect(getCell({ cheerio: $, rowNum: 0, find: '.action' }).text()).toEqual(
-      'Change full name',
-    )
-    expect(
-      getCell({ cheerio: $, rowNum: 0, find: '.action a' }).attr('href'),
-    ).toEqual('/edit')
+      const $ = renderTable({ rows: rowsWithId })
+
+      // first row
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual('Full name')
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.value' }).text()).toEqual('Fred Smith')
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.action' }).text()).toEqual('Change full name')
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.action a' }).attr('href')).toEqual(
+        '/edit/name',
+      )
+    })
+
+    test('EXCLUDING edit links', () => {
+      let rowsNoId = rows
+
+      const $ = renderTable({ rows: rowsNoId })
+
+      // first row
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual('Full name')
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.value' }).text()).toEqual('Fred Smith')
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.action' }).length).toBe(0)
+    })
   })
 
-  test('renders correct cells with 2 rows', () => {
-    let moreRows = rows.concat([{ key: 'Date of birth', value: '18-06-1971' }])
-    const $ = renderTable({ rows: moreRows })
+  describe('it renders cells with 2 rows', () => {
+    test('INCLUDING edit links', () => {
+      let rowsWithId = [
+        { key: 'Full name', value: 'Fred Smith', id: 'name' },
+        { key: 'Date of birth', value: '18-06-1971', id: 'dob' },
+      ]
 
-    // second row
-    expect(getCell({ cheerio: $, rowNum: 1, find: '.key' }).text()).toEqual(
-      'Date of birth',
-    )
-    expect(getCell({ cheerio: $, rowNum: 1, find: '.value' }).text()).toEqual(
-      '18-06-1971',
-    )
-    expect(getCell({ cheerio: $, rowNum: 1, find: '.action' }).text()).toEqual(
-      'Change date of birth',
-    )
-    expect(
-      getCell({ cheerio: $, rowNum: 1, find: '.action a' }).attr('href'),
-    ).toEqual('/edit')
-  })
+      const $ = renderTable({ rows: rowsWithId })
 
-  test('renders without change links', () => {
-    let moreRows = rows.concat([{ key: 'Date of birth', value: '18-06-1971' }])
-    const $ = renderTable({ rows: moreRows, ifEditable: false })
+      // first row
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual('Full name')
 
-    expect($('.action').length).toBe(0)
-    expect($.html()).not.toContain('Change date of birth')
-    expect($.html()).not.toContain('Change full name')
+      // second row
+      expect(getCell({ cheerio: $, rowNum: 1, find: '.key' }).text()).toEqual('Date of birth')
+      expect(getCell({ cheerio: $, rowNum: 1, find: '.value' }).text()).toEqual('18-06-1971')
+      expect(getCell({ cheerio: $, rowNum: 1, find: '.action' }).text()).toEqual(
+        'Change date of birth',
+      )
+      expect(getCell({ cheerio: $, rowNum: 1, find: '.action a' }).attr('href')).toEqual(
+        '/edit/dob',
+      )
+    })
+
+    test('EXCLUDING edit links', () => {
+      let rowsNoId = rows.concat([{ key: 'Date of birth', value: '18-06-1971' }])
+
+      const $ = renderTable({ rows: rowsNoId })
+
+      // first row
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual('Full name')
+
+      // second row
+      expect(getCell({ cheerio: $, rowNum: 1, find: '.key' }).text()).toEqual('Date of birth')
+      expect(getCell({ cheerio: $, rowNum: 1, find: '.value' }).text()).toEqual('18-06-1971')
+      expect(getCell({ cheerio: $, rowNum: 1, find: '.action' }).length).toBe(0)
+    })
   })
 })
