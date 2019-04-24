@@ -17,4 +17,23 @@ describe('<Fieldset>', () => {
     expect($('fieldset legend h1').length).toBe(1)
     expect($('fieldset legend h1').text()).toEqual('Where do you live?')
   })
+
+  test('renders with passed-in attributes', () => {
+    const $ = cheerio.load(
+      render(
+        html`
+          <${Fieldset} id="location"><h1>Where do you live?</h1><//>
+        `,
+      ),
+    )
+    expect($('fieldset').length).toBe(1)
+    expect($('fieldset legend h1').length).toBe(1)
+
+    expect($('fieldset').attr('id')).toEqual('location')
+    expect(
+      $('fieldset input')
+        .first()
+        .attr('id'),
+    ).toEqual('location-1')
+  })
 })

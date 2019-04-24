@@ -23,19 +23,17 @@ const fieldsetStyles = css`
   }
 `
 
-const Fieldset = ({ children }) =>
+const Fieldset = ({ children, id }) =>
   html`
-    <fieldset class=${fieldsetStyles}>
+    <fieldset id=${id} class=${fieldsetStyles}>
       <legend>
         ${children}
       </legend>
       <div>
-        <${Radio} id="where-do-you-live-1" name="where-do-you-live" value="england">England<//>
-        <${Radio} id="where-do-you-live-2" name="where-do-you-live" value="scotland">Scotland<//>
-        <${Radio} id="where-do-you-live-3" name="where-do-you-live" value="wales">Wales<//>
-        <${Radio} id="where-do-you-live-4" name="where-do-you-live" value="northern-ireland"
-          >Northern Ireland<//
-        >
+        <${Radio} id=${`${id}-1`} name=${id} value="england">England<//>
+        <${Radio} id=${`${id}-2`} name=${id} value="scotland">Scotland<//>
+        <${Radio} id=${`${id}-3`} name=${id} value="wales">Wales<//>
+        <${Radio} id=${`${id}-4`} name=${id} value="northern-ireland">Northern Ireland<//>
       </div>
     </fieldset>
   `
