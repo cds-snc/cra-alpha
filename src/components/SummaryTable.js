@@ -68,7 +68,7 @@ const summaryRow = css`
     }
   }
 `
-const SummaryRow = ({ row: { key, value } = {}, ifEditable = true }) => {
+const SummaryRow = ({ row: { key, value, id = false } = {} }) => {
   return html`
     <div class=${summaryRow}>
       <dt class="key">
@@ -77,11 +77,10 @@ const SummaryRow = ({ row: { key, value } = {}, ifEditable = true }) => {
       <dd class="value">
         ${value}
       </dd>
-      ${ifEditable &&
-        ifEditable !== 'false' &&
+      ${id &&
         html`
           <dd class="action">
-            <a href="/edit">
+            <a href=${`/edit/${id}`}>
               Change
               <span class="${visuallyHidden}">${` ${key && key.toLowerCase()}`}</span>
             </a>

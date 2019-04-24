@@ -35,7 +35,7 @@ const T4 = ({ data = {} }) =>
           <img class=${imgCSS} src="/t4.png" title="Sample T4 form" />
         </div>
 
-        <${SummaryTable} title="Income Data" rows=${t4Data(data.income)} ifEditable=${false} //>
+        <${SummaryTable} title="Income Data" rows=${t4Data(data.income)} />
 
         <p>
           This is the <strong>last section</strong>. You will have the opportunity to review all
