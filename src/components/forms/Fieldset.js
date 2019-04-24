@@ -1,6 +1,6 @@
 const { html } = require('../../utils.js')
 const { css } = require('emotion')
-const { theme } = require('../../styles.js')
+const { theme, visuallyHidden } = require('../../styles.js')
 const Radio = require('./Radio')
 
 const fieldsetStyles = css`
@@ -28,10 +28,10 @@ const makeRadio = ({ id, index, label, checked = false }) =>
     <${Radio} id=${`${id}-${index}`} name=${id} value=${label} checked=${checked}>${label}<//>
   `
 
-const Fieldset = ({ children, id, options = [], value = '' }) =>
+const Fieldset = ({ children, id, options = [], value = '', hideLegend = true }) =>
   html`
     <fieldset id=${id} class=${fieldsetStyles}>
-      <legend>
+      <legend class=${hideLegend && visuallyHidden}>
         ${children}
       </legend>
       <div>
