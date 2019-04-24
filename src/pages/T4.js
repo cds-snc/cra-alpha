@@ -32,14 +32,16 @@ const T4 = ({ data = {} }) =>
         <${LogoutLink} />
         <h1>Your income</h1>
         <div>
-        <img class=${imgCSS} src='/t4.png' title='Sample T4 form' />
+          <img class=${imgCSS} src="/t4.png" title="Sample T4 form" />
         </div>
 
-<${SummaryTable} title="Income Data" rows=${t4Data(data.income)} ifEditable=${false} //>
-<${ButtonLink} id='consentButton' href="/confirmation">This information is accurate<//>
-<${ButtonLink} id='changesReqButton' href="/confirmation" style=${changesButtonCSS}>I need to make changes<//>
+        <${SummaryTable} title="Income Data" rows=${t4Data(data.income)} ifEditable=${false} //>
+        <${ButtonLink} id="consentButton" href="/confirmation">This information is accurate<//>
+        <${ButtonLink} id="changesReqButton" href="/confirmation" style=${changesButtonCSS}
+          >I need to make changes<//
+        >
       </div>
-    </${Layout}>
+    <//>
   `
 
 module.exports = T4
