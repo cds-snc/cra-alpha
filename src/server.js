@@ -138,6 +138,7 @@ app.get('/edit/:id(name|address|maritalStatus|children)?', checkLogin, (req, res
   res.send(
     renderPage({
       locale,
+      title: `Edit ${question.label.toLowerCase()}`,
       pageComponent: 'Edit',
       props: {
         ...question,
@@ -164,7 +165,7 @@ app.post(
       return res.status(422).send(
         renderPage({
           locale,
-          title: 'Error: Edit',
+          title: `Error: Edit ${question.label.toLowerCase()}`,
           pageComponent: 'Edit',
           props: {
             ...question,
