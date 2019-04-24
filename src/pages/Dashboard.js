@@ -1,24 +1,11 @@
-const { css } = require('emotion')
-const { theme } = require('../styles.js')
+const { dashboardStyles } = require('../styles.js')
 const { html } = require('../utils.js')
 const { getFirstName } = require('../api.js')
 const Layout = require('../components/Layout.js')
-const ErrorList = require('../components/ErrorList.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
 
-const dashboard = css`
-  position: relative;
-
-  > div {
-    margin-bottom: ${theme.space.xl};
-  }
-`
-
-const submitButton = css`
-  width: 200px;
-`
 const aboutYouRows = ({ name, address }) => {
   return [{ key: 'Name', value: name }, { key: 'Mailing address', value: address }]
 }
@@ -32,28 +19,23 @@ const yourFamilyRows = ({ maritalStatus, children }) => {
 
 const yourIncomeRows = ({ income }) => {
   return [
-    { key: 'Employer Name', value: income.employerName },
+    { key: 'Employer name', value: income.employerName },
     { key: 'Year', value: income.year },
-    { key: 'Box12', value: income.box12 },
-    { key: 'Box14', value: income.box14 },
-    { key: 'Box22', value: income.box22 },
+    { key: 'Social Insurance Number', value: income.box12 },
+    { key: 'Employment income', value: income.box14 },
+    { key: 'Income tax deducted', value: income.box22 },
   ]
 }
 
-const Dashboard = ({ data = {}, errors = {} }) =>
+const Dashboard = ({ data = {} }) =>
   html`
     <${Layout}>
-      ${Object.keys(errors).length > 0 &&
-        html`
-          <${ErrorList} errors=${errors} //>
-        `}
-
-      <div class=${dashboard}>
+      <div class=${dashboardStyles}>
         <${LogoutLink} />
         <h1>Hi, ${getFirstName(data.name)}</h1>
         <p>
           Here’s what we know about you based on your previous tax returns and information from your
-          employer, BLORB CORP.
+          employer, ${data.income.employerName}.
         </p>
         <p>If any of this information is wrong, you’ll have a chance to update it.</p>
 
@@ -71,7 +53,7 @@ const Dashboard = ({ data = {}, errors = {} }) =>
           ${' '}to complete.
         </p>
 
-        <${ButtonLink} href="/T4" style=${submitButton}>Get started<//>
+        <${ButtonLink} href="/about-you">Get started<//>
       </div>
     <//>
   `

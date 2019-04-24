@@ -26,7 +26,7 @@ describe('<T4>', () => {
       ),
     )
     expect($('h1').length).toBe(1)
-    expect($('h1').text()).toEqual('Your Income')
+    expect($('h1').text()).toEqual('Your income')
 
     expect($('#consentButton').length).toBe(1)
     expect($('#consentButton').text()).toEqual('This information is accurate')
@@ -47,7 +47,7 @@ describe('<T4>', () => {
           `,
         ),
       )
-      expect($('h1').text()).toEqual('Your Income')
+      expect($('h1').text()).toEqual('Your income')
       expect($('dl').text()).toContain(str)
     })
   })

@@ -70,9 +70,23 @@ const buttonStyles = css`
   text-decoration: none;
 `
 
+const dashboardStyles = css`
+  position: relative;
+
+  > div {
+    margin-bottom: ${theme.space.xl};
+  }
+
+  button,
+  a.buttonLink {
+    width: 200px;
+  }
+`
+
 module.exports = {
   theme,
   visuallyHidden,
   buttonStyles,
+  dashboardStyles,
   pageMargin,
 }

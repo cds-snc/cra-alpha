@@ -8,7 +8,6 @@ const {
   loginSchema,
   getSessionData,
   checkLogin,
-  dashboardSchema,
   errorArray2ErrorObject,
 } = require('./utils.js')
 const API = require('./api.js')
@@ -37,17 +36,6 @@ process.env.NODE_ENV !== 'test' && app.use(logger('dev'))
 
 app.get('/', (req, res) => {
   res.send(renderPage({ locale, pageComponent: 'Welcome', props: { locale } }))
-})
-
-app.get('/T4', (req, res) => {
-  res.send(
-    renderPage({
-      locale,
-      pageComponent: 'T4',
-      title: 'Your Income',
-      props: { data: getSessionData(req.session) },
-    }),
-  )
 })
 
 app.get('/login', (req, res) => {
@@ -97,23 +85,41 @@ app.get('/dashboard', checkLogin, (req, res) => {
   )
 })
 
-app.post('/dashboard', checkLogin, checkSchema(dashboardSchema), (req, res) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return res.status(422).send(
-      renderPage({
-        locale,
-        pageComponent: 'Dashboard',
-        title: 'Error: Dashboard',
-        props: {
-          data: getSessionData(req.session),
-          errors: errorArray2ErrorObject(errors),
-        },
-      }),
-    )
-  }
+app.get('/about-you', checkLogin, (req, res) => {
+  const data = getSessionData(req.session)
 
-  return res.redirect(302, '/confirmation')
+  res.send(
+    renderPage({
+      locale,
+      title: 'About you',
+      pageComponent: 'AboutYou',
+      props: { data },
+    }),
+  )
+})
+
+app.get('/your-family', checkLogin, (req, res) => {
+  const data = getSessionData(req.session)
+
+  res.send(
+    renderPage({
+      locale,
+      title: 'You and your family',
+      pageComponent: 'YourFamily',
+      props: { data },
+    }),
+  )
+})
+
+app.get('/T4', (req, res) => {
+  res.send(
+    renderPage({
+      locale,
+      pageComponent: 'T4',
+      title: 'Your income',
+      props: { data: getSessionData(req.session) },
+    }),
+  )
 })
 
 app.get('/edit', checkLogin, (req, res) => {
