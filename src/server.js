@@ -132,7 +132,7 @@ app.get('/edit', checkLogin, (req, res) => {
   res.send(_renderDocument({ title: '[WIP] Edit', locale, content }))
 })
 
-app.get('/edit/:id(name|address)?', checkLogin, (req, res) => {
+app.get('/edit/:id(name|address|maritalStatus)?', checkLogin, (req, res) => {
   const question = require(`./questions/${req.params.id}.js`)
 
   res.send(
