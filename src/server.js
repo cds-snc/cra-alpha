@@ -173,7 +173,7 @@ app.post('/edit/:id', checkLogin, pickEditSchema, (req, res) => {
 
   // update session with new value
   req.session[req.params.id] = req.body[req.params.id]
-  return res.redirect(302, '/dashboard')
+  return res.redirect(302, question.previous)
 })
 
 app.get('/confirmation', checkLogin, (req, res) => {
