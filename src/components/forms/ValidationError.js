@@ -3,7 +3,7 @@ const { theme, visuallyHidden } = require('../../styles.js')
 const { html } = require('../../utils.js')
 
 const validationError = css`
-  display: inline-block;
+  display: block;
   margin-bottom: 10px;
   color: ${theme.color.error};
 `
