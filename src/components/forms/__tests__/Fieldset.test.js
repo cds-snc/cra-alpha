@@ -22,9 +22,7 @@ describe('<Fieldset>', () => {
     const $ = cheerio.load(
       render(
         html`
-          <${Fieldset} id="location" rows=${[{ key: 'r1', value: 'r1' }]}
-            ><h1>Where do you live?</h1><//
-          >
+          <${Fieldset} id="location" options=${['Option 1']}><h1>Where do you live?</h1><//>
         `,
       ),
     )
@@ -40,16 +38,12 @@ describe('<Fieldset>', () => {
   })
 
   test('renders rows of radios', () => {
-    const rows = [
-      { key: 'Zurich', value: 'zurich' },
-      { key: 'St. Petersberg', value: 'petersburg' },
-      { key: 'Stockholm', value: 'stockholm' },
-    ]
+    const options = ['Zurich', 'St. Petersburg', 'Stockholm']
 
     const $ = cheerio.load(
       render(
         html`
-          <${Fieldset} id="location" rows=${rows}><h1>Where do you live?</h1><//>
+          <${Fieldset} id="location" options=${options}><h1>Where do you live?</h1><//>
         `,
       ),
     )
@@ -58,27 +52,25 @@ describe('<Fieldset>', () => {
 
     expect($('fieldset input').length).toBe(3)
 
-    rows.map((row, index) => {
+    options.map((label, index) => {
       let input = $('fieldset input').eq(index)
 
       expect(input.attr('name')).toEqual('location')
       expect(input.attr('id')).toEqual(`location-${index}`)
-      expect(input.attr('value')).toEqual(row.value)
-      expect(input.next('label').text()).toEqual(row.key)
+      expect(input.attr('value')).toEqual(label)
+      expect(input.next('label').text()).toEqual(label)
     })
   })
 
   test('renders with correctly selected radio value', () => {
-    const rows = [
-      { key: 'Zurich', value: 'zurich' },
-      { key: 'St. Petersberg', value: 'petersburg' },
-      { key: 'Stockholm', value: 'stockholm' },
-    ]
+    const options = ['Zurich', 'St. Petersburg', 'Stockholm']
 
     const $ = cheerio.load(
       render(
         html`
-          <${Fieldset} id="location" rows=${rows} value="petersburg"><h1>Where do you live?</h1><//>
+          <${Fieldset} id="location" options=${options} value="St. Petersburg"
+            ><h1>Where do you live?</h1><//
+          >
         `,
       ),
     )
@@ -87,7 +79,7 @@ describe('<Fieldset>', () => {
 
     expect($('fieldset input').length).toBe(3)
     const secondInput = $('fieldset input').eq(1)
-    expect(secondInput.next('label').text()).toEqual('St. Petersberg')
+    expect(secondInput.next('label').text()).toEqual('St. Petersburg')
     expect(secondInput.attr('checked')).toBeDefined()
   })
 })
