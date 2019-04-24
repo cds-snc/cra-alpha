@@ -10,9 +10,6 @@ const edit = css`
   margin-top: ${theme.space.lg};
 
   form {
-  }
-
-  form {
     max-width: 480px;
 
     > div {
@@ -29,13 +26,11 @@ const edit = css`
   }
 `
 
-const Edit = ({ id, label = '', description, type, data, errors = {} }) =>
+const Edit = ({ id, label = '', description, type, previous, data, errors = {} }) =>
   html`
     <${Layout}>
       <div class=${edit}>
-        <a href="/dashboard"
-          ><span aria-hidden="true">←</span> Back to dashboard</a
-        >
+        <a href=${previous}><span aria-hidden="true">←</span> Back to previous page</a>
         ${Object.keys(errors).length > 0 &&
           html`
             <${ErrorList} errors=${errors} //>
@@ -46,13 +41,7 @@ const Edit = ({ id, label = '', description, type, data, errors = {} }) =>
 
         <form method="post">
           <div>
-            <${Input}
-              id=${id}
-              type=${type}
-              value=${data[id]}
-              error=${errors[id]}
-              >${label}<//
-            >
+            <${Input} id=${id} type=${type} value=${data[id]} error=${errors[id]}>${label}<//>
           </div>
 
           <${Button}>Save<//>
