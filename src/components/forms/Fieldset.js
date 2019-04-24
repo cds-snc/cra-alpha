@@ -23,17 +23,19 @@ const fieldsetStyles = css`
   }
 `
 
-const Fieldset = ({ children, id }) =>
+const makeRadio = ({ id, index, row: { key, value } = {} }) =>
+  html`
+    <${Radio} id=${`${id}-${index}`} name=${id} value=${value}>${key}<//>
+  `
+
+const Fieldset = ({ children, id, rows = [] }) =>
   html`
     <fieldset id=${id} class=${fieldsetStyles}>
       <legend>
         ${children}
       </legend>
       <div>
-        <${Radio} id=${`${id}-1`} name=${id} value="england">England<//>
-        <${Radio} id=${`${id}-2`} name=${id} value="scotland">Scotland<//>
-        <${Radio} id=${`${id}-3`} name=${id} value="wales">Wales<//>
-        <${Radio} id=${`${id}-4`} name=${id} value="northern-ireland">Northern Ireland<//>
+        ${rows.map((row, index) => makeRadio({ id, index, row }))}
       </div>
     </fieldset>
   `
