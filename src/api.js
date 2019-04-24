@@ -8,7 +8,7 @@ var API = (function() {
     income: {
       employerName: 'BRAVO Corp',
       year: 2019,
-      box12: '321987645',
+      box12: '321-987-645',
       box14: 10000,
       box22: 1000,
     },
@@ -23,7 +23,7 @@ var API = (function() {
     income: {
       employerName: 'BETA Corp',
       year: 2019,
-      box12: '321654987',
+      box12: '321-654-987',
       box14: 20000,
       box22: 1500,
     },
@@ -38,7 +38,7 @@ var API = (function() {
     income: {
       employerName: 'ALPHA Corp',
       year: 2019,
-      box12: '254528961',
+      box12: '254-528-961',
       box14: 35000,
       box22: 4000,
     },
@@ -53,7 +53,7 @@ var API = (function() {
     income: {
       employerName: 'BLORB Corp',
       year: 2019,
-      box12: '532658742',
+      box12: '532-658-742',
       box14: 12345,
       box22: 1234,
     },

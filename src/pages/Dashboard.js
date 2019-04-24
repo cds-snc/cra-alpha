@@ -19,11 +19,11 @@ const yourFamilyRows = ({ maritalStatus, children }) => {
 
 const yourIncomeRows = ({ income }) => {
   return [
-    { key: 'Employer Name', value: income.employerName },
+    { key: 'Employer name', value: income.employerName },
     { key: 'Year', value: income.year },
-    { key: 'Box12', value: income.box12 },
-    { key: 'Box14', value: income.box14 },
-    { key: 'Box22', value: income.box22 },
+    { key: 'Social Insurance Number', value: income.box12 },
+    { key: 'Employment income', value: income.box14 },
+    { key: 'Income tax deducted', value: income.box22 },
   ]
 }
 

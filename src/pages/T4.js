@@ -13,11 +13,11 @@ const changesButtonCSS = css`
 
 const t4Data = ({ employerName, year, box12, box14, box22 } = {}) => {
   return [
-    { key: 'Employer Name', value: employerName },
+    { key: 'Employer name', value: employerName },
     { key: 'Year', value: year },
-    { key: 'Box12', value: box12 },
-    { key: 'Box14', value: box14 },
-    { key: 'Box22', value: box22 },
+    { key: 'Social Insurance Number', value: box12 },
+    { key: 'Employment income', value: box14 },
+    { key: 'Income tax deducted', value: box22 },
   ]
 }
 
