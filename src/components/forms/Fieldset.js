@@ -23,6 +23,12 @@ const fieldsetStyles = css`
   }
 `
 
+const hideLegendStyles = css`
+  legend {
+    ${visuallyHidden};
+  }
+`
+
 const makeRadio = ({ id, index, label, checked = false }) =>
   html`
     <${Radio} id=${`${id}-${index}`} name=${id} value=${label} checked=${checked}>${label}<//>
@@ -30,8 +36,11 @@ const makeRadio = ({ id, index, label, checked = false }) =>
 
 const Fieldset = ({ children, id, options = [], value = '', hideLegend = true }) =>
   html`
-    <fieldset id=${id} class=${fieldsetStyles}>
-      <legend class=${hideLegend && visuallyHidden}>
+    <fieldset
+      id=${id}
+      class=${hideLegend ? `${fieldsetStyles} ${hideLegendStyles}` : fieldsetStyles}
+    >
+      <legend>
         ${children}
       </legend>
       <div>
