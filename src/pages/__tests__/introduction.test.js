@@ -2,7 +2,7 @@ const render = require('preact-render-to-string')
 const cheerio = require('cheerio')
 const { html } = require('../../utils.js')
 
-const Introduction = require('../introduction.js')
+const Introduction = require('../Introduction.js')
 
 describe('<Introduction>', () => {
   const data = {
