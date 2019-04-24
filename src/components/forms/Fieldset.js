@@ -23,19 +23,19 @@ const fieldsetStyles = css`
   }
 `
 
-const makeRadio = ({ id, index, row: { key, value } = {}, checked = false }) =>
+const makeRadio = ({ id, index, label, checked = false }) =>
   html`
-    <${Radio} id=${`${id}-${index}`} name=${id} value=${value} checked=${checked}>${key}<//>
+    <${Radio} id=${`${id}-${index}`} name=${id} value=${label} checked=${checked}>${label}<//>
   `
 
-const Fieldset = ({ children, id, rows = [], value = '' }) =>
+const Fieldset = ({ children, id, options = [], value = '' }) =>
   html`
     <fieldset id=${id} class=${fieldsetStyles}>
       <legend>
         ${children}
       </legend>
       <div>
-        ${rows.map((row, index) => makeRadio({ id, index, row, checked: value === row.value }))}
+        ${options.map((label, index) => makeRadio({ id, index, label, checked: value === label }))}
       </div>
     </fieldset>
   `
