@@ -70,7 +70,7 @@ const buttonStyles = css`
   text-decoration: none;
 `
 
-const dashboardStyles = css`
+const loggedInStyles = css`
   position: relative;
 
   > div {
@@ -87,6 +87,6 @@ module.exports = {
   theme,
   visuallyHidden,
   buttonStyles,
-  dashboardStyles,
+  loggedInStyles,
   pageMargin,
 }

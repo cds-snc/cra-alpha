@@ -1,4 +1,4 @@
-const { dashboardStyles } = require('../styles.js')
+const { loggedInStyles } = require('../styles.js')
 const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
@@ -12,7 +12,7 @@ const aboutYouRows = ({ name, address }) => {
 const AboutYou = ({ data = {} }) =>
   html`
     <${Layout}>
-      <div class=${dashboardStyles}>
+      <div class=${loggedInStyles}>
         <${LogoutLink} />
         <h1>About you</h1>
         <p>

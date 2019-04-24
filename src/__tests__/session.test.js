@@ -22,12 +22,12 @@ const validNames = [
 ]
 
 validNames.map(name => {
-  it(`It should log in to the dashboard with name: "${name}"`, async () => {
+  it(`It should log in to the introduction page with name: "${name}"`, async () => {
     const response = await session(app)
       .post('/login')
       .send({ name })
     expect(response.statusCode).toBe(302)
-    expect(response.headers['location']).toEqual('/dashboard')
+    expect(response.headers['location']).toEqual('/introduction')
   })
 })
 
@@ -42,7 +42,7 @@ const invalidNames = [
 ]
 
 invalidNames.map(name => {
-  it(`It should fail to log in to the dashboard with name: "${name}"`, async () => {
+  it(`It should fail to log in to the introduction page with name: "${name}"`, async () => {
     const response = await session(app)
       .post('/login')
       .send({ name })
@@ -53,7 +53,7 @@ invalidNames.map(name => {
   })
 })
 
-it('It should fail to log in to the dashboard an empty name', async () => {
+it('It should fail to log in to the introduction an empty name', async () => {
   const response = await session(app)
     .post('/login')
     .send({ name: '' })
@@ -63,14 +63,14 @@ it('It should fail to log in to the dashboard an empty name', async () => {
   expect(response.text).toContain('Name can’t be empty')
 })
 
-it('It should log into the dashboard with "/kim"', async () => {
+it('It should log into the introduction with "/kim"', async () => {
   const response = await session(app).get('/kim')
 
   expect(response.statusCode).toBe(302)
-  expect(response.headers['location']).toEqual('/dashboard')
+  expect(response.headers['location']).toEqual('/introduction')
 })
 
-const authUrls = ['/dashboard', '/edit', '/confirmation']
+const authUrls = ['/introduction', '/edit', '/confirmation']
 
 describe('Before logging in', () => {
   authUrls.map(url => {

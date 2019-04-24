@@ -1,5 +1,5 @@
 const { css } = require('emotion')
-const { dashboardStyles } = require('../styles.js')
+const { loggedInStyles } = require('../styles.js')
 const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
@@ -28,7 +28,7 @@ const t4Data = ({ employerName, year, box12, box14, box22 } = {}) => {
 const T4 = ({ data = {} }) =>
   html`
     <${Layout}>
-      <div class=${dashboardStyles}>
+      <div class=${loggedInStyles}>
         <${LogoutLink} />
         <h1>Your income</h1>
         <div>
