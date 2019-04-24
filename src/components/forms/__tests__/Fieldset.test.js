@@ -67,4 +67,27 @@ describe('<Fieldset>', () => {
       expect(input.next('label').text()).toEqual(row.key)
     })
   })
+
+  test('renders with correctly selected radio value', () => {
+    const rows = [
+      { key: 'Zurich', value: 'zurich' },
+      { key: 'St. Petersberg', value: 'petersburg' },
+      { key: 'Stockholm', value: 'stockholm' },
+    ]
+
+    const $ = cheerio.load(
+      render(
+        html`
+          <${Fieldset} id="location" rows=${rows} value="petersburg"><h1>Where do you live?</h1><//>
+        `,
+      ),
+    )
+    expect($('fieldset').length).toBe(1)
+    expect($('fieldset legend h1').length).toBe(1)
+
+    expect($('fieldset input').length).toBe(3)
+    const secondInput = $('fieldset input').eq(1)
+    expect(secondInput.next('label').text()).toEqual('St. Petersberg')
+    expect(secondInput.attr('checked')).toBeDefined()
+  })
 })
