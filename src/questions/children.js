@@ -14,6 +14,7 @@ module.exports = {
         errorMessage: 'Number of children must be 0 or higher',
         options: { min: 0 },
       },
+      trim: true,
     },
   },
   previous: '/your-family',

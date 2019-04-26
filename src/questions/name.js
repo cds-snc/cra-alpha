@@ -10,6 +10,7 @@ module.exports = {
         errorMessage: 'Name can’t be empty',
         negated: true,
       },
+      trim: true,
     },
   },
   previous: '/about-you',

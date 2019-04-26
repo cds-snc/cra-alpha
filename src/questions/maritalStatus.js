@@ -17,6 +17,7 @@ module.exports = {
         errorMessage: 'Marital status must be one of the provided options',
         options: [options],
       },
+      trim: true,
     },
   },
   previous: '/your-family',
