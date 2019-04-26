@@ -27,8 +27,8 @@ describe('Full run through', function() {
     cy.fixture('user').then(user => {
       cy.get('form label').should('have.attr', 'for', 'name')
       cy.get('form input#name')
-        .type(user.name)
-        .should('have.value', user.name)
+        .type('Louis')
+        .should('have.value', 'Louis')
       cy.get('form button')
         .should('contain', 'Log in')
         .click()
