@@ -10,6 +10,7 @@ module.exports = {
         errorMessage: 'Mailing address can’t be empty',
         negated: true,
       },
+      trim: true,
     },
   },
   previous: '/about-you',
