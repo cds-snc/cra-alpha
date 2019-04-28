@@ -8,7 +8,7 @@ const checkboxStyles = css`
   display: block;
   position: relative;
   min-height: ${checkboxWidth};
-  margin-bottom: ${theme.space.xl};
+  margin-bottom: ${theme.space.sm};
   padding: 0 0 0 ${checkboxWidth};
   clear: left;
 
@@ -75,14 +75,57 @@ const checkboxStyles = css`
   }
 `
 
-const Checkbox = ({ children, id, value = '', name = '', checked = false }) =>
+const radioCircumference = '44px'
+
+const radioStyles = css`
+  input {
+    top: 0;
+    left: 0;
+    width: ${radioCircumference};
+    height: ${radioCircumference};
+  }
+
+  label {
+    &::before {
+      border-radius: 50%;
+    }
+
+    &::after {
+      top: 10px;
+      left: 10px;
+      width: 0;
+      height: 0;
+      border: 10px solid currentColor;
+      border-radius: 50%;
+      background: transparent;
+    }
+  }
+
+  input:focus + label::before {
+    -webkit-box-shadow: 0 0 0 3px ${theme.color.focus};
+    box-shadow: 0 0 0 3px ${theme.color.focus};
+  }
+`
+
+const MultipleChoice = ({
+  children,
+  id,
+  type = 'checkbox',
+  value = '',
+  name = '',
+  checked = false,
+}) =>
   html`
-    <div class=${checkboxStyles}>
-      <input id=${id} name=${name || id} type="checkbox" value=${value || id} checked=${checked} />
+    <div
+      class=${css`
+        ${checkboxStyles} ${type === 'radio' && radioStyles}
+      `}
+    >
+      <input id=${id} name=${name || id} type=${type} value=${value || id} checked=${checked} />
       <label for=${id}>
         ${children}
       </label>
     </div>
   `
 
-module.exports = Checkbox
+module.exports = MultipleChoice
