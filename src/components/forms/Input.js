@@ -4,22 +4,25 @@ const { html } = require('../../utils.js')
 const ValidationError = require('./ValidationError')
 
 const input = css`
-  display: block;
-
   label {
     display: block;
     margin-bottom: ${theme.space.xs};
   }
 
-  input {
+  input,
+  textarea {
     font: 400 1em sans-serif;
     border: 2px solid ${theme.color.black};
     width: 100%;
-    height: 40px;
     margin-top: 0;
     padding: 5px;
     border-radius: 0;
     -webkit-appearance: none;
+    vertical-align: top;
+  }
+
+  input {
+    height: 40px;
 
     &[type='number']::-webkit-inner-spin-button,
     &[type='number']::-webkit-outer-spin-button {
@@ -35,18 +38,64 @@ const withError = css`
   border-left: 3px solid ${theme.color.error};
 `
 
+const TextInput = ({
+  id,
+  name = '',
+  type = 'text',
+  style = {},
+  error = undefined,
+  ...props
+}) => html`
+  <input
+    id=${id}
+    name=${name || id}
+    type=${type}
+    style=${{ ...style }}
+    aria-describedby="${error ? `${error.param}-error` : false}}"
+    ...${props}
+  />
+`
+
+const TextArea = ({
+  id,
+  name = '',
+  style = {},
+  value = '',
+  error = undefined,
+  rows = 5,
+  ...props
+}) => html`
+  <textarea
+    id=${id}
+    name=${name || id}
+    rows=${rows}
+    style=${{ ...style }}
+    aria-describedby="${error ? `${error.param}-error` : false}}"
+    ...${props}
+  >
+${value}</textarea
+  >
+`
+
+const renderInput = ({ type, ...props }) =>
+  type === 'textarea'
+    ? html`
+        <${TextArea} ...${props} />
+      `
+    : html`
+        <${TextInput} type=${type} ...${props} />
+      `
+
 const Input = ({
   id,
   children,
-  name = '',
   type = 'text',
   bold = true,
-  style = {},
   error = undefined,
   ...props
 }) =>
   html`
-    <span
+    <div
       class=${css`
         ${input} ${error && withError}
       `}
@@ -61,15 +110,8 @@ const Input = ({
         html`
           <${ValidationError} param=${error.param} msg=${error.msg} />
         `}
-      <input
-        style=${{ ...style }}
-        id=${id}
-        name=${name || id}
-        type=${type}
-        aria-describedby="${error ? `${error.param}-error` : false}}"
-        ...${props}
-      />
-    </span>
+      ${renderInput({ type, id, error, ...props })}
+    </div>
   `
 
 module.exports = Input

@@ -39,9 +39,9 @@ const Introduction = ({ data = {} }) =>
         </p>
         <p>If any of this information is wrong, you’ll have a chance to update it.</p>
 
-        <${SummaryTable} title="About you" rows=${aboutYouRows(data)} ifEditable=${false} //>
-        <${SummaryTable} title="Your family" rows=${yourFamilyRows(data)} ifEditable=${false} //>
-        <${SummaryTable} title="Your income" rows=${yourIncomeRows(data)} ifEditable=${false} //>
+        <${SummaryTable} title="About you" rows=${aboutYouRows(data)} />
+        <${SummaryTable} title="Your family" rows=${yourFamilyRows(data)} />
+        <${SummaryTable} title="Your income" rows=${yourIncomeRows(data)} />
 
         <p>
           On the following pages, you can review each section and correct any outdated information.

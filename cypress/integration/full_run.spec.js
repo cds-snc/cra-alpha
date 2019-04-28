@@ -33,8 +33,8 @@ describe('Full run through', function() {
         .should('contain', 'Log in')
         .click()
 
-      // DASHBOARD PAGE
-      cy.url().should('contain', '/dashboard')
+      // INTRODUCTION PAGE
+      cy.url().should('contain', '/introduction')
       cy.get('h1').should('contain', `Hi, ${getFirstName(user.name)}`)
 
       cy.get('h2')

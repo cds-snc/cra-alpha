@@ -23,7 +23,7 @@ const YourFamily = ({ data = {} }) =>
           you. Please update any out-of-date information and then continue to the next section.
         </p>
 
-        <${SummaryTable} rows=${yourFamilyRows(data)} ifEditable=${true} //>
+        <${SummaryTable} rows=${yourFamilyRows(data)} />
         <p>
           There is <strong>1 section</strong> remaining, which should take ${' '}<strong
             >1 minute</strong
