@@ -30,9 +30,15 @@ action "Run cypress functional tests" {
   args = "run cypress:cli"
 }
 
+action "Run pa11y accessibility scan" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  needs = [ "Install npm dependencies" ]
+  args = "run pa11y"
+}
+
 action "If master branch" {
   uses = "actions/bin/filter@24a566c2524e05ebedadef0a285f72dc9b631411"
-  needs = [ "Lint Dockerfile", "Run JS linter", "Run jest unit tests", "Run cypress functional tests" ]
+  needs = [ "Lint Dockerfile", "Run JS linter", "Run jest unit tests", "Run cypress functional tests", "Run pa11y accessibility scan" ]
   args = "branch master"
 }
 
