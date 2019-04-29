@@ -81,6 +81,12 @@ const loggedInStyles = css`
   a.buttonLink {
     width: 200px;
   }
+
+  @media (${theme.mq.sm}) {
+    h1 {
+      margin-right: ${theme.space.xxl};
+    }
+  }
 `
 
 module.exports = {
