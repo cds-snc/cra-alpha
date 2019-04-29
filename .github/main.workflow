@@ -31,7 +31,7 @@ action "Run cypress functional tests" {
 }
 
 action "Run pa11y accessibility scan" {
-  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  uses = "bartlett705/npm-cy@f69478046d80aef1be0e17582c189a59bbfc9aa1"
   needs = [ "Install npm dependencies" ]
   args = "run pa11y"
 }
