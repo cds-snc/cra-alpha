@@ -25,14 +25,20 @@ action "Run jest unit tests" {
 }
 
 action "Run cypress functional tests" {
-  uses = "bartlett705/npm-cy@f69478046d80aef1be0e17582c189a59bbfc9aa1"
+  uses = "bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886"
   needs = [ "Install npm dependencies" ]
   args = "run cypress:cli"
 }
 
+action "Run pa11y accessibility scan" {
+  uses = "bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886"
+  needs = [ "Install npm dependencies" ]
+  args = "run pa11y"
+}
+
 action "If master branch" {
   uses = "actions/bin/filter@24a566c2524e05ebedadef0a285f72dc9b631411"
-  needs = [ "Lint Dockerfile", "Run JS linter", "Run jest unit tests", "Run cypress functional tests" ]
+  needs = [ "Lint Dockerfile", "Run JS linter", "Run jest unit tests", "Run cypress functional tests", "Run pa11y accessibility scan" ]
   args = "branch master"
 }
 
