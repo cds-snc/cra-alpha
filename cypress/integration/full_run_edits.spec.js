@@ -1,42 +1,10 @@
 const { getFirstName } = require('../../src/api.js')
-
-const checkTableRows = (cy, rows) => {
-  rows.map((row, index) => {
-    cy.get('dt.key')
-      .eq(index)
-      .should('contain', row.key)
-      .next('dd')
-      .should('contain', row.value)
-  })
-}
-
-const editValue = (cy, rowNum, id, type, originalValue, newValue) => {
-  cy.get('dd.value')
-    .eq(rowNum)
-    .should('contain', originalValue)
-    .next('dd.action')
-    .find('a')
-    .click()
-
-  cy.url().should('contain', `/edit/${id}`)
-
-  if (type === 'radio') {
-    cy.get(`input[value="${originalValue}"]`).should('be.checked')
-    cy.get(`input[value="${newValue}"]`).check()
-  } else {
-    cy.get(`${type}#${id}`)
-      .should('have.value', originalValue)
-      .clear()
-      .type(newValue)
-  }
-
-  cy.get('form button')
-    .should('contain', 'Save')
-    .click()
-}
+const { checkTableRows, editValue, logIn } = require('../utils.js')
 
 describe('Full run through with edits', function() {
-  it('successfully loads the home page', function() {
+  it('updates each editable field', function() {
+    cy.fixture('user_edits').as('userEdits')
+
     cy.visit('/')
 
     // WELCOME PAGE
@@ -47,18 +15,9 @@ describe('Full run through with edits', function() {
 
     // LOGIN PAGE
     cy.url().should('contain', '/login')
-    cy.get('h1').should('contain', 'Log in to see your tax-filing information')
-
-    cy.fixture('user_edits').as('userEdits')
 
     cy.fixture('user').then(user => {
-      cy.get('form label').should('have.attr', 'for', 'name')
-      cy.get('form input#name')
-        .type(user.name)
-        .should('have.value', user.name)
-      cy.get('form button')
-        .should('contain', 'Log in')
-        .click()
+      logIn(cy, user)
 
       // INTRODUCTION PAGE
       cy.url().should('contain', '/introduction')

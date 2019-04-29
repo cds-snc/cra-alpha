@@ -1,17 +1,8 @@
 const { getFirstName } = require('../../src/api.js')
-
-const checkTableRows = (cy, rows) => {
-  rows.map((row, index) => {
-    cy.get('dt.key')
-      .eq(index)
-      .should('contain', row.key)
-      .next('dd')
-      .should('contain', row.value)
-  })
-}
+const { checkTableRows, logIn } = require('../utils.js')
 
 describe('Full run through', function() {
-  it('successfully loads the home page', function() {
+  it('Goes from the start of the service to the confirmation page', function() {
     cy.visit('/')
 
     // WELCOME PAGE
@@ -22,16 +13,9 @@ describe('Full run through', function() {
 
     // LOGIN PAGE
     cy.url().should('contain', '/login')
-    cy.get('h1').should('contain', 'Log in to see your tax-filing information')
 
     cy.fixture('user').then(user => {
-      cy.get('form label').should('have.attr', 'for', 'name')
-      cy.get('form input#name')
-        .type(user.name)
-        .should('have.value', user.name)
-      cy.get('form button')
-        .should('contain', 'Log in')
-        .click()
+      logIn(cy, user)
 
       // INTRODUCTION PAGE
       cy.url().should('contain', '/introduction')
