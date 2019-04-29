@@ -61,7 +61,7 @@ const buttonStyles = css`
   padding: 7px 10px;
   border-radius: 0;
   color: ${theme.color.black};
-  background-color: ${theme.color.green};
+  background-color: ${theme.color.black};
   border: 2px solid ${theme.color.grey};
   text-align: center;
   vertical-align: top;
