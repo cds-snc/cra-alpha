@@ -122,15 +122,57 @@ app.get('/T4', (req, res) => {
   )
 })
 
-app.get('/edit', checkLogin, (req, res) => {
-  const content = `
-    <h1>Editing coming soon</h1>
-    <p>Editing isn’t working yet, so for now you have to print out this website, change your info, and then mail it to Nancy McKenna.</p>
-    <a href="/introduction">← Go back</a>
-    `
+// Whitelist only specific routes (eg, https://stackoverflow.com/a/15350845)
+app.get('/edit/:id(name|address|maritalStatus|children)?', checkLogin, (req, res) => {
+  const question = require(`./questions/${req.params.id}.js`)
 
-  res.send(_renderDocument({ title: '[WIP] Edit', locale, content }))
+  res.send(
+    renderPage({
+      locale,
+      title: `Edit ${question.label.toLowerCase()}`,
+      pageComponent: 'Edit',
+      props: {
+        ...question,
+        data: getSessionData(req.session),
+      },
+    }),
+  )
 })
+
+const pickEditSchema = (req, res, next) => {
+  const question = require(`./questions/${req.params.id}.js`)
+  return checkSchema(question.schema)[0](req, res, next)
+}
+
+// Whitelist only specific routes (eg, https://stackoverflow.com/a/15350845)
+app.post(
+  '/edit/:id(name|address|maritalStatus|children)?',
+  checkLogin,
+  pickEditSchema,
+  (req, res) => {
+    const question = require(`./questions/${req.params.id}.js`)
+
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(422).send(
+        renderPage({
+          locale,
+          title: `Error: Edit ${question.label.toLowerCase()}`,
+          pageComponent: 'Edit',
+          props: {
+            ...question,
+            data: getSessionData(req.session),
+            errors: errorArray2ErrorObject(errors),
+          },
+        }),
+      )
+    }
+
+    // update session with new value
+    req.session[req.params.id] = req.body[req.params.id]
+    return res.redirect(302, question.previous)
+  },
+)
 
 app.get('/confirmation', checkLogin, (req, res) => {
   const data = getSessionData(req.session)

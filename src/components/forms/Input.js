@@ -32,9 +32,10 @@ const input = css`
   }
 `
 
-const withError = css`
-  margin-left: -12px;
-  padding-left: 12px;
+const errorStyles = css`
+  margin-left: -${theme.space.sm};
+  /* theme spacing minus border width */
+  padding-left: calc(${theme.space.sm} - 3px);
   border-left: 3px solid ${theme.color.error};
 `
 
@@ -86,24 +87,14 @@ const renderInput = ({ type, ...props }) =>
         <${TextInput} type=${type} ...${props} />
       `
 
-const Input = ({
-  id,
-  children,
-  type = 'text',
-  bold = true,
-  error = undefined,
-  ...props
-}) =>
+const Input = ({ id, children, type = 'text', bold = true, error = undefined, ...props }) =>
   html`
     <div
       class=${css`
-        ${input} ${error && withError}
+        ${input} ${error && errorStyles}
       `}
     >
-      <label
-        style=${{ fontWeight: !bold || bold === 'false' ? 400 : 700 }}
-        for=${id}
-      >
+      <label style=${{ fontWeight: !bold || bold === 'false' ? 400 : 700 }} for=${id}>
         ${children}
       </label>
       ${error &&
