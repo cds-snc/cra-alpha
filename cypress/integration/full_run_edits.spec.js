@@ -1,8 +1,10 @@
 const { getFirstName } = require('../../src/api.js')
-const { checkTableRows, logIn } = require('../utils.js')
+const { checkTableRows, editValue, logIn } = require('../utils.js')
 
-describe('Full run through', function() {
-  it('Goes from the start of the service to the confirmation page', function() {
+describe('Full run through with edits', function() {
+  it('updates each editable field', function() {
+    cy.fixture('user_edits').as('userEdits')
+
     cy.visit('/')
 
     // WELCOME PAGE
@@ -41,6 +43,19 @@ describe('Full run through', function() {
         { key: 'Mailing address', value: user.address },
       ])
 
+      // EDIT FIRST NAME
+      editValue(cy, 0, 'name', 'input', user.name, this.userEdits.name)
+      // EDIT ADDRESS
+      editValue(cy, 1, 'address', 'textarea', user.address, this.userEdits.address)
+
+      cy.url().should('contain', '/about-you')
+
+      // CHECK FOR NEW VALUES
+      checkTableRows(cy, [
+        { key: 'Name', value: this.userEdits.name },
+        { key: 'Mailing address', value: this.userEdits.address },
+      ])
+
       cy.get('a.buttonLink')
         .should('contain', 'Continue')
         .click()
@@ -53,23 +68,18 @@ describe('Full run through', function() {
         { key: 'Number of children', value: user.children },
       ])
 
-      cy.get('a.buttonLink')
-        .should('contain', 'Continue')
-        .click()
+      // EDIT MARITAL STATUS
+      editValue(cy, 0, 'maritalStatus', 'radio', user.maritalStatus, this.userEdits.maritalStatus)
+      // EDIT CHILDREN
+      editValue(cy, 1, 'children', 'input', user.children, this.userEdits.children)
 
-      // YOUR INCOME PAGE
-      cy.get('h1').should('contain', 'Your income')
+      cy.url().should('contain', '/your-family')
 
-      cy.get('a#consentButton')
-        .should('contain', 'This information is accurate')
-        .click()
-
-      // CONFIRMATION PAGE
-      cy.url().should('contain', '/confirmation')
-      cy.get('h1').should('contain', 'Success!')
-      cy.get('h1')
-        .next('p')
-        .should('contain', `Good job, ${getFirstName(user.name)}!`)
+      // CHECK FOR NEW VALUES
+      checkTableRows(cy, [
+        { key: 'Marital status', value: this.userEdits.maritalStatus },
+        { key: 'Number of children', value: this.userEdits.children },
+      ])
     })
   })
 })
