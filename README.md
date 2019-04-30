@@ -12,7 +12,6 @@ It's a server-side [express](https://expressjs.com/) application using [HTM](htt
 
 `npm` will complain if you're not on node version `v10.15.0` or higher when you boot up the app.
 
-
 ### Build and run
 
 Guess what? There is **no build step**. Just install the dependencies and run it.
@@ -42,10 +41,34 @@ npm test
 
 # run linting
 npm run lint
+
+# run end-to-end tests
+npm run cypress
+npm run cypress:cli # these won't open a browser
+
+# run accessibility tests
+npm run pa11y
 ```
 
-## Using Docker
+#### End-to-end tests
 
+For our end-to-end tests, we're using [Cypress](https://www.cypress.io/). Cypress runs behaviour-driven tests, so that we can make sure the user journeys we care about are always functional while we continue to merge new code.
+
+Things we do with cypress include:
+
+- navigate through the app
+- make sure we're on the page we expect to be on
+- change form values
+- make sure that changed values persist
+
+#### Accessibility tests
+
+We're using [Pa11y](http://pa11y.org/) for automated accessibility testing. It runs HTML CodeSniffer from the command line for programmatic accessibility reporting.
+
+We give Pa11y a list of urls and then it will navigate to those pages, optionally perform actions, and then run a scan. It doesn't catch everything, but it will keep us from making certain low-hanging
+accessibility mistakes.
+
+## Using Docker
 
 ### [Install `docker`](https://docs.docker.com/install/)
 
@@ -88,7 +111,6 @@ As previously mentioned, this is a server-side [express](https://expressjs.com/)
 - [Object destructuring on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 - [Tagged Template literals on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 
-
 ### HTM
 
 [Hyperscript Tagged Markup](https://github.com/developit/htm): JSX alternative using standard tagged templates, with compiler support.
@@ -113,7 +135,6 @@ In this application, we're not using JSX proper, but, aside from some small diff
 ### jest
 
 [Jest](https://jestjs.io/en/) is a super-popular JavaScript unit testing framework. Once we render our components, we can use Jest to make assertions about their content and HTML attributes. [Jest's official documentation](https://jestjs.io/docs/en/getting-started) gives a good overview.
-
 
 ### VSCode
 
