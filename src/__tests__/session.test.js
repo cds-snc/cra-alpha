@@ -70,7 +70,7 @@ it('It should log into the introduction with "/kim"', async () => {
   expect(response.headers['location']).toEqual('/introduction')
 })
 
-const authUrls = ['/introduction', '/edit', '/confirmation']
+const authUrls = ['/introduction', '/edit/name', '/confirmation']
 
 describe('Before logging in', () => {
   authUrls.map(url => {

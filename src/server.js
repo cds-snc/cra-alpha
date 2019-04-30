@@ -122,16 +122,7 @@ app.get('/T4', (req, res) => {
   )
 })
 
-app.get('/edit', checkLogin, (req, res) => {
-  const content = `
-    <h1>Editing coming soon</h1>
-    <p>Editing isn’t working yet, so for now you have to print out this website, change your info, and then mail it to Nancy McKenna.</p>
-    <a href="/introduction">← Go back</a>
-    `
-
-  res.send(_renderDocument({ title: '[WIP] Edit', locale, content }))
-})
-
+// Whitelist only specific routes (eg, https://stackoverflow.com/a/15350845)
 app.get('/edit/:id(name|address|maritalStatus|children)?', checkLogin, (req, res) => {
   const question = require(`./questions/${req.params.id}.js`)
 
@@ -153,6 +144,7 @@ const pickEditSchema = (req, res, next) => {
   return checkSchema(question.schema)[0](req, res, next)
 }
 
+// Whitelist only specific routes (eg, https://stackoverflow.com/a/15350845)
 app.post(
   '/edit/:id(name|address|maritalStatus|children)?',
   checkLogin,
