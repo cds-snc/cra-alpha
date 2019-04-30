@@ -13,17 +13,25 @@ const options = {
   },
 }
 
-const introductionActions = [
+const loginActions = [
   'set field #name to kim',
   'click element main button',
   'wait for path to be /introduction',
 ]
 
+const introductionActions = [...loginActions]
+const aboutYouActions = [...loginActions, `navigate to ${baseUrl}/about-you`]
+
 /*--------------------------------------------*
  * List of urls we want to visit
  *--------------------------------------------*/
 
-const visit = [{ url: '/' }, { url: '/login' }, { url: '/login', actions: introductionActions }]
+const visit = [
+  { url: '/' },
+  { url: '/login' },
+  { url: '/login', actions: introductionActions },
+  { url: '/login', actions: aboutYouActions },
+]
 
 async function run() {
   try {
