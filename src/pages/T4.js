@@ -26,7 +26,7 @@ const t4Data = ({ employerName, year, box12, box14, box22 } = {}) => {
   ]
 }
 
-const T4 = ({ locale, data = {}, }) =>
+const T4 = ({ locale, data = {} }) =>
   html`
     <${Layout}>
       <div class=${loggedInStyles}>
@@ -36,13 +36,18 @@ const T4 = ({ locale, data = {}, }) =>
           <img class=${imgCSS} src="/t4.png" title="${polyglot.t(`${locale}.income.sample_t4`)}" />
         </div>
 
-        <${SummaryTable} title="${polyglot.t(`${locale}.income.income_data`)}" rows=${t4Data(data.income)} />
+        <${SummaryTable}
+          title="${polyglot.t(`${locale}.income.income_data`)}"
+          rows=${t4Data(data.income)}
+        />
 
         <p>
-        ${polyglot.t(`${locale}.income.last_section`)}
+          ${polyglot.t(`${locale}.income.last_section`)}
         </p>
 
-        <${ButtonLink} id="consentButton" href="/confirmation">${polyglot.t(`${locale}.income.accurate`)}<//>
+        <${ButtonLink} id="consentButton" href="/confirmation"
+          >${polyglot.t(`${locale}.income.accurate`)}<//
+        >
         <${ButtonLink} id="changesReqButton" href="/confirmation" style=${changesButtonCSS}
           >${polyglot.t(`${locale}.income.make_changes`)}<//
         >
