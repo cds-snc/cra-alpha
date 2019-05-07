@@ -5,6 +5,7 @@ const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
+const polyglot = require('../i18n.js')
 
 const aboutYouRows = ({ name, address }) => {
   return [{ key: 'Name', value: name }, { key: 'Mailing address', value: address }]
@@ -27,33 +28,28 @@ const yourIncomeRows = ({ income }) => {
   ]
 }
 
-const Introduction = ({ data = {} }) =>
+const Introduction = ({ locale, data = {} }) =>
   html`
     <${Layout}>
       <div class=${loggedInStyles}>
         <${LogoutLink} />
-        <h1>Hi, ${getFirstName(data.name)}</h1>
+        <h1>${polyglot.t(`${locale}.intro.hi`, {name: getFirstName(data.name) })}</h1>
         <p>
-          Here’s what we know about you based on your previous tax returns and information from your
-          employer, ${data.income.employerName}.
+          ${polyglot.t(`${locale}.intro.info_about_you`, {employerName: data.income.employerName })}
         </p>
-        <p>If any of this information is wrong, you’ll have a chance to update it.</p>
+        <p></p>
 
-        <${SummaryTable} title="About you" rows=${aboutYouRows(data)} />
-        <${SummaryTable} title="Your family" rows=${yourFamilyRows(data)} />
-        <${SummaryTable} title="Your income" rows=${yourIncomeRows(data)} />
+        <${SummaryTable} title="${polyglot.t(`${locale}.about_you.title`)}" rows=${aboutYouRows(data)} />
+        <${SummaryTable} title="${polyglot.t(`${locale}.family.title`)}" rows=${yourFamilyRows(data)} />
+        <${SummaryTable} title="${polyglot.t(`${locale}.income.title`)}" rows=${yourIncomeRows(data)} />
 
         <p>
-          On the following pages, you can review each section and correct any outdated information.
-          Once your information is up-to-date, you will be ready to submit your tax return.
+          ${polyglot.t(`${locale}.intro.review`)}
         </p>
         <p>
-          There are <strong>3 sections</strong> in total, and it should take approximately
-          ${' '}<strong>10 minutes</strong>
-          ${' '}to complete.
+          ${polyglot.t(`${locale}.intro.remaining`)}
         </p>
-
-        <${ButtonLink} href="/about-you">Get started<//>
+        <${ButtonLink} href="/about-you">${polyglot.t(`${locale}.get_started`)}<//>
       </div>
     <//>
   `

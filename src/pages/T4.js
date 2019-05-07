@@ -5,6 +5,7 @@ const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
+const polyglot = require('../i18n.js')
 
 const imgCSS = css`
   max-width: 100%;
@@ -25,26 +26,25 @@ const t4Data = ({ employerName, year, box12, box14, box22 } = {}) => {
   ]
 }
 
-const T4 = ({ data = {} }) =>
+const T4 = ({ locale, data = {}, }) =>
   html`
     <${Layout}>
       <div class=${loggedInStyles}>
         <${LogoutLink} />
-        <h1>Your income</h1>
+        <h1>${polyglot.t(`${locale}.income.title`)}</h1>
         <div>
-          <img class=${imgCSS} src="/t4.png" title="Sample T4 form" />
+          <img class=${imgCSS} src="/t4.png" title="${polyglot.t(`${locale}.income.sample_t4`)}" />
         </div>
 
-        <${SummaryTable} title="Income Data" rows=${t4Data(data.income)} />
+        <${SummaryTable} title="${polyglot.t(`${locale}.income.income_data`)}" rows=${t4Data(data.income)} />
 
         <p>
-          This is the <strong>last section</strong>. You will have the opportunity to review all
-          your information and get an estimate of your return before submitting your taxes.
+        ${polyglot.t(`${locale}.income.last_section`)}
         </p>
 
-        <${ButtonLink} id="consentButton" href="/confirmation">This information is accurate<//>
+        <${ButtonLink} id="consentButton" href="/confirmation">${polyglot.t(`${locale}.income.accurate`)}<//>
         <${ButtonLink} id="changesReqButton" href="/confirmation" style=${changesButtonCSS}
-          >I need to make changes<//
+          >${polyglot.t(`${locale}.income.make_changes`)}<//
         >
       </div>
     <//>

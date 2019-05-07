@@ -14,20 +14,19 @@ const Welcome = ({ locale }) =>
   html`
     <${Layout}>
       <div class=${welcome}>
-        <h1>Claim tax benefits (CTB)</h1>
-        <p>${polyglot.t(`${locale}.welcome`)}.</p>
+        <h1>${polyglot.t(`${locale}.welcome.title`)}</h1>
+        <p>${polyglot.t(`${locale}.welcome.file_taxes`)}.</p>
 
-        <p>You will need to know:</p>
+        <p>${polyglot.t(`${locale}.welcome.need_to_know`)}</p>
         <ul>
-          <li>Your first name</li>
+          <li>${polyglot.t(`${locale}.welcome.firstname`)}</li>
         </ul>
 
         <p>
-          Then, you will see the information CRA has on file about you. If it is up to date, you
-          will be able to file your return immediately.
+        ${polyglot.t(`${locale}.welcome.cra_info_about_you`)}
         </p>
 
-        <a href="/login">Get started <span aria-hidden="true">→</span></a>
+        <a href="/login">${polyglot.t(`${locale}.get_started`)}<span aria-hidden="true">→</span></a>
       </div>
     <//>
   `

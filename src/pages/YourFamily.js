@@ -4,6 +4,7 @@ const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
+const polyglot = require('../i18n.js')
 
 const yourFamilyRows = ({ maritalStatus, children }) => {
   return [
@@ -12,26 +13,22 @@ const yourFamilyRows = ({ maritalStatus, children }) => {
   ]
 }
 
-const YourFamily = ({ data = {} }) =>
+const YourFamily = ({ locale, data = {} }) =>
   html`
     <${Layout}>
       <div class=${loggedInStyles}>
         <${LogoutLink} />
-        <h1>You and your family</h1>
+        <h1>${polyglot.t(`${locale}.family.title`)}</h1>
         <p>
-          This is the current marital status and number of dependent children we have on file for
-          you. Please update any out-of-date information and then continue to the next section.
+        ${polyglot.t(`${locale}.family.intro`)}
         </p>
 
         <${SummaryTable} rows=${yourFamilyRows(data)} />
         <p>
-          There is <strong>1 section</strong> remaining, which should take ${' '}<strong
-            >1 minute</strong
-          >
-          ${' '}to complete.
+        ${polyglot.t(`${locale}.family.remaining`)}
         </p>
 
-        <${ButtonLink} href="/T4">Continue<//>
+        <${ButtonLink} href="/T4">${polyglot.t(`${locale}.continue`)}<//>
       </div>
     <//>
   `

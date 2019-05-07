@@ -44,7 +44,10 @@ app.get('/login', (req, res) => {
       locale,
       title: 'Log in',
       pageComponent: 'Login',
-      props: { data: getSessionData(req.session) },
+      props: { 
+        data: getSessionData(req.session),
+        locale 
+      },
     }),
   )
 })
@@ -63,6 +66,7 @@ app.post('/login', checkSchema(loginSchema), (req, res) => {
         props: {
           data: { name },
           errors: errorArray2ErrorObject(errors),
+          locale,
         },
       }),
     )
@@ -80,7 +84,10 @@ app.get('/introduction', checkLogin, (req, res) => {
       locale,
       title: 'Your information',
       pageComponent: 'Introduction',
-      props: { data },
+      props: {
+       data,
+       locale,
+      },
     }),
   )
 })
@@ -93,7 +100,10 @@ app.get('/about-you', checkLogin, (req, res) => {
       locale,
       title: 'About you',
       pageComponent: 'AboutYou',
-      props: { data },
+      props: { 
+        data,
+        locale,
+      },
     }),
   )
 })
@@ -106,7 +116,10 @@ app.get('/your-family', checkLogin, (req, res) => {
       locale,
       title: 'You and your family',
       pageComponent: 'YourFamily',
-      props: { data },
+      props: { 
+        data,
+        locale,
+      },
     }),
   )
 })
@@ -117,7 +130,10 @@ app.get('/T4', (req, res) => {
       locale,
       pageComponent: 'T4',
       title: 'Your income',
-      props: { data: getSessionData(req.session) },
+      props: { 
+        data: getSessionData(req.session),
+        locale,
+      },
     }),
   )
 })
@@ -134,6 +150,7 @@ app.get('/edit/:id(name|address|maritalStatus|children)?', checkLogin, (req, res
       props: {
         ...question,
         data: getSessionData(req.session),
+        locale,
       },
     }),
   )
@@ -163,6 +180,7 @@ app.post(
             ...question,
             data: getSessionData(req.session),
             errors: errorArray2ErrorObject(errors),
+            locale,
           },
         }),
       )
@@ -181,7 +199,10 @@ app.get('/confirmation', checkLogin, (req, res) => {
     renderPage({
       locale,
       pageComponent: 'Confirmation',
-      props: { data },
+      props: { 
+        data,
+        locale,
+     },
     }),
   )
 })
