@@ -23,7 +23,7 @@ const Welcome = ({ locale }) =>
         </ul>
 
         <p>
-        ${polyglot.t(`${locale}.welcome.cra_info_about_you`)}
+          ${polyglot.t(`${locale}.welcome.cra_info_about_you`)}
         </p>
 
         <a href="/login">${polyglot.t(`${locale}.get_started`)}<span aria-hidden="true">→</span></a>

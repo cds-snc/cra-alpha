@@ -20,12 +20,12 @@ const YourFamily = ({ locale, data = {} }) =>
         <${LogoutLink} />
         <h1>${polyglot.t(`${locale}.family.title`)}</h1>
         <p>
-        ${polyglot.t(`${locale}.family.intro`)}
+          ${polyglot.t(`${locale}.family.intro`)}
         </p>
 
         <${SummaryTable} rows=${yourFamilyRows(data)} />
         <p>
-        ${polyglot.t(`${locale}.family.remaining`)}
+          ${polyglot.t(`${locale}.family.remaining`)}
         </p>
 
         <${ButtonLink} href="/T4">${polyglot.t(`${locale}.continue`)}<//>

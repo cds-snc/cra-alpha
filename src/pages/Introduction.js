@@ -33,15 +33,26 @@ const Introduction = ({ locale, data = {} }) =>
     <${Layout}>
       <div class=${loggedInStyles}>
         <${LogoutLink} />
-        <h1>${polyglot.t(`${locale}.intro.hi`, {name: getFirstName(data.name) })}</h1>
+        <h1>${polyglot.t(`${locale}.intro.hi`, { name: getFirstName(data.name) })}</h1>
         <p>
-          ${polyglot.t(`${locale}.intro.info_about_you`, {employerName: data.income.employerName })}
+          ${polyglot.t(`${locale}.intro.info_about_you`, {
+    employerName: data.income.employerName,
+  })}
         </p>
         <p></p>
 
-        <${SummaryTable} title="${polyglot.t(`${locale}.about_you.title`)}" rows=${aboutYouRows(data)} />
-        <${SummaryTable} title="${polyglot.t(`${locale}.family.title`)}" rows=${yourFamilyRows(data)} />
-        <${SummaryTable} title="${polyglot.t(`${locale}.income.title`)}" rows=${yourIncomeRows(data)} />
+        <${SummaryTable}
+          title="${polyglot.t(`${locale}.about_you.title`)}"
+          rows=${aboutYouRows(data)}
+        />
+        <${SummaryTable}
+          title="${polyglot.t(`${locale}.family.title`)}"
+          rows=${yourFamilyRows(data)}
+        />
+        <${SummaryTable}
+          title="${polyglot.t(`${locale}.income.title`)}"
+          rows=${yourIncomeRows(data)}
+        />
 
         <p>
           ${polyglot.t(`${locale}.intro.review`)}

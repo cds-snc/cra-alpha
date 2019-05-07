@@ -44,9 +44,9 @@ app.get('/login', (req, res) => {
       locale,
       title: 'Log in',
       pageComponent: 'Login',
-      props: { 
+      props: {
         data: getSessionData(req.session),
-        locale 
+        locale,
       },
     }),
   )
@@ -85,8 +85,8 @@ app.get('/introduction', checkLogin, (req, res) => {
       title: 'Your information',
       pageComponent: 'Introduction',
       props: {
-       data,
-       locale,
+        data,
+        locale,
       },
     }),
   )
@@ -100,7 +100,7 @@ app.get('/about-you', checkLogin, (req, res) => {
       locale,
       title: 'About you',
       pageComponent: 'AboutYou',
-      props: { 
+      props: {
         data,
         locale,
       },
@@ -116,7 +116,7 @@ app.get('/your-family', checkLogin, (req, res) => {
       locale,
       title: 'You and your family',
       pageComponent: 'YourFamily',
-      props: { 
+      props: {
         data,
         locale,
       },
@@ -130,7 +130,7 @@ app.get('/T4', (req, res) => {
       locale,
       pageComponent: 'T4',
       title: 'Your income',
-      props: { 
+      props: {
         data: getSessionData(req.session),
         locale,
       },
@@ -199,10 +199,10 @@ app.get('/confirmation', checkLogin, (req, res) => {
     renderPage({
       locale,
       pageComponent: 'Confirmation',
-      props: { 
+      props: {
         data,
         locale,
-     },
+      },
     }),
   )
 })
