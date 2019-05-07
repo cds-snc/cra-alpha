@@ -33,7 +33,7 @@
     "emotion-server": "^10.0.9",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
-    "helmet": "^3.16.0",
+    "helmet": "^3.18.0",
     "htm": "^2.1.1",
     "morgan": "^1.9.1",
     "node-polyglot": "^2.3.0",
@@ -46,10 +46,10 @@
     "eslint": "^5.16.0",
     "eslint-plugin-cypress": "^2.2.1",
     "eslint-plugin-jest": "^22.5.1",
-    "jest": "^24.7.1",
-    "nodemon": "^1.18.11",
-    "start-server-and-test": "^1.9.0",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.0",
     "pa11y": "^5.1.0",
+    "start-server-and-test": "^1.9.0",
     "supertest": "^4.0.2",
     "supertest-session": "^4.0.0"
   },
@@ -57,5 +57,8 @@
     "version": 2,
     "public": true,
     "type": "npm"
+  },
+  "optionalDependencies": {
+    "win-node-env": "^0.4.0"
   }
 }
