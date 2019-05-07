@@ -72,13 +72,13 @@ const phrases = {
     about_you: {
       title: 'About You',
       intro:
-        'This is the current name and address we have on file for you. Please update any out-of-date information and then continue to the next section.',
+        'Voici le nom et l\'adresse que nous avons sur vous. Merci de mettre à jour toute information qui ne serait plus correcte avant de continuer à la prochaine section.',
       remaining:
         'There are <strong>2 sections</strong> remaining, which should take <strong>5 minutes</strong> to complete.',
     },
 
     welcome: {
-      title: 'Claim tax benefits (CTB)',
+      title: 'Accéder à vos benefices (AVB)',
       file_taxes: 'File your taxes to receive your benefits',
       need_to_know: 'You will need to know:',
       firstname: 'Your first name',
