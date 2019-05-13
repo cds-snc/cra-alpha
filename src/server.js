@@ -85,14 +85,14 @@ app.get('/introduction', checkLogin, (req, res) => {
   )
 })
 
-app.get('/about-you', checkLogin, (req, res) => {
+app.get('/checklist', checkLogin, (req, res) => {
   const data = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
-      title: 'About you',
-      pageComponent: 'AboutYou',
+      title: 'Checklist',
+      pageComponent: 'Checklist',
       props: { data },
     }),
   )
