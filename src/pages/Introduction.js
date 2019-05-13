@@ -3,7 +3,6 @@ const { html } = require('../utils.js')
 const { getFirstName } = require('../api.js')
 const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
-const SummaryTable = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
 
 const Introduction = ({ data = {} }) =>
