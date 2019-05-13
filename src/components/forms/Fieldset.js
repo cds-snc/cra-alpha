@@ -1,7 +1,7 @@
 const { html } = require('../../utils.js')
 const { css } = require('emotion')
 const { theme, visuallyHidden } = require('../../styles.js')
-const Radio = require('./Radio.js')
+const MultipleChoice = require('./MultipleChoice.js')
 const ValidationError = require('./ValidationError.js')
 
 const fieldsetStyles = css`
@@ -47,7 +47,14 @@ const errorStyles = css`
 
 const makeRadio = ({ id, index, label, checked = false }) =>
   html`
-    <${Radio} id=${`${id}-${index}`} name=${id} value=${label} checked=${checked}>${label}<//>
+    <${MultipleChoice}
+      type="radio"
+      id=${`${id}-${index}`}
+      name=${id}
+      value=${label}
+      checked=${checked}
+      >${label}<//
+    >
   `
 
 const Fieldset = ({ children, id, options = [], value = '', hideLegend = true, error }) =>
