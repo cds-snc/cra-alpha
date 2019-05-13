@@ -53,8 +53,6 @@ describe('<CheckList>', () => {
     })
   })
 
-  console.log(expectedStringsIncome);
-
   expectedStringsIncome.map(str => {
     test(`renders ${str} on page`, () => {
       const $ = cheerio.load(

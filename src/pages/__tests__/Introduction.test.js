@@ -29,7 +29,7 @@ describe('<Introduction>', () => {
   }
 
   const expectedStrings = getStringVals(data)
-  const expectedH2s = ['About you', 'Your family', 'Your income']
+  //  const expectedH2s = ['About you', 'Your family', 'Your income']
 
   test('renders h1 as expected', () => {
     const $ = cheerio.load(
@@ -80,6 +80,6 @@ expectedH2s.map((str, i) => {
       ).toEqual(str)
     })
   })
-  
+
 */
 }) 
