@@ -5,7 +5,6 @@ const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
-const styles = require('../styles.js')
 
 const inlineH2 = css`
  display: inline-block;
@@ -17,7 +16,7 @@ const aboutYouRows = ({ name, address, maritalStatus, children }) => {
     { key: 'Name', value: name, id: 'name' },
     { key: 'Mailing address', value: address, id: 'address' },
     { key: 'Marital status', value: maritalStatus, id: 'maritalStatus' },
-    { key: 'Number of children', value: children, id: 'children' }
+    { key: 'Number of children', value: children, id: 'children' },
   ]
 }
 
