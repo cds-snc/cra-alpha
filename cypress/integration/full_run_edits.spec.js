@@ -23,13 +23,13 @@ describe('Full run through with edits', function() {
       cy.url().should('contain', '/introduction')
       cy.get('h1').should('contain', `Hi, ${getFirstName(user.name)}`)
 
-      cy.get('h2')
+      /* cy.get('h2')
         .first()
         .should('contain', 'About you')
 
       Object.values(user).forEach(value => {
         cy.get('dd.value').should('contain', value)
-      })
+      }) */
 
       cy.get('a.buttonLink')
         .should('contain', 'Get started')
@@ -41,45 +41,34 @@ describe('Full run through with edits', function() {
       checkTableRows(cy, [
         { key: 'Name', value: user.name },
         { key: 'Mailing address', value: user.address },
+        { key: 'Marital status', value: user.maritalStatus },
+        { key: 'Number of children', value: user.children },
       ])
 
       // EDIT FIRST NAME
       editValue(cy, 0, 'name', 'input', user.name, this.userEdits.name)
       // EDIT ADDRESS
       editValue(cy, 1, 'address', 'textarea', user.address, this.userEdits.address)
+      // EDIT MARITAL STATUS
+      editValue(cy, 2, 'maritalStatus', 'radio', user.maritalStatus, this.userEdits.maritalStatus)
+      // EDIT CHILDREN
+      editValue(cy, 3, 'children', 'input', user.children, this.userEdits.children)
 
-      cy.url().should('contain', '/about-you')
+      cy.url().should('contain', '/checklist')
 
       // CHECK FOR NEW VALUES
       checkTableRows(cy, [
         { key: 'Name', value: this.userEdits.name },
         { key: 'Mailing address', value: this.userEdits.address },
-      ])
-
-      cy.get('a.buttonLink')
-        .should('contain', 'Continue')
-        .click()
-
-      // YOUR FAMILY PAGE
-      cy.get('h1').should('contain', 'You and your family')
-
-      checkTableRows(cy, [
-        { key: 'Marital status', value: user.maritalStatus },
-        { key: 'Number of children', value: user.children },
-      ])
-
-      // EDIT MARITAL STATUS
-      editValue(cy, 0, 'maritalStatus', 'radio', user.maritalStatus, this.userEdits.maritalStatus)
-      // EDIT CHILDREN
-      editValue(cy, 1, 'children', 'input', user.children, this.userEdits.children)
-
-      cy.url().should('contain', '/your-family')
-
-      // CHECK FOR NEW VALUES
-      checkTableRows(cy, [
         { key: 'Marital status', value: this.userEdits.maritalStatus },
         { key: 'Number of children', value: this.userEdits.children },
       ])
+
+      cy.get('a.buttonLink')
+      .should('contain', 'File my taxes')
+      .click()
+
+      cy.url().should('contain', '/confirmation')
     })
   })
 })

@@ -13,5 +13,5 @@ module.exports = {
       trim: true,
     },
   },
-  previous: '/about-you',
+  previous: '/checklist',
 }

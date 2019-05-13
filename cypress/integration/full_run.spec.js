@@ -21,6 +21,8 @@ describe('Full run through', function() {
       cy.url().should('contain', '/introduction')
       cy.get('h1').should('contain', `Hi, ${getFirstName(user.name)}`)
 
+      /* 
+
       cy.get('h2')
         .first()
         .should('contain', 'About you')
@@ -28,6 +30,8 @@ describe('Full run through', function() {
       Object.values(user).forEach(value => {
         cy.get('dd.value').should('contain', value)
       })
+
+      */
 
       cy.get('a.buttonLink')
         .should('contain', 'Get started')
@@ -39,29 +43,12 @@ describe('Full run through', function() {
       checkTableRows(cy, [
         { key: 'Name', value: user.name },
         { key: 'Mailing address', value: user.address },
-      ])
-
-      cy.get('a.buttonLink')
-        .should('contain', 'Continue')
-        .click()
-
-      // YOUR FAMILY PAGE
-      cy.get('h1').should('contain', 'You and your family')
-
-      checkTableRows(cy, [
         { key: 'Marital status', value: user.maritalStatus },
         { key: 'Number of children', value: user.children },
       ])
 
       cy.get('a.buttonLink')
-        .should('contain', 'Continue')
-        .click()
-
-      // YOUR INCOME PAGE
-      cy.get('h1').should('contain', 'Your income')
-
-      cy.get('a#consentButton')
-        .should('contain', 'This information is accurate')
+        .should('contain', 'File my taxes')
         .click()
 
       // CONFIRMATION PAGE
