@@ -8,6 +8,7 @@ const ButtonLink = require('../components/ButtonLink.js')
 const Introduction = ({ data = {} }) =>
   html`
     <${Layout}>
+    ${console.log(data)}
       <div class=${loggedInStyles}>
         <${LogoutLink} />
         <h1>Hi, ${getFirstName(data.name)}</h1>
