@@ -5,7 +5,7 @@ const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const ButtonLink = require('../components/ButtonLink.js')
 
-const Introduction = ({ user = {} }) =>
+const Introduction = ({ user = {}, locale }) =>
   html`
     <${Layout}>
       <div class=${loggedInStyles}>

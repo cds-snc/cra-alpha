@@ -80,7 +80,7 @@ app.get('/introduction', checkLogin, (req, res) => {
       locale,
       title: 'Your information',
       pageComponent: 'Introduction',
-      props: { user },
+      props: { user, locale },
     }),
   )
 })
@@ -93,7 +93,7 @@ app.get('/checklist', checkLogin, (req, res) => {
       locale,
       title: 'Checklist',
       pageComponent: 'Checklist',
-      props: { user },
+      props: { user, locale },
     }),
   )
 })
@@ -106,18 +106,20 @@ app.get('/your-family', checkLogin, (req, res) => {
       locale,
       title: 'You and your family',
       pageComponent: 'YourFamily',
-      props: { user },
+      props: { user, locale },
     }),
   )
 })
 
 app.get('/T4', (req, res) => {
+  const user = getSessionData(req.session)
+
   res.send(
     renderPage({
       locale,
       pageComponent: 'T4',
       title: 'Your income',
-      props: { data: getSessionData(req.session) },
+      props: { user, locale },
     }),
   )
 })
