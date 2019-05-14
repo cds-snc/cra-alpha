@@ -5,13 +5,13 @@ const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const ButtonLink = require('../components/ButtonLink.js')
 
-const Introduction = ({ data = {} }) =>
+const Introduction = ({ user = {}, locale }) =>
   html`
     <${Layout}>
-    ${console.log(data)}
+    ${console.log(user)}
       <div class=${loggedInStyles}>
         <${LogoutLink} />
-        <h1>Hi, ${getFirstName(data.name)}</h1>
+        <h1>Hi, ${getFirstName(user.personal.name)}</h1>
         <p>
           Here’s what we know about you based on your previous tax returns and information from your
           employer.

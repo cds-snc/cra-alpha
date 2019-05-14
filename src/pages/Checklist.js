@@ -6,6 +6,8 @@ const LogoutLink = require('../components/LogoutLink.js')
 const SummaryTable = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
 const Input = require('../components/forms/Input.js')
+const polyglot = require('../i18n.js')
+
 
 const inlineH2 = css`
   display: inline-block;
@@ -162,26 +164,24 @@ const t4Data = ({ employerName, year, box12, box14, box22 } = {}) => {
   ]
 }
 
-const Checklist = ({ data = {} }) =>
+const Checklist = ({ user = {}, locale }) =>
   html`
     <${Layout}>
       <div class=${loggedInStyles}>
         <${LogoutLink} />
-        <h1>About you</h1>
+        <h1>${polyglot.t(`${locale}.checklist.title`)}</h1>
         <p>
-          This is the current name and address we have on file for you. Please update any
-          out-of-date information and then continue to the next section.
+        ${polyglot.t(`${locale}.checklist.intro`)}
+          
         </p>
-        
-
         <div class=${accordionStyles}>  
         <ul>
           <li>
             <input type="checkbox" checked/>
             <i></i>
-            <h2>Personal Information</h2>
+            <h2>1. ${polyglot.t(`${locale}.checklist.personalInformation`)}</h2>
             <div name='accordion'>
-            <${SummaryTable} rows=${aboutYouRows(data)} />
+            <${SummaryTable} rows=${aboutYouRows(user.personal)} />
             </div>
           </li>
         </ul>
@@ -192,17 +192,18 @@ const Checklist = ({ data = {} }) =>
           <li>
             <input type="checkbox" checked/>
             <i></i>
-            <h2>Financial Information</h2>
+            <h2>2. ${polyglot.t(`${locale}.checklist.financialInformation`)}</h2>
             <div name='accordion'>
-            <${SummaryTable} rows=${t4Data(data.return)} />
+            <${SummaryTable} rows=${t4Data(user.return)} />
             </div>
           </li>
         </ul>
       </div>
         
 
-       <h2 class=${inlineH2}>3.</h2> <${ButtonLink} href="/confirmation">File my taxes<//>
-
+       <h2 class=${inlineH2}>3.</h2> <${ButtonLink} href="/confirmation">${polyglot.t(
+        `${locale}.checklist.file`,
+      )}<//>
       </div>
     <//>
   `
