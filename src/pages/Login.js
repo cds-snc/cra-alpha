@@ -24,7 +24,7 @@ const form = css`
 
 /* eslint-disable no-irregular-whitespace */
 
-const Login = ({ data: { name = '' } = {}, errors = {} }) =>
+const Login = ({ data: { login = '' } = {}, errors = {} }) =>
   html`
     <${Layout}>
       ${Object.keys(errors).length > 0 &&
@@ -36,7 +36,7 @@ const Login = ({ data: { name = '' } = {}, errors = {} }) =>
 
       <form class=${form} method="post">
         <div>
-          <${Input} id="name" value=${name} error=${errors.name}>First name<//>
+          <${Input} id="login" value=${login} error=${errors.login}>First name<//>
         </div>
 
         <${Button}>Log in<//>

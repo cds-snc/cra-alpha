@@ -50,8 +50,8 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', checkSchema(loginSchema), (req, res) => {
-  let { name } = getSessionData(req.body)
-  let user = API.getUser(name)
+  let user = API.getUser(req.body.login)
+  let login = req.body.login
 
   const errors = validationResult(req)
   if (!user && !errors.isEmpty()) {
@@ -61,52 +61,52 @@ app.post('/login', checkSchema(loginSchema), (req, res) => {
         title: 'Error: Log in',
         pageComponent: 'Login',
         props: {
-          data: { name },
+          data: { login },
           errors: errorArray2ErrorObject(errors),
         },
       }),
     )
   }
 
-  req.session = user
+  req.session.user = user //Add all of the user data to the session
   res.redirect(302, '/introduction')
 })
 
 app.get('/introduction', checkLogin, (req, res) => {
-  const data = getSessionData(req.session)
+  const user = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       title: 'Your information',
       pageComponent: 'Introduction',
-      props: { data },
+      props: { user },
     }),
   )
 })
 
 app.get('/checklist', checkLogin, (req, res) => {
-  const data = getSessionData(req.session)
+  const user = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       title: 'Checklist',
       pageComponent: 'Checklist',
-      props: { data },
+      props: { user },
     }),
   )
 })
 
 app.get('/your-family', checkLogin, (req, res) => {
-  const data = getSessionData(req.session)
+  const user = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       title: 'You and your family',
       pageComponent: 'YourFamily',
-      props: { data },
+      props: { user },
     }),
   )
 })
