@@ -52,7 +52,8 @@ const getSessionData = (session = {}, enforceExists = false) => {
 
 /* Middleware */
 const checkLogin = (req, res, next) => {
-  if (getSessionData(req.session, true)) {
+  if (getSessionData(req.session, false)) {
+    // TODO: this shoud be true after getSessionData() is fixed to do both login and "authentication"
     return next()
   }
 

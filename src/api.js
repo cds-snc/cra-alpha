@@ -1,6 +1,7 @@
 var API = (function() {
   const _john = {
     _matches: ['john', 'j'],
+    name: 'John Caldwell Abbott',
     personal: {
       name: 'John Caldwell Abbott',
       address: '21275 Lakeshore Dr\nSainte-Anne-de-Bellevue\nQuébec\nH9X 3L9',
@@ -51,6 +52,7 @@ var API = (function() {
 
   const _arthur = {
     _matches: ['arthur', 'art', 'a'],
+    name: 'Arthur Meighen',
     personal: {
       name: 'Arthur Meighen',
       address: '23 St Clair Ave East\nToronto\nOntario\nM4T 1M4',
@@ -101,7 +103,7 @@ var API = (function() {
 
   const _louis = {
     _matches: ['louis', 'lou', 'l'],
-
+    name: 'Louis Stephen St. Laurent',
     personal: {
       name: 'Louis Stephen St. Laurent',
       address: '459-455 Boulevard de la Carrière\nGatineau\nQuébec\nJ8Y 6V7',
@@ -162,7 +164,7 @@ var API = (function() {
 
   const _kim = {
     _matches: ['avril', 'kim', 'k'],
-
+    name: 'Avril Douglas Campbell',
     personal: {
       name: 'Avril Douglas Campbell',
       address: '850 Argyle Street\nPort Alberni\nBritish Columbia\nV9Y 1V8',
