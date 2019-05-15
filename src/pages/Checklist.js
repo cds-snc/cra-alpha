@@ -1,5 +1,5 @@
 const { css } = require('emotion')
-const { loggedInStyles, accordionStyles, theme } = require('../styles.js')
+const { loggedInStyles, accordionStyles } = require('../styles.js')
 const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
@@ -12,10 +12,6 @@ const inlineH2 = css`
   margin-top: 0;
 `
 
-const financialSummaryStyles = css`
-  ${summaryRow};
-`
-
 const aboutYouRows = ({ name, address, maritalStatus, children, SIN }) => {
   return [
     { key: 'Name', value: name, id: 'name' },
@@ -26,16 +22,25 @@ const aboutYouRows = ({ name, address, maritalStatus, children, SIN }) => {
   ]
 }
 
-const t4Data = ({ employerName, year, box14, box22, box10, box16, box24, box26 } = {}) => {
+const t4Data = ({
+  line300,
+  line303,
+  line305,
+  line367,
+  line316,
+  line330,
+  line331,
+  line482,
+} = {}) => {
   return [
-    { key: 'Employer name', value: employerName, id: 'employerName' },
-    { key: 'Year', value: year, id: 'year' },
-    { key: 'Box14', value: box14, id: 'box14' },
-    { key: 'Box22', value: box22, id: 'box22' },
-    { key: 'Box10', value: box10, id: 'box10' },
-    { key: 'Box16', value: box16, id: 'box16' },
-    { key: 'Box24', value: box24, id: 'box24' },
-    { key: 'Box26', value: box26, id: 'box26' },
+    { key: 'Basic personal amount (300):', value: line300, id: 'line300' },
+    { key: 'Spousal amount (303):', value: line303, id: 'line303' },
+    { key: 'Dependents amount (305):', value: line305, id: 'line305' },
+    { key: 'Caregiver amount (367):', value: line367, id: 'line367' },
+    { key: 'Disability amount (316):', value: line316, id: 'line316' },
+    { key: 'Medical Expenses (330):', value: line330, id: 'line330' },
+    { key: 'Medical Expenses (331):', value: line331, id: 'line331' },
+    { key: 'Total tax credits:', value: line482, id: 'line482' },
   ]
 }
 
@@ -63,19 +68,19 @@ const Checklist = ({ user = {}, locale }) =>
 
         <h2>2. ${polyglot.t(`${locale}.checklist.financialInformation`)}</h2>
 
-        <div class=${financialSummaryStyles}>
+        <div class=${summaryRow}>
           <dt class="key">Total income:</dt>
-          <dd class="value">$43,561.00</dd>
+          <dd class="value">${user.return.line150}</dd>
         </div>
 
-        <div class=${financialSummaryStyles}>
+        <div class=${summaryRow}>
           <dt class="key">Taxable income:</dt>
-          <dd class="value">$24,245.00</dd>
+          <dd class="value">${user.return.line260}</dd>
         </div>
 
-        <div class=${financialSummaryStyles}>
+        <div class=${summaryRow}>
           <dt class="key">Total tax credits:</dt>
-          <dd class="value">$1,130.00</dd>
+          <dd class="value">${user.return.line482}</dd>
         </div>
 
         <div class=${accordionStyles}>
@@ -85,7 +90,25 @@ const Checklist = ({ user = {}, locale }) =>
               <i></i>
               <p>Show Details</p>
               <div name="accordion">
-                <${SummaryTable} rows=${t4Data(user.t4s[0])} />
+                <${SummaryTable} rows=${t4Data(user.return)} />
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class=${summaryRow}>
+          <dt class="key">Refund</dt>
+          <dd class="value">${user.return.line484}</dd>
+        </div>
+
+        <div class=${accordionStyles}>
+          <ul>
+            <li>
+              <input type="checkbox" checked />
+              <i></i>
+              <p>Show Details</p>
+              <div name="accordion">
+                <p>Refund Info</p>
               </div>
             </li>
           </ul>

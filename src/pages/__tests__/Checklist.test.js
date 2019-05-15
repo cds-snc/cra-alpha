@@ -4,7 +4,7 @@ const { html } = require('../../utils.js')
 const Checklist = require('../Checklist.js')
 
 describe('<CheckList>', () => {
-  const data = {
+  const _john = {
     _matches: ['john', 'j'],
     personal: {
       name: 'John Caldwell Abbott',
@@ -54,14 +54,14 @@ describe('<CheckList>', () => {
     ],
   }
 
-  const expectedStringspersonal = Object.values(data.personal)
-  const expectedStringsReturn = Object.values(data.return)
+  const expectedStringspersonal = Object.values(user.personal)
+  const expectedStringsReturn = Object.values(user.return)
 
   test('renders h1 as expected', () => {
     const $ = cheerio.load(
       render(
         html`
-          <${Checklist} data=${data} />
+          <${Checklist} data=${_john} />
         `,
       ),
     )
@@ -80,7 +80,7 @@ describe('<CheckList>', () => {
       const $ = cheerio.load(
         render(
           html`
-            <${Checklist} data=${data} />
+            <${Checklist} data=${_john} />
           `,
         ),
       )
@@ -94,7 +94,7 @@ describe('<CheckList>', () => {
       const $ = cheerio.load(
         render(
           html`
-            <${Checklist} data=${data} />
+            <${Checklist} data=${_john} />
           `,
         ),
       )
