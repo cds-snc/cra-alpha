@@ -2,7 +2,7 @@ const render = require('preact-render-to-string')
 const cheerio = require('cheerio')
 const { html } = require('../../utils.js')
 
-const SummaryTable = require('../SummaryTable.js')
+const { SummaryTable } = require('../SummaryTable.js')
 
 const getCell = ({ cheerio, rowNum = 0, find }) =>
   cheerio('dl div')
@@ -20,9 +20,7 @@ const renderTable = props => {
 }
 
 describe('<SummaryTable>', () => {
-  const rows = [
-    { key: 'Name', value: name, id: 'name' },
-  ]
+  const rows = [{ key: 'Full name', value: 'Fred Smith' }]
 
   test('renders <dl> element and 1 row', () => {
     const $ = renderTable({ rows })
