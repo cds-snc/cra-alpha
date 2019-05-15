@@ -5,7 +5,7 @@ const phrases = {
     alpha: 'This site will be changing as we test ideas and learn from folks like you',
     welcome: 'File your taxes to receive your benefits',
     checklist: {
-      title: 'About You',
+      title: 'About you',
       intro:
         'This is the current name and address we have on file for you. Please update any out- of - date information and then continue to the next section.',
       personalInformation: 'Personal Information',

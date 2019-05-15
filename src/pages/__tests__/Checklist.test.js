@@ -4,7 +4,7 @@ const { html } = require('../../utils.js')
 const Checklist = require('../Checklist.js')
 
 describe('<CheckList>', () => {
-  const _john = {
+  const data = {
     _matches: ['john', 'j'],
     personal: {
       name: 'John Caldwell Abbott',
@@ -14,16 +14,7 @@ describe('<CheckList>', () => {
       SIN: '123-456-789',
     },
     return: {
-      // Income
-      line101: 12000, //Employment income (All t4s Box 14 added up)
-      line113: 1000, //Old Age Security Pension (OAS)
-      line146: 500, // Guaranteed income supplement (GIS)
-      line150: 12000, // total income
-      line236: 11000, // Net income
-      line260: 10000, // Taxable income
       //Non-Refundable Tax Credits (NRTCs)
-      line350: 1200, //Total Federal NRTCs
-      line6150: 1000, //Total Provincial NRTCs
       line300: 12500, //Basic Personal Amount
       line303: 5000, //Spouce Common-Law Amount
       line305: 0, // Amount for Eligible Dependants
@@ -32,36 +23,19 @@ describe('<CheckList>', () => {
       line331: 0, //Medical for other dependants
       line367: 0, // Caregiver for Infirm Children Amount
       //Taxes
-      line420: 250, //Net Federal Tax
-      line428: 50, // Net Provincial Tax
-      line435: 300, // Total Payable
-      line437: 500, //Total Deducted (Calculated)
       line482: 200, //Total Credits (Calculated)
       line484: 200, //Refund (Calculated)
-      line485: 0, //Balance Owing (Calculated)
     },
-    t4s: [
-      {
-        employerName: 'BRAVO Corp',
-        year: 2019,
-        box14: 10000, //Employment income
-        box22: 1000, // Income Tax Deducted
-        box10: 'ON', //Province of employment
-        box16: 100, //Employee CPP Contributions
-        box24: 10000, //EI Insurable earnings
-        box26: 10000, //CPP pensionable earnings
-      },
-    ],
   }
 
-  const expectedStringspersonal = Object.values(user.personal)
-  const expectedStringsReturn = Object.values(user.return)
+  const expectedStringspersonal = Object.values(data.personal)
+  const expectedStringsReturn = Object.values(data.return)
 
   test('renders h1 as expected', () => {
     const $ = cheerio.load(
       render(
         html`
-          <${Checklist} data=${_john} />
+          <${Checklist} user=${data} locale="en" />
         `,
       ),
     )
@@ -80,7 +54,7 @@ describe('<CheckList>', () => {
       const $ = cheerio.load(
         render(
           html`
-            <${Checklist} data=${_john} />
+            <${Checklist} user=${data} locale="en" />
           `,
         ),
       )
@@ -94,7 +68,7 @@ describe('<CheckList>', () => {
       const $ = cheerio.load(
         render(
           html`
-            <${Checklist} data=${_john} />
+            <${Checklist} user=${data} locale="en" />
           `,
         ),
       )
