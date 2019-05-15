@@ -47,6 +47,7 @@ const t4Data = ({
 const Checklist = ({ user = {}, locale }) =>
   html`
     <${Layout}>
+    ${console.log(user)}
       <div class=${loggedInStyles}>
         <${LogoutLink} />
         <h1>${polyglot.t(`${locale}.checklist.title`)}</h1>

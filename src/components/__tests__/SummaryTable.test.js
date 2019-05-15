@@ -20,7 +20,9 @@ const renderTable = props => {
 }
 
 describe('<SummaryTable>', () => {
-  const rows = [{ key: 'Full name', value: 'Fred Smith' }]
+  const rows = [
+    { key: 'Name', value: name, id: 'name' },
+  ]
 
   test('renders <dl> element and 1 row', () => {
     const $ = renderTable({ rows })
