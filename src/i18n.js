@@ -17,12 +17,12 @@ const phrases = {
     alpha: 'Ce site va changer souvent à mesure que nous apprendrons de vous.',
     welcome: 'Veuillez compléter votre déclaration pour obtenir vos prestations',
     checklist: {
-      title: 'About You',
+      title: 'A propos de vous',
       intro:
-        'This is the current name and address we have on file for you. Please update any out- of - date information and then continue to the next section.',
-      personalInformation: 'Personal Information',
-      financialInformation: 'Financial Information',
-      file: 'File my taxes',
+        'Voici le nom et l\'adresse dont nous disposons dans votre dossier. Merci de mettre à jour toute information qui ne serait pas correcte vous concernant avant de passer à la prochaine étape.',
+      personalInformation: 'Mes Informations Personnelles',
+      financialInformation: 'Mes Informations Financieres',
+      file: 'Déclarer mes impôts',
     },
   },
 }
