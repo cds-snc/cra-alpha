@@ -1,148 +1,20 @@
 const { css } = require('emotion')
-const { loggedInStyles } = require('../styles.js')
+const { loggedInStyles, accordionStyles, theme } = require('../styles.js')
 const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
-const SummaryTable = require('../components/SummaryTable.js')
+const { SummaryTable, summaryRow } = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
-const Input = require('../components/forms/Input.js')
 const polyglot = require('../i18n.js')
-
 
 const inlineH2 = css`
   display: inline-block;
   margin-top: 0;
 `
 
-const accordionStyles = css`
-.transition{
-  transition: all 0.25s ease-in-out;
-}
-
-.flipIn{
-  animation: flipdown 0.5s ease both;
-}
-  
-.no-select{ 
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-h2{
-  font-size: 26px;
-  line-height: 34px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  display: block;
-  background-color: white;
-  margin: 0;
-  cursor: pointer;
-  @extend .no-select;
-}
-
-div[name='accordion']{
-  position: relative;
-  overflow: hidden;
-  max-height: 800px;
-  @extend .transition;
-  opacity: 1;
-  transform: translate( 0 , 0 );
-  margin-top: 14px;
-  z-index: 2;
-}
-
-ul{
-  list-style: none;
-  perspective: 900;
-  padding: 0;
-  margin: 0;
-}
-
-li{
-  position: relative;
-  padding: 0;
-  margin: 0;
-  padding-bottom: 4px;
-  padding-top: 18px;
-  border-top: 1px dotted grey;
-  @extend .flipIn;
-    
-  &:nth-of-type(1){
-    animation-delay: 0.5s;
-  }
-  
-  &:nth-of-type(2){
-    animation-delay: 0.75s;
-  }
-      
-  &:nth-of-type(3){
-    animation-delay: 1.0s;
-  }
-  
-  &:last-of-type{
-    padding-bottom: 0;
-  }
-    
-  i{
-    position: absolute;
-    transform: translate( -6px , 0 );
-    margin-top: 16px;
-    right: 0;
-
-      &:before , &:after {
-      content: "";
-      @extend .transition;
-      position: absolute;
-      background-color: black;
-      width: 3px;
-      height: 9px;
-      }
-      
-      &:before {
-        transform: translate( -2px , 0 ) rotate( 45deg );
-      }
-
-      &:after {
-        transform: translate( 2px , 0 ) rotate( -45deg );
-      }
-    }
-
-  
-  input[type=checkbox] {
-    position: absolute;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0;
-    
-    &:checked{
-      &~div[name='accordion']{
-        margin-top: 0;
-        max-height: 0;
-        opacity: 0;
-        transform: translate( 0 , 50% );
-      }
-          
-      &~i{
-        &:before{
-          transform: translate( 2px , 0 ) rotate( 45deg );
-        }
-        &:after{
-          transform: translate( -2px , 0 ) rotate( -45deg );
-        }
-      }
-    }
-  }
-}
+const financialSummaryStyles = css`
+  ${summaryRow};
 `
-
-
 
 const aboutYouRows = ({ name, address, maritalStatus, children, SIN }) => {
   return [
@@ -154,13 +26,16 @@ const aboutYouRows = ({ name, address, maritalStatus, children, SIN }) => {
   ]
 }
 
-const t4Data = ({ employerName, year, box12, box14, box22 } = {}) => {
+const t4Data = ({ employerName, year, box14, box22, box10, box16, box24, box26 } = {}) => {
   return [
-    { key: 'Employer name', value: employerName },
-    { key: 'Year', value: year },
-    { key: 'Social Insurance Number', value: box12 },
-    { key: 'Employment income', value: box14 },
-    { key: 'Income tax deducted', value: box22 },
+    { key: 'Employer name', value: employerName, id: 'employerName' },
+    { key: 'Year', value: year, id: 'year' },
+    { key: 'Box14', value: box14, id: 'box14' },
+    { key: 'Box22', value: box22, id: 'box22' },
+    { key: 'Box10', value: box10, id: 'box10' },
+    { key: 'Box16', value: box16, id: 'box16' },
+    { key: 'Box24', value: box24, id: 'box24' },
+    { key: 'Box26', value: box26, id: 'box26' },
   ]
 }
 
@@ -171,42 +46,57 @@ const Checklist = ({ user = {}, locale }) =>
         <${LogoutLink} />
         <h1>${polyglot.t(`${locale}.checklist.title`)}</h1>
         <p>
-        ${polyglot.t(`${locale}.checklist.intro`)}
-          
+          ${polyglot.t(`${locale}.checklist.intro`)}
         </p>
-        <div class=${accordionStyles}>  
-        <ul>
-          <li>
-            <input type="checkbox" checked/>
-            <i></i>
-            <h2>1. ${polyglot.t(`${locale}.checklist.personalInformation`)}</h2>
-            <div name='accordion'>
-            <${SummaryTable} rows=${aboutYouRows(user.personal)} />
-            </div>
-          </li>
-        </ul>
-      </div>
+        <div class=${accordionStyles}>
+          <ul>
+            <li>
+              <input type="checkbox" unchecked />
+              <i></i>
+              <h2>1. ${polyglot.t(`${locale}.checklist.personalInformation`)}</h2>
+              <div name="accordion">
+                <${SummaryTable} rows=${aboutYouRows(user.personal)} />
+              </div>
+            </li>
+          </ul>
+        </div>
 
-        <div class=${accordionStyles}>  
-        <ul>
-          <li>
-            <input type="checkbox" checked/>
-            <i></i>
-            <h2>2. ${polyglot.t(`${locale}.checklist.financialInformation`)}</h2>
-            <div name='accordion'>
-            <${SummaryTable} rows=${t4Data(user.return)} />
-            </div>
-          </li>
-        </ul>
-      </div>
-        
+        <h2>2. ${polyglot.t(`${locale}.checklist.financialInformation`)}</h2>
 
-       <h2 class=${inlineH2}>3.</h2> <${ButtonLink} href="/confirmation">${polyglot.t(
-        `${locale}.checklist.file`,
-      )}<//>
+        <div class=${financialSummaryStyles}>
+          <dt class="key">Total income:</dt>
+          <dd class="value">$43,561.00</dd>
+        </div>
+
+        <div class=${financialSummaryStyles}>
+          <dt class="key">Taxable income:</dt>
+          <dd class="value">$24,245.00</dd>
+        </div>
+
+        <div class=${financialSummaryStyles}>
+          <dt class="key">Total tax credits:</dt>
+          <dd class="value">$1,130.00</dd>
+        </div>
+
+        <div class=${accordionStyles}>
+          <ul>
+            <li>
+              <input type="checkbox" checked />
+              <i></i>
+              <p>Show Details</p>
+              <div name="accordion">
+                <${SummaryTable} rows=${t4Data(user.t4s[0])} />
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <h2 class=${inlineH2}>3.</h2>
+        <${ButtonLink} href="/confirmation">
+          ${polyglot.t(`${locale}.checklist.file`)}
+        <//>
       </div>
     <//>
   `
 
 module.exports = Checklist
-

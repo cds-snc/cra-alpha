@@ -5,10 +5,9 @@ const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const ButtonLink = require('../components/ButtonLink.js')
 
-const Introduction = ({ user = {}, locale }) =>
+const Introduction = ({ user = {} }) =>
   html`
     <${Layout}>
-    ${console.log(user)}
       <div class=${loggedInStyles}>
         <${LogoutLink} />
         <h1>Hi, ${getFirstName(user.personal.name)}</h1>

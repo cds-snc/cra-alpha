@@ -89,10 +89,107 @@ const loggedInStyles = css`
   }
 `
 
+const accordionStyles = css`
+h2 {
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: block;
+  background-color: white;
+  margin: 0;
+  cursor: pointer;
+  @extend .no-select;
+}
+
+p {
+  margin: 0;
+  font-size: 18px;
+}
+
+div[name='accordion'] {
+  position: relative;
+  overflow: hidden;
+  max-height: 800px;
+  opacity: 1;
+  transform: translate(0, 0);
+  margin-top: 14px;
+  z-index: 2;
+}
+
+ul {
+  list-style: none;
+  perspective: 900;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  padding-bottom: 4px;
+  padding-top: 18px;
+  border-top: 1px dotted grey;
+
+  i {
+    position: absolute;
+    transform: translate(-6px, 0);
+    margin-top: 16px;
+    right: 0;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      background-color: black;
+      width: 3px;
+      height: 9px;
+    }
+
+    &:before {
+      transform: translate(-2px, 0) rotate(45deg);
+    }
+
+    &:after {
+      transform: translate(2px, 0) rotate(-45deg);
+    }
+  }
+
+  input[type='checkbox'] {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+
+    &:checked {
+      & ~ div[name='accordion'] {
+        margin-top: 0;
+        max-height: 0;
+        opacity: 0;
+        transform: translate(0, 50%);
+      }
+
+      & ~ i {
+        &:before {
+          transform: translate(2px, 0) rotate(45deg);
+        }
+        &:after {
+          transform: translate(-2px, 0) rotate(-45deg);
+        }
+      }
+    }
+  }
+}
+`
+
 module.exports = {
   theme,
   visuallyHidden,
   buttonStyles,
   loggedInStyles,
   pageMargin,
+  accordionStyles,
 }
