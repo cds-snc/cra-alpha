@@ -1,9 +1,10 @@
 const { css } = require('emotion')
-const { loggedInStyles, accordionStyles } = require('../styles.js')
+const { loggedInStyles } = require('../styles.js')
 const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
+const Accordion = require('../components/Accordion.js')
 const LogoutLink = require('../components/LogoutLink.js')
-const { SummaryTable, summaryRow } = require('../components/SummaryTable.js')
+const { SummaryTable, summaryRow, SimpleSummaryRow } = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
 const polyglot = require('../i18n.js')
 
@@ -53,66 +54,29 @@ const Checklist = ({ user = {}, locale }) =>
         <p>
           ${polyglot.t(`${locale}.checklist.intro`)}
         </p>
-        <div class=${accordionStyles}>
-          <ul>
-            <li>
-              <input type="checkbox" unchecked />
-              <i></i>
-              <h2>1. ${polyglot.t(`${locale}.checklist.personalInformation`)}</h2>
-              <div name="accordion">
-                <${SummaryTable} rows=${aboutYouRows(user.personal)} />
-              </div>
-            </li>
-          </ul>
-        </div>
 
-        <h2>2. ${polyglot.t(`${locale}.checklist.financialInformation`)}</h2>
+        <${Accordion} header="${polyglot.t(`${locale}.checklist.personalInformation`)}">
+          <${SummaryTable} rows=${aboutYouRows(user.personal)} />
+        <//>
 
-        <div class=${summaryRow}>
-          <dt class="key">Total income:</dt>
-          <dd class="value">${user.return.line150}</dd>
-        </div>
+        <h2>${polyglot.t(`${locale}.checklist.financialInformation`)}</h2>
 
-        <div class=${summaryRow}>
-          <dt class="key">Taxable income:</dt>
-          <dd class="value">${user.return.line260}</dd>
-        </div>
+        <${SimpleSummaryRow} value=${user.return.line150} key="Total income:" />
+        <${SimpleSummaryRow} value=${user.return.line260} key="Taxable income:" />
+        <${SimpleSummaryRow} value=${user.return.line482} key="Total tax credits:" />
 
-        <div class=${summaryRow}>
-          <dt class="key">Total tax credits:</dt>
-          <dd class="value">${user.return.line482}</dd>
-        </div>
-
-        <div class=${accordionStyles}>
-          <ul>
-            <li>
-              <input type="checkbox" checked />
-              <i></i>
-              <p>Show Details</p>
-              <div name="accordion">
-                <${SummaryTable} rows=${t4Data(user.return)} />
-              </div>
-            </li>
-          </ul>
-        </div>
+        <${Accordion} checked=${true}>
+          <${SummaryTable} rows=${t4Data(user.return)} />
+        <//>
 
         <div class=${summaryRow}>
           <dt class="key">Refund</dt>
           <dd class="value">${user.return.line484}</dd>
         </div>
 
-        <div class=${accordionStyles}>
-          <ul>
-            <li>
-              <input type="checkbox" checked />
-              <i></i>
-              <p>Show Details</p>
-              <div name="accordion">
-                <p>Refund Info</p>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <${Accordion} checked=${true}>
+          <p>Refund Info</p>
+        <//>
 
         <h2 class=${inlineH2}>3.</h2>
         <${ButtonLink} href="/confirmation">

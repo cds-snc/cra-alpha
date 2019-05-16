@@ -125,7 +125,7 @@ app.get('/T4', (req, res) => {
 })
 
 // Whitelist only specific routes (eg, https://stackoverflow.com/a/15350845)
-app.get('/edit/:id(name|address|maritalStatus|children)?', checkLogin, (req, res) => {
+app.get('/edit/:id(name|address|maritalStatus|children|sin)?', checkLogin, (req, res) => {
   const question = require(`./questions/${req.params.id}.js`)
 
   res.send(
@@ -148,7 +148,7 @@ const pickEditSchema = (req, res, next) => {
 
 // Whitelist only specific routes (eg, https://stackoverflow.com/a/15350845)
 app.post(
-  '/edit/:id(name|address|maritalStatus|children)?',
+  '/edit/:id(name|address|maritalStatus|children|sin)?',
   checkLogin,
   pickEditSchema,
   (req, res) => {

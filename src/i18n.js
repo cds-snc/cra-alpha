@@ -8,8 +8,8 @@ const phrases = {
       title: 'About you',
       intro:
         'This is the current name and address we have on file for you. Please update any out- of - date information and then continue to the next section.',
-      personalInformation: 'Personal Information',
-      financialInformation: 'Financial Information',
+      personalInformation: '1. Personal Information',
+      financialInformation: '2. Financial Information',
       file: 'File my taxes',
     },
   },
