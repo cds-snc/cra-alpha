@@ -91,8 +91,6 @@ const loggedInStyles = css`
 
 const accordionStyles = css`
 h2 {
-  font-size: 26px;
-  line-height: 34px;
   font-weight: 700;
   letter-spacing: 1px;
   display: block;
