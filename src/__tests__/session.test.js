@@ -21,11 +21,11 @@ const validNames = [
   'Louis Stephen St. Laurent',
 ]
 
-validNames.map(name => {
-  it(`It should log in to the introduction page with name: "${name}"`, async () => {
+validNames.map(login => {
+  it(`It should log in to the introduction page with name: "${login}"`, async () => {
     const response = await session(app)
       .post('/login')
-      .send({ name })
+      .send({ login })
 
     expect(response.statusCode).toBe(302)
     expect(response.headers['location']).toEqual('/introduction')
@@ -42,26 +42,26 @@ const invalidNames = [
   'vril Douglas Campbell', // the first name needs to be right
 ]
 
-invalidNames.map(name => {
-  it(`It should fail to log in to the introduction page with name: "${name}"`, async () => {
+invalidNames.map(login => {
+  it(`It should fail to log in to the introduction page with login: "${login}"`, async () => {
     const response = await session(app)
       .post('/login')
-      .send({ name })
+      .send({ login })
 
     expect(response.statusCode).toBe(422)
     expect(response.text).toContain('There is a problem')
-    expect(response.text).toContain('Can’t find that name. 🤷')
+    expect(response.text).toContain('Can’t find that Login.')
   })
 })
 
-it('It should fail to log in to the introduction an empty name', async () => {
+it('It should fail to log in to the introduction an empty login', async () => {
   const response = await session(app)
     .post('/login')
-    .send({ name: '' })
+    .send({ login: '' })
 
   expect(response.statusCode).toBe(422)
   expect(response.text).toContain('There is a problem')
-  expect(response.text).toContain('Name can’t be empty')
+  expect(response.text).toContain('Login can’t be empty')
 })
 
 it('It should log into the introduction with "/kim"', async () => {
@@ -71,7 +71,7 @@ it('It should log into the introduction with "/kim"', async () => {
   expect(response.headers['location']).toEqual('/introduction')
 })
 
-const authUrls = ['/introduction', '/edit/name', '/confirmation']
+const authUrls = ['/introduction', '/confirmation']
 
 describe('Before logging in', () => {
   authUrls.map(url => {
@@ -88,7 +88,7 @@ describe('After logging in', () => {
 
   beforeEach(async () => {
     authSession = session(app)
-    const response = await authSession.post('/login').send({ name: 'Kim' })
+    const response = await authSession.post('/login').send({ login: 'Kim' })
     expect(response.statusCode).toBe(302)
   })
 

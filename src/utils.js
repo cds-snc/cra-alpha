@@ -59,15 +59,15 @@ const checkLogin = (req, res, next) => {
 
 // define a schema for login field validation: https://express-validator.github.io/docs/schema-validation.html
 const loginSchema = {
-  name: {
+  login: {
     in: ['body'],
     isEmpty: {
-      errorMessage: 'Name can’t be empty',
+      errorMessage: 'Login can’t be empty',
       negated: true,
     },
     isIn: {
       options: [API.getMatches()],
-      errorMessage: 'Can’t find that name. 🤷 (Try “Avril”)',
+      errorMessage: 'Can’t find that Login. 🤷 (Try “Avril”)',
     },
   },
 }
