@@ -22,6 +22,14 @@ describe('<CheckList>', () => {
       line330: 0, // Medical for Spouse
       line331: 0, //Medical for other dependants
       line367: 0, // Caregiver for Infirm Children Amount
+      // Refund rows
+      line150: 12000,
+      line236: 11000,
+      line260: 10000,
+      line420: 250,
+      line428: 50,
+      line435: 300,
+      line437: 500,
       //Taxes
       line482: 200, //Total Credits (Calculated)
       line484: 200, //Refund (Calculated)
