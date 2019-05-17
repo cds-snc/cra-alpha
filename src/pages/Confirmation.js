@@ -24,13 +24,13 @@ const confirmationNumber = css`
   }
 `
 
-const Confirmation = ({ data: { name = '' } = {} }) =>
+const Confirmation = ({ user = {} }) =>
   html`
     <${Layout}>
       <div class=${confirmation}>
         <${LogoutLink} />
         <h1>Success! 🥳🙌</h1>
-        <p>🌈 Good job, ${getFirstName(name)}! 🌈</p>
+        <p>🌈 Good job, ${getFirstName(user.personal.name)}! 🌈</p>
         <p>
           Your 2018 taxes have been submitted and${' '}
           <strong>you will receive $1611.87 in benefit payments</strong>.

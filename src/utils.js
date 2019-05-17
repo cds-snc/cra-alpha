@@ -40,19 +40,17 @@ const cookieSessionConfig = {
  If a second parameter is passed in with a truthy value,
  it will return false if any of those keys have not been set.
 */
-const getSessionData = (session = {}, enforceExists = false) => {
-  const { name, address, maritalStatus, children, income } = session
-
-  if (enforceExists && (!name || !address || !maritalStatus || !children || !income)) {
-    return false
+const getSessionData = (session = {}) => {
+  if (session.populated) {
+    //we have data
+    return session.user
   }
-
-  return { name, address, maritalStatus, children, income }
 }
 
 /* Middleware */
 const checkLogin = (req, res, next) => {
-  if (getSessionData(req.session, true)) {
+  if (req.session.populated) {
+    //This has no real "check", just is there a session
     return next()
   }
 
@@ -61,15 +59,15 @@ const checkLogin = (req, res, next) => {
 
 // define a schema for login field validation: https://express-validator.github.io/docs/schema-validation.html
 const loginSchema = {
-  name: {
+  login: {
     in: ['body'],
     isEmpty: {
-      errorMessage: 'Name can’t be empty',
+      errorMessage: 'Login can’t be empty',
       negated: true,
     },
     isIn: {
       options: [API.getMatches()],
-      errorMessage: 'Can’t find that name. 🤷 (Try “Avril”)',
+      errorMessage: 'Can’t find that Login. 🤷 (Try “Avril”)',
     },
   },
 }

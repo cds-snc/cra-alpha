@@ -9,7 +9,6 @@ const summaryRow = css`
 
   @media (${theme.mq.sm}) {
     margin-bottom: ${theme.space.sm};
-    border-bottom: 1px solid ${theme.color.grey};
   }
 
   .key,
@@ -40,7 +39,6 @@ const summaryRow = css`
       padding-right: ${theme.space.lg};
       padding-top: ${theme.space.xs};
       padding-bottom: ${theme.space.xs};
-      border-bottom: 1px solid ${theme.color.black};
     }
 
     .key {
@@ -86,6 +84,15 @@ const SummaryRow = ({ row: { key, value, id = false } = {} }) => {
             </a>
           </dd>
         `}
+    </div>
+  `
+}
+
+const SimpleSummaryRow = ({key, value}) => {
+  return html`
+    <div class=${summaryRow}>
+      <dt class="key">${key}</dt>
+      <dd class="value">${value}</dd>
     </div>
   `
 }
@@ -136,4 +143,4 @@ const SummaryTable = ({ rows, title = false, ...props }) =>
     </div>
   `
 
-module.exports = SummaryTable
+module.exports = { SummaryTable, summaryRow, SimpleSummaryRow }

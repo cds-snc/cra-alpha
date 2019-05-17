@@ -50,8 +50,8 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', checkSchema(loginSchema), (req, res) => {
-  let { name } = getSessionData(req.body)
-  let user = API.getUser(name)
+  let user = API.getUser(req.body.login)
+  let login = req.body.login
 
   const errors = validationResult(req)
   if (!user && !errors.isEmpty()) {
@@ -61,69 +61,71 @@ app.post('/login', checkSchema(loginSchema), (req, res) => {
         title: 'Error: Log in',
         pageComponent: 'Login',
         props: {
-          data: { name },
+          data: { login },
           errors: errorArray2ErrorObject(errors),
         },
       }),
     )
   }
 
-  req.session = user
+  req.session.user = user //Add all of the user data to the session
   res.redirect(302, '/introduction')
 })
 
 app.get('/introduction', checkLogin, (req, res) => {
-  const data = getSessionData(req.session)
+  const user = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       title: 'Your information',
       pageComponent: 'Introduction',
-      props: { data },
+      props: { user, locale },
     }),
   )
 })
 
-app.get('/about-you', checkLogin, (req, res) => {
-  const data = getSessionData(req.session)
+app.get('/checklist', checkLogin, (req, res) => {
+  const user = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
-      title: 'About you',
-      pageComponent: 'AboutYou',
-      props: { data },
+      title: 'Checklist',
+      pageComponent: 'Checklist',
+      props: { user, locale },
     }),
   )
 })
 
 app.get('/your-family', checkLogin, (req, res) => {
-  const data = getSessionData(req.session)
+  const user = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       title: 'You and your family',
       pageComponent: 'YourFamily',
-      props: { data },
+      props: { user, locale },
     }),
   )
 })
 
 app.get('/T4', (req, res) => {
+  const user = getSessionData(req.session)
+
   res.send(
     renderPage({
       locale,
       pageComponent: 'T4',
       title: 'Your income',
-      props: { data: getSessionData(req.session) },
+      props: { user, locale },
     }),
   )
 })
 
 // Whitelist only specific routes (eg, https://stackoverflow.com/a/15350845)
-app.get('/edit/:id(name|address|maritalStatus|children)?', checkLogin, (req, res) => {
+app.get('/edit/:id(name|address|maritalStatus|children|sin)?', checkLogin, (req, res) => {
   const question = require(`./questions/${req.params.id}.js`)
 
   res.send(
@@ -146,7 +148,7 @@ const pickEditSchema = (req, res, next) => {
 
 // Whitelist only specific routes (eg, https://stackoverflow.com/a/15350845)
 app.post(
-  '/edit/:id(name|address|maritalStatus|children)?',
+  '/edit/:id(name|address|maritalStatus|children|sin)?',
   checkLogin,
   pickEditSchema,
   (req, res) => {
@@ -175,13 +177,13 @@ app.post(
 )
 
 app.get('/confirmation', checkLogin, (req, res) => {
-  const data = getSessionData(req.session)
+  const user = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       pageComponent: 'Confirmation',
-      props: { data },
+      props: { user },
     }),
   )
 })

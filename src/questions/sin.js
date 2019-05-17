@@ -1,13 +1,13 @@
 module.exports = {
   id: 'name',
-  label: 'Full name',
-  description: 'Please enter your full name.',
+  label: 'SIN Number',
+  description: 'Please enter your SIN Number',
   type: 'text',
   schema: {
     name: {
       in: ['body'],
       isEmpty: {
-        errorMessage: 'Name can’t be empty',
+        errorMessage: 'SIN Number can’t be empty',
         negated: true,
       },
       trim: true,
