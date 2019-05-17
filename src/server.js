@@ -177,13 +177,13 @@ app.post(
 )
 
 app.get('/confirmation', checkLogin, (req, res) => {
-  const data = getSessionData(req.session)
+  const user = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       pageComponent: 'Confirmation',
-      props: { data },
+      props: { user },
     }),
   )
 })
