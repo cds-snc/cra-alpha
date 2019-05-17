@@ -14,7 +14,7 @@ const options = {
 }
 
 const loginActions = [
-  'set field #name to kim',
+  'set field #login to kim',
   'click element main button',
   'wait for path to be /introduction',
 ]
