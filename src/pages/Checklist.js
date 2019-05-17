@@ -61,21 +61,30 @@ const Checklist = ({ user = {}, locale }) =>
 
         <h2>${polyglot.t(`${locale}.checklist.financialInformation`)}</h2>
 
-        <${SimpleSummaryRow} value=${user.return.line150} key="Total income:" />
-        <${SimpleSummaryRow} value=${user.return.line260} key="Taxable income:" />
-        <${SimpleSummaryRow} value=${user.return.line482} key="Total tax credits:" />
+        <${SimpleSummaryRow}
+          value=${user.return.line150}
+          key="${polyglot.t(`${locale}.checklist.totalIncome`)}"
+        />
+        <${SimpleSummaryRow}
+          value=${user.return.line260}
+          key="${polyglot.t(`${locale}.checklist.taxableIncome`)}"
+        />
+        <${SimpleSummaryRow}
+          value=${user.return.line482}
+          key="${polyglot.t(`${locale}.checklist.totalTaxCredits`)}"
+        />
 
         <${Accordion} checked=${true}>
           <${SummaryTable} rows=${t4Data(user.return)} />
         <//>
 
         <div class=${summaryRow}>
-          <dt class="key">Refund</dt>
+          <dt class="key">${polyglot.t(`${locale}.checklist.refund`)}</dt>
           <dd class="value">${user.return.line484}</dd>
         </div>
 
         <${Accordion} checked=${true}>
-          <p>Refund Info</p>
+          <p>${polyglot.t(`${locale}.checklist.refundInfo`)}</p>
         <//>
 
         <h2 class=${inlineH2}>3.</h2>

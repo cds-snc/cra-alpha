@@ -11,6 +11,11 @@ const phrases = {
       personalInformation: '1. Personal Information',
       financialInformation: '2. Financial Information',
       file: 'File my taxes',
+      totalIncome: 'Total income:',
+      taxableIncome: 'Taxable income:',
+      totalTaxCredits: 'Total tax credits:',
+      refund: 'Refund',
+      refundInfo: 'Refund Info',
     },
   },
   fr: {
@@ -19,10 +24,15 @@ const phrases = {
     checklist: {
       title: 'A propos de vous',
       intro:
-        'Voici le nom et l\'adresse dont nous disposons dans votre dossier. Merci de mettre à jour toute information qui ne serait pas correcte vous concernant avant de passer à la prochaine étape.',
+        "Voici le nom et l'adresse dont nous disposons dans votre dossier. Merci de mettre à jour toute information qui ne serait pas correcte vous concernant avant de passer à la prochaine étape.",
       personalInformation: 'Mes Informations Personnelles',
       financialInformation: 'Mes Informations Financieres',
       file: 'Déclarer mes impôts',
+      totalIncome: 'Total income:',
+      taxableIncome: 'Taxable income:',
+      totalTaxCredits: 'Total tax credits:',
+      refund: 'Refund',
+      refundInfo: 'Refund Info',
     },
   },
 }
