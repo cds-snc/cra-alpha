@@ -4,7 +4,7 @@ const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
 const Accordion = require('../components/Accordion.js')
 const LogoutLink = require('../components/LogoutLink.js')
-const { SummaryTable, summaryRow, SimpleSummaryRow } = require('../components/SummaryTable.js')
+const { SummaryTable, SimpleSummaryRow } = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
 const polyglot = require('../i18n.js')
 
@@ -23,7 +23,7 @@ const aboutYouRows = ({ name, address, maritalStatus, children, SIN }) => {
   ]
 }
 
-const t4Data = ({
+const totalTaxRows = ({
   line300,
   line303,
   line305,
@@ -42,6 +42,33 @@ const t4Data = ({
     { key: 'Medical Expenses (330):', value: line330, id: 'line330' },
     { key: 'Medical Expenses (331):', value: line331, id: 'line331' },
     { key: 'Total tax credits:', value: line482, id: 'line482' },
+  ]
+}
+
+const refundRows = ({
+  line150,
+  line236,
+  line260,
+  line420,
+  line428,
+  line435,
+  line437,
+  line482,
+  line484,
+} = {}) => {
+  return [
+    { key: 'Total Income (150):', value: line150, id: 'line150' },
+    { key: 'Net Income (236):', value: line236, id: 'line236' },
+    { key: 'Taxable Income (260):', value: line260, id: 'line260' },
+    { key: 'Net Federal Tax (420):', value: line420, id: 'line420' },
+    { key: 'Net Ontario Tax (428):', value: line428, id: 'line428' },
+    { key: 'Total Payable (435):', value: line435, id: 'line435' },
+    { key: 'Total Deducted (437):', value: line437, id: 'line437' },
+    { key: 'Total Credits (482):', value: line482, id: 'line482' },
+    { key: 'Total payable minus credits:', value: '400', id: 'totalPayableMinus' },
+    { key: 'Previous balance owed:', value: '0', id: 'previousBalance' },
+    { key: 'Current balance owed:', value: '0', id: 'currentBalance' },
+    { key: 'Refund (484):', value: line484, id: 'line484' },
   ]
 }
 
@@ -66,16 +93,13 @@ const Checklist = ({ user = {}, locale }) =>
         <${SimpleSummaryRow} value=${user.return.line482} key="Total tax credits:" />
 
         <${Accordion} checked=${true}>
-          <${SummaryTable} rows=${t4Data(user.return)} />
+          <${SummaryTable} rows=${totalTaxRows(user.return)} />
         <//>
 
-        <div class=${summaryRow}>
-          <dt class="key">Refund</dt>
-          <dd class="value">${user.return.line484}</dd>
-        </div>
+        <${SimpleSummaryRow} value=${user.return.line484} key="Refund" />
 
         <${Accordion} checked=${true}>
-          <p>Refund Info</p>
+          <${SummaryTable} rows=${refundRows(user.return)} />
         <//>
 
         <h2 class=${inlineH2}>3.</h2>
