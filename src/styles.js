@@ -105,6 +105,10 @@ p {
   font-size: 18px;
 }
 
+p::before {
+  content: 'Hide details';
+}
+
 div[name='accordion'] {
   position: relative;
   overflow: hidden;
@@ -168,6 +172,10 @@ li {
         max-height: 0;
         opacity: 0;
         transform: translate(0, 50%);
+      }
+
+      & ~ p::before {
+        content: 'Show details';
       }
 
       & ~ i {
