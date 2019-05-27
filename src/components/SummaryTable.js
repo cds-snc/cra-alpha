@@ -1,6 +1,6 @@
 const { css } = require('emotion')
 const { theme, visuallyHidden } = require('../styles.js')
-const { html } = require('../utils.js')
+const { html, currencyFormatter } = require('../utils.js')
 
 const summaryRow = css`
   @media (${theme.mq.sm}) {
@@ -49,22 +49,22 @@ const summaryRow = css`
     }
   }
 `
-const SummaryRow = ({ key, value, id = false }) => {
+const SummaryRow = ({ key, value, id = false, currency }) => {
   return html`
     <div class=${summaryRow}>
       <dt class="key">
         ${key}:
       </dt>
       <dd class="value">
-        ${value}
+      ${currency === true ? currencyFormatter.format(value) : value }
       </dd>
     </div>
   `
 }
 
-const renderSummaryRow = (row, props) =>
+const renderSummaryRow = (currency, row, props) =>
   html`
-    <${SummaryRow} key=${row.key} value=${row.value} id=${row.id} ...${props} //>
+    <${SummaryRow} currency=${currency} key=${row.key} value=${row.value} id=${row.id} ...${props} //>
   `
 
 const summaryTable = css`
@@ -90,7 +90,7 @@ const summaryTable = css`
   }
 `
 
-const SummaryTable = ({ rows, title = false, ...props }) =>
+const SummaryTable = ({ currency, rows, title = false, ...props }) =>
   html`
     <div class=${summaryTable}>
       ${title &&
@@ -98,7 +98,7 @@ const SummaryTable = ({ rows, title = false, ...props }) =>
           <h2>${title}</h2>
         `}
       <dl title=${title}>
-        ${rows.map(row => renderSummaryRow(row, props))}
+        ${rows.map(row => renderSummaryRow(currency, row, props))}
       </dl>
     </div>
   `
