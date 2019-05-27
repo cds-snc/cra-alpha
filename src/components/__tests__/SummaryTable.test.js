@@ -51,12 +51,8 @@ describe('<SummaryTable>', () => {
       const $ = renderTable({ rows: rowsWithId })
 
       // first row
-      expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual('Full name')
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual('Full name:')
       expect(getCell({ cheerio: $, rowNum: 0, find: '.value' }).text()).toEqual('Fred Smith')
-      expect(getCell({ cheerio: $, rowNum: 0, find: '.action' }).text()).toEqual('Change full name')
-      expect(getCell({ cheerio: $, rowNum: 0, find: '.action a' }).attr('href')).toEqual(
-        '/edit/name',
-      )
     })
 
     test('EXCLUDING edit links', () => {
@@ -65,7 +61,7 @@ describe('<SummaryTable>', () => {
       const $ = renderTable({ rows: rowsNoId })
 
       // first row
-      expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual('Full name')
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual('Full name:')
       expect(getCell({ cheerio: $, rowNum: 0, find: '.value' }).text()).toEqual('Fred Smith')
       expect(getCell({ cheerio: $, rowNum: 0, find: '.action' }).length).toBe(0)
     })
@@ -78,17 +74,11 @@ describe('<SummaryTable>', () => {
       const $ = renderTable({ rows: rowsYesId })
 
       // first row
-      expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual('Full name')
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual('Full name:')
 
       // second row
-      expect(getCell({ cheerio: $, rowNum: 1, find: '.key' }).text()).toEqual('Date of birth')
+      expect(getCell({ cheerio: $, rowNum: 1, find: '.key' }).text()).toEqual('Date of birth:')
       expect(getCell({ cheerio: $, rowNum: 1, find: '.value' }).text()).toEqual('18-06-1971')
-      expect(getCell({ cheerio: $, rowNum: 1, find: '.action' }).text()).toEqual(
-        'Change date of birth',
-      )
-      expect(getCell({ cheerio: $, rowNum: 1, find: '.action a' }).attr('href')).toEqual(
-        '/edit/dob',
-      )
     })
 
     test('EXCLUDING edit links', () => {
@@ -97,10 +87,10 @@ describe('<SummaryTable>', () => {
       const $ = renderTable({ rows: rowsNoId })
 
       // first row
-      expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual('Full name')
+      expect(getCell({ cheerio: $, rowNum: 0, find: '.key' }).text()).toEqual('Full name:')
 
       // second row
-      expect(getCell({ cheerio: $, rowNum: 1, find: '.key' }).text()).toEqual('Date of birth')
+      expect(getCell({ cheerio: $, rowNum: 1, find: '.key' }).text()).toEqual('Date of birth:')
       expect(getCell({ cheerio: $, rowNum: 1, find: '.value' }).text()).toEqual('18-06-1971')
       expect(getCell({ cheerio: $, rowNum: 1, find: '.action' }).length).toBe(0)
     })
@@ -121,7 +111,7 @@ describe('<SummaryRow>', () => {
   test('renders a row WITHOUT edit links', () => {
     const $ = renderRow(rows[0])
 
-    expect($('dt.key').text()).toEqual('Full name')
+    expect($('dt.key').text()).toEqual('Full name:')
     expect($('dd.value').text()).toEqual('Fred Smith')
     expect($('dd.action').length).toBe(0)
   })
@@ -129,8 +119,7 @@ describe('<SummaryRow>', () => {
   test('renders a row WITH edit links', () => {
     const $ = renderRow(rowsWithId[0])
 
-    expect($('dt.key').text()).toEqual('Full name')
+    expect($('dt.key').text()).toEqual('Full name:')
     expect($('dd.value').text()).toEqual('Fred Smith')
-    expect($('dd.action').text()).toBe('Change full name')
   })
 })

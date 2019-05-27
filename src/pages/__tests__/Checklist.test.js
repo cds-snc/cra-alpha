@@ -1,6 +1,6 @@
 const render = require('preact-render-to-string')
 const cheerio = require('cheerio')
-const { html } = require('../../utils.js')
+const { html, currencyFormatter } = require('../../utils.js')
 const Checklist = require('../Checklist.js')
 
 describe('<CheckList>', () => {
@@ -37,7 +37,7 @@ describe('<CheckList>', () => {
   }
 
   const expectedStringspersonal = Object.values(data.personal)
-  const expectedStringsReturn = Object.values(data.return)
+  const expectedStringsReturn = Object.values(currencyFormatter.format(data.return))
 
   test('renders h1 as expected', () => {
     const $ = cheerio.load(
