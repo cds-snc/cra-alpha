@@ -1,6 +1,5 @@
 const { loggedInStyles } = require('../styles.js')
 const { html } = require('../utils.js')
-const { getFirstName } = require('../api.js')
 const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
 const ButtonLink = require('../components/ButtonLink.js')
@@ -10,7 +9,7 @@ const Introduction = ({ user = {} }) =>
     <${Layout}>
       <div class=${loggedInStyles}>
         <${LogoutLink} />
-        <h1>Hi, ${getFirstName(user.personal.name)}</h1>
+        <h1>Hi, ${user.personal.firstName}</h1>
         <p>
           Here’s what we know about you based on your previous tax returns and information from your
           employer.

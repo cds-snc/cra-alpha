@@ -2,7 +2,8 @@ var API = (function() {
   const _john = {
     _matches: ['john', 'j'],
     personal: {
-      name: 'John Caldwell Abbott',
+      firstName: 'John',
+      lastName: 'Abbott',
       address: '21275 Lakeshore Dr\nSainte-Anne-de-Bellevue\nQuébec\nH9X 3L9',
       maritalStatus: 'Widowed',
       children: '8',
@@ -52,7 +53,8 @@ var API = (function() {
   const _arthur = {
     _matches: ['arthur', 'art', 'a'],
     personal: {
-      name: 'Arthur Meighen',
+      firstName: 'Arthur',
+      lastName: 'Meighen',
       address: '23 St Clair Ave East\nToronto\nOntario\nM4T 1M4',
       maritalStatus: 'Married',
       children: '3',
@@ -102,7 +104,8 @@ var API = (function() {
   const _louis = {
     _matches: ['louis', 'lou', 'l'],
     personal: {
-      name: 'Louis Stephen St. Laurent',
+      firstName: 'Louis',
+      lastName: 'St. Laurent',
       address: '459-455 Boulevard de la Carrière\nGatineau\nQuébec\nJ8Y 6V7',
       maritalStatus: 'Widowed',
       children: '5',
@@ -162,7 +165,8 @@ var API = (function() {
   const _kim = {
     _matches: ['avril', 'kim', 'k'],
     personal: {
-      name: 'Avril Douglas Campbell',
+      firstName: 'Avril',
+      lastName: 'Campbell',
       address: '850 Argyle Street\nPort Alberni\nBritish Columbia\nV9Y 1V8',
       maritalStatus: 'Married',
       children: '0',
@@ -212,7 +216,9 @@ var API = (function() {
 
   const _users = [_john, _arthur, _louis, _kim]
 
-  const getFirstName = (name = '') => name.trim().split(' ')[0]
+  const getFirstName = (firstName = '') => firstName.trim().split(' ')[0]
+
+  const getFullName = user => user.personal.firstName + ' ' + user.personal.lastName
 
   const getUser = name => {
     let found = null
