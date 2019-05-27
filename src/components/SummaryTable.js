@@ -1,5 +1,5 @@
 const { css } = require('emotion')
-const { theme, visuallyHidden } = require('../styles.js')
+const { theme } = require('../styles.js')
 const { html, currencyFormatter } = require('../utils.js')
 
 const summaryRow = css`
@@ -51,7 +51,7 @@ const summaryRow = css`
 `
 const SummaryRow = ({ key, value, id = false, currency }) => {
   return html`
-    <div class=${summaryRow}>
+    <div id=${id} class=${summaryRow}>
       <dt class="key">
         ${key}:
       </dt>

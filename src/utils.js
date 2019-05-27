@@ -107,7 +107,7 @@ const errorArray2ErrorObject = (errors = []) => {
 const currencyFormatter = new Intl.NumberFormat('en-CAD', {
   style: 'currency',
   currency: 'USD',
-  minimumFractionDigits: 2
+  minimumFractionDigits: 2,
 })
 
 module.exports = {
