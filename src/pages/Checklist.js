@@ -4,7 +4,7 @@ const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
 const Accordion = require('../components/Accordion.js')
 const LogoutLink = require('../components/LogoutLink.js')
-const { SummaryTable, SimpleSummaryRow } = require('../components/SummaryTable.js')
+const { SummaryTable, SummaryRow } = require('../components/SummaryTable.js')
 const ButtonLink = require('../components/ButtonLink.js')
 const polyglot = require('../i18n.js')
 
@@ -88,15 +88,15 @@ const Checklist = ({ user = {}, locale }) =>
 
         <h2>${polyglot.t(`${locale}.checklist.financialInformation`)}</h2>
 
-        <${SimpleSummaryRow} value=${user.return.line150} key="Total income:" />
-        <${SimpleSummaryRow} value=${user.return.line260} key="Taxable income:" />
-        <${SimpleSummaryRow} value=${user.return.line482} key="Total tax credits:" />
+        <${SummaryRow} value=${user.return.line150} key="Total income:" />
+        <${SummaryRow} value=${user.return.line260} key="Taxable income:" />
+        <${SummaryRow} value=${user.return.line482} key="Total tax credits:" />
 
         <${Accordion} checked=${true}>
           <${SummaryTable} rows=${totalTaxRows(user.return)} />
         <//>
 
-        <${SimpleSummaryRow} value=${user.return.line484} key="Refund" />
+        <${SummaryRow} value=${user.return.line484} key="Refund" />
 
         <${Accordion} checked=${true}>
           <${SummaryTable} rows=${refundRows(user.return)} />

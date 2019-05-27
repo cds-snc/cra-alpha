@@ -66,7 +66,7 @@ const summaryRow = css`
     }
   }
 `
-const SummaryRow = ({ row: { key, value, id = false } = {} }) => {
+const SummaryRow = ({ key, value, id = false }) => {
   return html`
     <div class=${summaryRow}>
       <dt class="key">
@@ -88,18 +88,9 @@ const SummaryRow = ({ row: { key, value, id = false } = {} }) => {
   `
 }
 
-const SimpleSummaryRow = ({key, value}) => {
-  return html`
-    <div class=${summaryRow}>
-      <dt class="key">${key}</dt>
-      <dd class="value">${value}</dd>
-    </div>
-  `
-}
-
 const renderSummaryRow = (row, props) =>
   html`
-    <${SummaryRow} row=${row} ...${props} //>
+    <${SummaryRow} key=${row.key} value=${row.value} id=${row.id} ...${props} //>
   `
 
 const summaryTable = css`
@@ -143,4 +134,4 @@ const SummaryTable = ({ rows, title = false, ...props }) =>
     </div>
   `
 
-module.exports = { SummaryTable, summaryRow, SimpleSummaryRow }
+module.exports = { SummaryTable, SummaryRow }
