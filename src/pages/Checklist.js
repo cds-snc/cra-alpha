@@ -94,9 +94,9 @@ const Checklist = ({ user = {}, locale }) =>
         <h2 class=${checklistH2}>${polyglot.t(`${locale}.checklist.financialInformation`)}</h2>
 
         <dl>
-          <${SummaryRow} value=${user.return.line150} key="Total income:" />
-          <${SummaryRow} value=${user.return.line260} key="Taxable income:" />
-          <${SummaryRow} value=${user.return.line482} key="Total tax credits:" />
+          <${SummaryRow} value=${user.return.line150} key="Total income" />
+          <${SummaryRow} value=${user.return.line260} key="Taxable income" />
+          <${SummaryRow} value=${user.return.line482} key="Total tax credits" />
         </dl>
 
         <${Accordion} checked=${true}>
