@@ -74,7 +74,7 @@ const loggedInStyles = css`
   position: relative;
 
   > div {
-    margin-bottom: ${theme.space.xl};
+    margin-bottom: ${theme.space.sm};
   }
 
   button,
@@ -107,12 +107,12 @@ p {
 
 p::before {
   content: 'Hide details';
+  font-style: italic;
 }
 
 div[name='accordion'] {
   position: relative;
   overflow: hidden;
-  max-height: 800px;
   opacity: 1;
   transform: translate(0, 0);
   margin-top: 14px;
@@ -121,7 +121,6 @@ div[name='accordion'] {
 
 ul {
   list-style: none;
-  perspective: 900;
   padding: 0;
   margin: 0;
 }

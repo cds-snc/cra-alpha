@@ -104,6 +104,12 @@ const errorArray2ErrorObject = (errors = []) => {
   }, {})
 }
 
+const currencyFormatter = new Intl.NumberFormat('en-CAD', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
+
 module.exports = {
   html,
   metaIfSHA,
@@ -113,4 +119,5 @@ module.exports = {
   loginSchema,
   introductionSchema,
   errorArray2ErrorObject,
+  currencyFormatter,
 }
