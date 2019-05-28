@@ -30,8 +30,7 @@ const summaryRow = css`
     .value {
       display: table-cell;
       padding-right: ${theme.space.lg};
-      padding-top: ${theme.space.xs};
-      padding-bottom: ${theme.space.xs};
+      padding-bottom: ${theme.space.sm};
     }
 
     .key {
