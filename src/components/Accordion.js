@@ -8,7 +8,7 @@ const Accordion = ({ children, header, checked }) =>
         <li>
         ${checked ? html`<input type="checkbox" checked/>` : html`<input type="checkbox" unchecked/>`}
           <i></i>
-          ${header ? html`<h2>${header}</h2>` : html`<p tabindex="0" id="show-hide">Show/Hide details</p>`} 
+          ${header ? html`<h2>${header}</h2>` : html`<p id="show-hide">Show/Hide details</p>`} 
 
           <div name="accordion">
             ${children}

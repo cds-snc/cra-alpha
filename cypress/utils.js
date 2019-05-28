@@ -1,6 +1,6 @@
 const checkTableRows = (cy, rows) => {
   rows.map((row, index) => {
-    cy.get('dt.key')
+    cy.get('dt.keyBold')
       .eq(index)
       .should('contain', row.key)
       .next('dd')
