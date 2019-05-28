@@ -7,7 +7,7 @@ const Introduction = require('../Introduction.js')
 describe('<Introduction>', () => {
   const user = {
     personal: {
-      name: 'Arthur Meighen',
+      firstName: 'Arthur',
     },
   }
 
@@ -53,7 +53,7 @@ describe('<Introduction>', () => {
     })
   })
 
-  /* 
+  /*
 
 expectedH2s.map((str, i) => {
     test(`renders h2 with "${str}"`, () => {

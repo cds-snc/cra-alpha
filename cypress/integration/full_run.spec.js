@@ -1,4 +1,3 @@
-const { getFirstName } = require('../../src/api.js')
 const { checkTableRows, logIn } = require('../utils.js')
 
 describe('Full run through', function() {
@@ -19,9 +18,9 @@ describe('Full run through', function() {
 
       // INTRODUCTION PAGE
       cy.url().should('contain', '/introduction')
-      cy.get('h1').should('contain', `Hi, ${getFirstName(user.name)}`)
+      cy.get('h1').should('contain', `Hi, ${user.firstName}`)
 
-      /* 
+      /*
 
       cy.get('h2')
         .first()
@@ -41,7 +40,7 @@ describe('Full run through', function() {
       cy.get('h1').should('contain', 'About you')
 
       checkTableRows(cy, [
-        { key: 'Name', value: user.name },
+        { key: 'Name', value: user.firstName + ' ' + user.lastName },
         { key: 'Mailing address', value: user.address },
         { key: 'Marital status', value: user.maritalStatus },
         { key: 'Number of children', value: user.children },
@@ -56,7 +55,7 @@ describe('Full run through', function() {
       cy.get('h1').should('contain', 'Success!')
       cy.get('h1')
         .next('p')
-        .should('contain', `Good job, ${getFirstName(user.name)}!`)
+        .should('contain', `Good job, ${user.firstName}!`)
     })
   })
 })

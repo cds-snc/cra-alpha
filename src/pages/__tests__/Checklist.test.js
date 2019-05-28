@@ -7,7 +7,7 @@ describe('<CheckList>', () => {
   const data = {
     _matches: ['john', 'j'],
     personal: {
-      name: 'John Caldwell Abbott',
+      firstName: 'John',
       address: '21275 Lakeshore Dr\nSainte-Anne-de-Bellevue\nQuébec\nH9X 3L9',
       maritalStatus: 'Widowed',
       children: '8',
