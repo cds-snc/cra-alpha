@@ -218,8 +218,6 @@ var API = (function() {
 
   const getFirstName = (firstName = '') => firstName.trim().split(' ')[0]
 
-  const getFullName = user => user.personal.firstName + ' ' + user.personal.lastName
-
   const getUser = name => {
     let found = null
 
