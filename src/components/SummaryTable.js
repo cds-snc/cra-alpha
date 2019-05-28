@@ -18,6 +18,10 @@ const summaryRow = css`
 
   .key {
     margin-bottom: ${theme.space.xxs};
+  }
+
+  .keyBold {
+    margin-bottom: ${theme.space.xxs};
     font-weight: 700;
   }
 
@@ -27,13 +31,15 @@ const summaryRow = css`
 
   @media (${theme.mq.lg}) {
     .key,
+    .keyBold,
     .value {
       display: table-cell;
       padding-right: ${theme.space.lg};
       padding-bottom: ${theme.space.sm};
     }
 
-    .key {
+    .key,
+    .keyBold {
       width: 35%;
     }
 
@@ -48,22 +54,23 @@ const summaryRow = css`
     }
   }
 `
-const SummaryRow = ({ key, value, id = false, currency }) => {
+const SummaryRow = ({ keyBold, key, value, id = false, currency }) => {
   return html`
     <div id=${id} class=${summaryRow}>
-      <dt class="key">
+      <dt class=${keyBold === true ? 'keyBold' : 'key'}>
         ${key}:
       </dt>
       <dd class="value">
-      ${currency === true ? currencyFormatter.format(value) : value }
+        ${currency === true ? currencyFormatter.format(value) : value}
       </dd>
     </div>
   `
 }
 
-const renderSummaryRow = (currency, row, props) =>
+const renderSummaryRow = (keyBold, currency, row, props) =>
   html`
-    <${SummaryRow} currency=${currency} key=${row.key} value=${row.value} id=${row.id} ...${props} //>
+    <${SummaryRow} keyBold=${keyBold} currency=${currency} key=${row.key} value=${row.value}
+    id=${row.id} ...${props} //>
   `
 
 const summaryTable = css`
@@ -89,7 +96,7 @@ const summaryTable = css`
   }
 `
 
-const SummaryTable = ({ currency, rows, title = false, ...props }) =>
+const SummaryTable = ({ keyBold, currency, rows, title = false, ...props }) =>
   html`
     <div class=${summaryTable}>
       ${title &&
@@ -97,7 +104,7 @@ const SummaryTable = ({ currency, rows, title = false, ...props }) =>
           <h2>${title}</h2>
         `}
       <dl title=${title}>
-        ${rows.map(row => renderSummaryRow(currency, row, props))}
+        ${rows.map(row => renderSummaryRow(keyBold, currency, row, props))}
       </dl>
     </div>
   `

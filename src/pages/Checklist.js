@@ -46,7 +46,7 @@ const totalTaxRows = ({
     { key: 'Disability amount (316)', value: line316, id: 'line316' },
     { key: 'Medical Expenses (330)', value: line330, id: 'line330' },
     { key: 'Medical Expenses (331)', value: line331, id: 'line331' },
-    { key: 'Total tax credits', value: line482, id: 'line482' },
+    { key: 'Total', value: line482, id: 'line482' },
   ]
 }
 
@@ -73,7 +73,7 @@ const refundRows = ({
     { key: 'Total payable minus credits', value: '400', id: 'totalPayableMinus' },
     { key: 'Previous balance owed', value: '0', id: 'previousBalance' },
     { key: 'Current balance owed', value: '0', id: 'currentBalance' },
-    { key: 'Refund (484)', value: line484, id: 'line484' },
+    { key: 'Total Refund (484)', value: line484, id: 'line484' },
   ]
 }
 
@@ -88,15 +88,15 @@ const Checklist = ({ user = {}, locale }) =>
         </p>
 
         <${Accordion} header="${polyglot.t(`${locale}.checklist.personalInformation`)}">
-          <${SummaryTable} rows=${aboutYouRows(user.personal)} />
+          <${SummaryTable} keyBold=${true} rows=${aboutYouRows(user.personal)} />
         <//>
 
         <h2 class=${checklistH2}>${polyglot.t(`${locale}.checklist.financialInformation`)}</h2>
 
         <dl>
-          <${SummaryRow} currency=${true} value=${user.return.line150} key="Total income" />
-          <${SummaryRow} currency=${true} value=${user.return.line260} key="Taxable income" />
-          <${SummaryRow} currency=${true} value=${user.return.line482} key="Total tax credits" />
+          <${SummaryRow} keyBold=${true} currency=${true} value=${user.return.line150} key="Total income" />
+          <${SummaryRow} keyBold=${true} currency=${true} value=${user.return.line260} key="Taxable income" />
+          <${SummaryRow} keyBold=${true} currency=${true} value=${user.return.line482} key="Total tax credits" />
         </dl>
 
         <${Accordion} checked=${true}>
@@ -104,7 +104,7 @@ const Checklist = ({ user = {}, locale }) =>
         <//>
 
         <dl>
-          <${SummaryRow} currency=${true} value=${user.return.line484} key="Refund" />
+          <${SummaryRow} keyBold=${true} currency=${true} value=${user.return.line484} key="Refund" />
         </dl>
 
         <${Accordion} checked=${true}>
