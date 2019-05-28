@@ -107,10 +107,6 @@ const accordionStyles = css`
   p {
     margin: 0;
     font-size: 18px;
-  }
-
-  p::before {
-    content: 'Hide details';
     font-style: italic;
   }
 
@@ -194,10 +190,6 @@ const accordionStyles = css`
           max-height: 0;
           opacity: 0;
           transform: translate(0, 50%);
-        }
-
-        & ~ p::before {
-          content: 'Show details';
         }
 
         & ~ i {
