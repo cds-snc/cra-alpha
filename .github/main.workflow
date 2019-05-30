@@ -98,7 +98,7 @@ action "Run lighthouse scan on landing page" {
   uses = "docker://cdssnc/lighthouse-score-github-action"
   secrets = ["LIGHTHOUSE_SECRET", "LIGHTHOUSE_URL"]
   env = {
-    LIGHTHOUSE_SCORES = "[99, 99, 90, 99, 50]"
+    LIGHTHOUSE_SCORES = "[97, 99, 90, 99, 50]"
   }
 }
 
