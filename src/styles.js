@@ -117,24 +117,14 @@ const accordionStyles = css`
     transform: translate(0, 0);
     margin-top: 14px;
     z-index: 2;
-  }
 
-  #line367 dt.key,
-  #line367 dd.value,
-  #line331 dt.key,
-  #line331 dd.value,
-  #line260 dt.key,
-  #line260 dd.value,
-  #line428 dt.key,
-  #line428 dd.value,
-  #line482 dt.key,
-  #line482 dd.value,
-  #currentBalance dt.key,
-  #currentBalance dd.value {
-    padding-bottom: ${theme.space.xl};
-
-    @media (${theme.mq.sm}) {
-      padding-bottom: 0;
+    #line367 dt,
+    #line331 dt,
+    #line260 dt,
+    #line428 dt,
+    #line482 dt,
+    #currentBalance dt {
+      padding-bottom: ${theme.space.xl};
     }
   }
 
