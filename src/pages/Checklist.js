@@ -20,19 +20,11 @@ const checklistH2 = css`
 
 const aboutYouRows = ({ firstName, lastName, address, maritalStatus, children, SIN }) => {
   return [
-<<<<<<< HEAD
     { key: 'Name', value: firstName + ' ' + lastName },
     { key: 'Mailing address', value: address },
     { key: 'Marital status', value: maritalStatus },
     { key: 'Number of children', value: children },
     { key: 'Social Insurance Number (SIN)', value: SIN },
-=======
-    { key: 'Name', value: name },
-    { key: 'Mailing address', value: address },
-    { key: 'Marital status', value: maritalStatus },
-    { key: 'Number of children', value: children },
-    { key: 'Social Insurance Number (SIN)', value: SIN },
->>>>>>> review changes
   ]
 }
 
