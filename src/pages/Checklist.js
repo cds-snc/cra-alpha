@@ -13,7 +13,7 @@ const inlineH2 = css`
   margin-top: 0;
 `
 
-const aboutYouRows = ({ firstName, lastName, address, maritalStatus, children, SIN }) => {
+const aboutYouRows = ({ firstName, lastName, addresses, maritalStatus, children, SIN }) => {
   return [
     { key: 'Name', value: firstName + ' ' + lastName, id: 'name' },
     { key: 'Mailing address', value: address, id: 'address' },

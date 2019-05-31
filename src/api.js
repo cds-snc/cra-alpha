@@ -4,7 +4,20 @@ var API = (function() {
     personal: {
       firstName: 'John',
       lastName: 'Abbott',
-      address: '21275 Lakeshore Dr\nSainte-Anne-de-Bellevue\nQuébec\nH9X 3L9',
+      addresses: {
+        home: {
+          buildingNum: '1234',
+          streetNum: '345',
+          streetName: 'Seasame st',
+          POBox: '',
+          ruralRoute: '',
+          postalCode: 'K1A 0D2',
+          city: 'Ottawa',
+          province: 'ON',
+        },
+        mailing: '',
+        mailingSameAsHome: true,
+      },
       maritalStatus: 'Widowed',
       children: '8',
       SIN: '123-456-789',
@@ -216,7 +229,42 @@ var API = (function() {
 
   const _users = [_john, _arthur, _louis, _kim]
 
+  //private
+  const _formatAddress = function(address = {}) {
+    // This address formatting will probably need to change after more user research
+    // Also, we can arrow function this if need be later
+    fullTextAddress = ''
+
+    //If we have any of these let's put them on a line by themselves
+    if (address.buildingNum || address.streetNum || address.streetName) {
+      fullTextAddress +=
+        address.buildingNum + '-' + address.streetNum + ' ' + address.streetName + '\n'
+    }
+
+    if (address.POBox || address.ruralRoute) {
+      //Does the POBox property include the "Box" or is it just a number?
+      fullTextAddress += address.POBox + ' ' + address.ruralRoute + '\n'
+    }
+
+    fullTextAddress += address.city + '' + address.province + ' ' + address.postalCode
+
+    return fullTextAddress
+  }
+
+  //Getters
   const getFirstName = (firstName = '') => firstName.trim().split(' ')[0]
+
+  const getHomeAddress = function(user = {}) {
+    return _formatAddress(user.personal.address.home)
+  }
+
+  const getMailingAddress = function(user = {}) {
+    if (user.personal.address.mailingSameAsHome) {
+      return _formatAddress(user.personal.address.home)
+    } else {
+      return _formatAddress(user.personal.address.mailing)
+    }
+  }
 
   const getUser = name => {
     let found = null
@@ -241,6 +289,8 @@ var API = (function() {
   }
 
   return {
+    getHomeAddress,
+    getMailingAddress,
     getFirstName,
     getUser,
     getMatches,
