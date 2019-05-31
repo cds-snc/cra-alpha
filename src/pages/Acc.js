@@ -2,121 +2,10 @@ const { css } = require('emotion')
 const { loggedInStyles, theme, visuallyHidden } = require('../styles.js')
 const { html } = require('../utils.js')
 const Layout = require('../components/Layout.js')
-const LogoutLink = require('../components/LogoutLink.js')
 const { SummaryTable } = require('../components/SummaryTable.js')
 const polyglot = require('../i18n.js')
 
 const accordionStyles = css`
-  h2 {
-    font-weight: 700;
-    letter-spacing: 1px;
-    display: block;
-    background-color: white;
-    margin: 0;
-    cursor: pointer;
-    @extend .no-select;
-  }
-
-  p {
-    margin: 0;
-    font-size: 18px;
-  }
-
-  div[name='accordion'] {
-    position: relative;
-    overflow: hidden;
-    max-height: 800px;
-    opacity: 1;
-    transform: translate(0, 0);
-    margin-top: 14px;
-    z-index: 2;
-  }
-
-  ul {
-    list-style: none;
-    perspective: 900;
-    padding: 0;
-    margin: 0;
-  }
-
-  li {
-    position: relative;
-    padding: 0;
-    margin: 0;
-    padding-bottom: 4px;
-    padding-top: 18px;
-    border-top: 1px dotted grey;
-
-    i {
-      position: absolute;
-      transform: translate(-6px, 0);
-      margin-top: 16px;
-      right: 0;
-
-      &:before,
-      &:after {
-        content: '';
-        position: absolute;
-        background-color: black;
-        width: 3px;
-        height: 9px;
-      }
-
-      &:before {
-        transform: translate(-2px, 0) rotate(45deg);
-      }
-
-      &:after {
-        transform: translate(2px, 0) rotate(-45deg);
-      }
-    }
-
-    input[type='checkbox'] {
-      position: absolute;
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      opacity: 0;
-
-      &:checked {
-        & ~ div[name='accordion'] {
-          margin-top: 0;
-          max-height: 0;
-          opacity: 0;
-          transform: translate(0, 50%);
-        }
-
-        & ~ i {
-          &:before {
-            transform: translate(2px, 0) rotate(45deg);
-          }
-          &:after {
-            transform: translate(-2px, 0) rotate(-45deg);
-          }
-        }
-      }
-    }
-  }
-`
-
-const Accordion = ({ children, header, checked }) =>
-  html`
-    <div class=${accordionStyles}>
-      <ul>
-        <li>
-          <input type="checkbox" ${checked ? 'checked' : null} /><i></i>
-          <h2>${header}</h2>
-
-          <div name="accordion">
-            ${children}
-          </div>
-        </li>
-      </ul>
-    </div>
-  `
-
-const accordion2styles = css`
   .Accordion {
     border-top: 1px dashed ${theme.color.black};
     border-bottom: 1px dashed ${theme.color.black};
@@ -198,9 +87,9 @@ const accordion2styles = css`
   }
 `
 
-const Accordion2 = ({ children, header, open = false }) =>
+const Accordion = ({ children, header, open = true }) =>
   html`
-    <div class=${accordion2styles}>
+    <div class=${accordionStyles}>
       <div id="accordionGroup" class="Accordion">
         <button
           aria-expanded=${open === (false || 'false') ? 'false' : 'true'}
@@ -242,17 +131,7 @@ const Acc = ({ user = {}, locale }) =>
   html`
     <${Layout}>
       <div class=${loggedInStyles}>
-        <${LogoutLink} />
-        <h1>${polyglot.t(`${locale}.checklist.title`)}</h1>
-        <p>
-          ${polyglot.t(`${locale}.checklist.intro`)}
-        </p>
-
         <${Accordion} header="${polyglot.t(`${locale}.checklist.personalInformation`)}">
-          <${SummaryTable} rows=${aboutYouRows(user.personal)} />
-        <//>
-
-        <${Accordion2} header="${polyglot.t(`${locale}.checklist.personalInformation`)}">
           <${SummaryTable} rows=${aboutYouRows(user.personal)} />
         <//>
       </div>
