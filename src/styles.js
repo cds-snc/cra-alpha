@@ -13,6 +13,7 @@ const theme = {
     focus: '#ffbf47',
     green: 'aquamarine',
     error: '#b10e1e',
+    link: '#0645ad',
   },
   space: {
     xxs: '5px',

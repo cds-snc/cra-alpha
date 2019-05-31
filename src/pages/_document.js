@@ -31,6 +31,10 @@ const document = ({ title, locale, content }) => {
             line-height: 1.33;
           }
 
+          button {
+            font-family: sans-serif;
+          }
+
           h1 {
             margin-top: 35px;
             margin-bottom: 25px;
@@ -43,6 +47,7 @@ const document = ({ title, locale, content }) => {
       </head>
       <body>
         ${content}
+        <script src="/script.js"></script>
       </body>
     </html>
   `

@@ -85,6 +85,19 @@ app.get('/introduction', checkLogin, (req, res) => {
   )
 })
 
+app.get('/acc', checkLogin, (req, res) => {
+  const user = getSessionData(req.session)
+
+  res.send(
+    renderPage({
+      locale,
+      title: 'TEST',
+      pageComponent: 'Acc',
+      props: { user, locale },
+    }),
+  )
+})
+
 app.get('/checklist', checkLogin, (req, res) => {
   const user = getSessionData(req.session)
 
