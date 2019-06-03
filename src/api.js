@@ -246,7 +246,7 @@ var API = (function() {
       fullTextAddress += address.POBox + ' ' + address.ruralRoute + '\n'
     }
 
-    fullTextAddress += address.city + '' + address.province + ' ' + address.postalCode
+    fullTextAddress += address.city + ' ' + address.province + ' ' + address.postalCode
 
     return fullTextAddress
   }
@@ -255,14 +255,14 @@ var API = (function() {
   const getFirstName = (firstName = '') => firstName.trim().split(' ')[0]
 
   const getHomeAddress = function(user = {}) {
-    return _formatAddress(user.personal.address.home)
+    return _formatAddress(user.personal.addresses.home)
   }
 
   const getMailingAddress = function(user = {}) {
-    if (user.personal.address.mailingSameAsHome) {
-      return _formatAddress(user.personal.address.home)
+    if (user.personal.addresses.mailingSameAsHome) {
+      return _formatAddress(user.personal.addresses.home)
     } else {
-      return _formatAddress(user.personal.address.mailing)
+      return _formatAddress(user.personal.addresses.mailing)
     }
   }
 
