@@ -79,7 +79,7 @@ const refundRows = ({
 
 var formattedUser = {}
 
-function myFunction(data) {
+function currencyConverter(data) {
   Object.entries(data).map(entry => {
     var entryKey = entry[0]
     var entryValue = entry[1]
@@ -90,7 +90,7 @@ const Checklist = ({ user = {}, locale }) =>
   html`
     <${Layout}>
       <div class=${loggedInStyles}>
-      ${myFunction(user.return)}
+      ${currencyConverter(user.return)}
         <${LogoutLink} />
         <h1>${polyglot.t(`${locale}.checklist.title`)}</h1>
         <p>
