@@ -51,7 +51,6 @@ app.get('/login', (req, res) => {
 
 app.post('/login', checkSchema(loginSchema), (req, res) => {
   let user = API.getUser(req.body.login)
-  let login = req.body.login
 
   const errors = validationResult(req)
   if (!user && !errors.isEmpty()) {
@@ -61,14 +60,14 @@ app.post('/login', checkSchema(loginSchema), (req, res) => {
         title: 'Error: Log in',
         pageComponent: 'Login',
         props: {
-          data: { login },
+          data: req.body.login,
           errors: errorArray2ErrorObject(errors),
         },
       }),
     )
   }
 
-  req.session.user = user //Add all of the user data to the session
+  req.session.user = user // add of the user data to the session
   res.redirect(302, '/introduction')
 })
 
@@ -171,7 +170,7 @@ app.post(
     }
 
     // update session with new value
-    req.session[req.params.id] = req.body[req.params.id]
+    req.session.user[req.params.id] = req.body[req.params.id]
     return res.redirect(302, question.previous)
   },
 )

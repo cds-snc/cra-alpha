@@ -26,7 +26,6 @@ validNames.map(login => {
     const response = await session(app)
       .post('/login')
       .send({ login })
-
     expect(response.statusCode).toBe(302)
     expect(response.headers['location']).toEqual('/introduction')
   })

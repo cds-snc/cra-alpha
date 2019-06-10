@@ -38,8 +38,8 @@ const logIn = (cy, user) => {
 
   cy.get('form label').should('have.attr', 'for', 'login')
   cy.get('form input#login')
-    .type(user.firstName)
-    .should('have.value', user.firstName)
+    .type(user.name)
+    .should('have.value', user.name)
   cy.get('form button')
     .should('contain', 'Log in')
     .click()

@@ -34,23 +34,22 @@ const cookieSessionConfig = {
 }
 
 /*
- this function takes an object, pulls out specific keys, and returns
- an object with only those keys.
+ this function takes a session object and looks for "session.user"
 
- If a second parameter is passed in with a truthy value,
  it will return false if any of those keys have not been set.
 */
 const getSessionData = (session = {}) => {
-  if (session.populated) {
+  if (session.user) {
     //we have data
     return session.user
   }
+  return false
 }
 
 /* Middleware */
 const checkLogin = (req, res, next) => {
   if (req.session.populated) {
-    //This has no real "check", just is there a session
+    // Check that there is a session at all
     return next()
   }
 
