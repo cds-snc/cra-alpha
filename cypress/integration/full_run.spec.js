@@ -1,3 +1,4 @@
+const { getFirstName } = require('../../src/api.js')
 const { checkTableRows, logIn } = require('../utils.js')
 
 describe('Full run through', function() {
@@ -18,9 +19,7 @@ describe('Full run through', function() {
 
       // INTRODUCTION PAGE
       cy.url().should('contain', '/introduction')
-      cy.get('h1').should('contain', `Hi, ${user.firstName}`)
-
-      /*
+      cy.get('h1').should('contain', `Hi, ${getFirstName(user.name)}`)
 
       cy.get('h2')
         .first()
@@ -30,8 +29,6 @@ describe('Full run through', function() {
         cy.get('dd.value').should('contain', value)
       })
 
-      */
-
       cy.get('a.buttonLink')
         .should('contain', 'Get started')
         .click()
@@ -40,14 +37,31 @@ describe('Full run through', function() {
       cy.get('h1').should('contain', 'About you')
 
       checkTableRows(cy, [
-        { key: 'Name', value: user.firstName + ' ' + user.lastName },
+        { key: 'Name', value: user.name },
         { key: 'Mailing address', value: user.address },
+      ])
+
+      cy.get('a.buttonLink')
+        .should('contain', 'Continue')
+        .click()
+
+      // YOUR FAMILY PAGE
+      cy.get('h1').should('contain', 'You and your family')
+
+      checkTableRows(cy, [
         { key: 'Marital status', value: user.maritalStatus },
         { key: 'Number of children', value: user.children },
       ])
 
       cy.get('a.buttonLink')
-        .should('contain', 'File my taxes')
+        .should('contain', 'Continue')
+        .click()
+
+      // YOUR INCOME PAGE
+      cy.get('h1').should('contain', 'Your income')
+
+      cy.get('a#consentButton')
+        .should('contain', 'Continue')
         .click()
 
       // CONFIRMATION PAGE
@@ -55,7 +69,7 @@ describe('Full run through', function() {
       cy.get('h1').should('contain', 'Success!')
       cy.get('h1')
         .next('p')
-        .should('contain', `Good job, ${user.firstName}!`)
+        .should('contain', `Good job, ${getFirstName(user.name)}!`)
     })
   })
 })
