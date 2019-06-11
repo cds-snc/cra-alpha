@@ -11,7 +11,7 @@ const {
   errorArray2ErrorObject,
 } = require('./utils.js')
 const API = require('./api.js')
-const { renderPage, _renderDocument } = require('./pages/_document.js')
+const { renderPage } = require('./pages/_document.js')
 
 let locale = 'en'
 
@@ -51,7 +51,6 @@ app.get('/login', (req, res) => {
 
 app.post('/login', checkSchema(loginSchema), (req, res) => {
   let user = API.getUser(req.body.login)
-  let login = req.body.login
 
   const errors = validationResult(req)
   if (!user && !errors.isEmpty()) {
@@ -61,65 +60,65 @@ app.post('/login', checkSchema(loginSchema), (req, res) => {
         title: 'Error: Log in',
         pageComponent: 'Login',
         props: {
-          data: { login },
+          data: req.body.login,
           errors: errorArray2ErrorObject(errors),
         },
       }),
     )
   }
 
-  req.session.user = user //Add all of the user data to the session
+  req.session.user = user // add of the user data to the session
   res.redirect(302, '/introduction')
 })
 
 app.get('/introduction', checkLogin, (req, res) => {
-  const user = getSessionData(req.session)
+  const data = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       title: 'Your information',
       pageComponent: 'Introduction',
-      props: { user, locale },
+      props: { data, locale },
     }),
   )
 })
 
-app.get('/checklist', checkLogin, (req, res) => {
-  const user = getSessionData(req.session)
+app.get('/about-you', checkLogin, (req, res) => {
+  const data = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
-      title: 'Checklist',
-      pageComponent: 'Checklist',
-      props: { user, locale },
+      title: 'About you',
+      pageComponent: 'AboutYou',
+      props: { data, locale },
     }),
   )
 })
 
 app.get('/your-family', checkLogin, (req, res) => {
-  const user = getSessionData(req.session)
+  const data = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       title: 'You and your family',
       pageComponent: 'YourFamily',
-      props: { user, locale },
+      props: { data, locale },
     }),
   )
 })
 
 app.get('/T4', (req, res) => {
-  const user = getSessionData(req.session)
+  const data = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       pageComponent: 'T4',
       title: 'Your income',
-      props: { user, locale },
+      props: { data, locale },
     }),
   )
 })
@@ -171,19 +170,19 @@ app.post(
     }
 
     // update session with new value
-    req.session[req.params.id] = req.body[req.params.id]
+    req.session.user[req.params.id] = req.body[req.params.id]
     return res.redirect(302, question.previous)
   },
 )
 
 app.get('/confirmation', checkLogin, (req, res) => {
-  const user = getSessionData(req.session)
+  const data = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       pageComponent: 'Confirmation',
-      props: { user },
+      props: { data },
     }),
   )
 })
@@ -191,14 +190,6 @@ app.get('/confirmation', checkLogin, (req, res) => {
 app.get('/logout', (req, res) => {
   req.session = null
   res.redirect(302, '/login')
-})
-
-app.get('/consent', (req, res) => {
-  const content =
-    '<h1>Consent</h1> \
-    <p>Permission for something to happen or agreement to do something.</p>'
-
-  res.send(_renderDocument({ title: '[WIP] Consent', locale, content }))
 })
 
 app.get('/kim', (req, res) => {

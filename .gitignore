@@ -3,4 +3,5 @@ node_modules
 cypress/examples
 cypress/support
 cypress/plugins
+cypress/screenshots
 
