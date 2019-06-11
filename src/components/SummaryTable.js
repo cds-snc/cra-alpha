@@ -1,13 +1,16 @@
 const { css } = require('emotion')
-const { theme } = require('../styles.js')
+const { theme, visuallyHidden } = require('../styles.js')
 const { html } = require('../utils.js')
 
 const summaryRow = css`
-  @media (${theme.mq.sm}) {
-    margin-bottom: ${theme.space.sm};
+  @media (${theme.mq.lg}) {
+    display: table-row;
   }
 
-  display: table-row;
+  @media (${theme.mq.sm}) {
+    margin-bottom: ${theme.space.sm};
+    border-bottom: 1px solid ${theme.color.grey};
+  }
 
   .key,
   .value {
@@ -20,61 +23,87 @@ const summaryRow = css`
     margin-bottom: ${theme.space.xxs};
   }
 
-  .key--bold {
-    margin-bottom: ${theme.space.xxs};
-    font-weight: 700;
-  }
-
   .value {
     white-space: pre-wrap;
   }
 
+  .action {
+    margin: 0;
+    margin-bottom: ${theme.space.sm};
+  }
+
   @media (${theme.mq.lg}) {
     .key,
-    .value {
+    .value,
+    .action {
       display: table-cell;
       padding-right: ${theme.space.lg};
-      padding-bottom: ${theme.space.sm};
+      padding-top: ${theme.space.xs};
+      padding-bottom: ${theme.space.xs};
+      border-bottom: 1px solid ${theme.color.black};
     }
 
     .key {
-      width: 35%;
+      width: 30%;
     }
 
     .value {
-      width: 45%;
+      width: 50%;
+    }
+
+    .action {
+      width: 20%;
+      padding-right: 0;
+      text-align: right;
     }
   }
 
   @media (${theme.mq.sm}) {
+    .key {
+      font-weight: 700;
+    }
+
     .value {
       margin-bottom: ${theme.space.sm};
     }
   }
 `
-const SummaryRow = ({ keyBold = true, key, value, id = false }) => {
+const SummaryRow = ({ row: { key, value, id = false } = {} }) => {
   return html`
-    <div id=${id} class=${summaryRow}>
-      <dt class=${keyBold === true ? 'key key--bold' : 'key'}>
-        ${key}:
+    <div class=${summaryRow}>
+      <dt class="key">
+        ${key}
       </dt>
       <dd class="value">
         ${value}
       </dd>
+      ${id &&
+        html`
+          <dd class="action">
+            <a href=${`/edit/${id}`}>
+              Change
+              <span class="${visuallyHidden}">${` ${key && key.toLowerCase()}`}</span>
+            </a>
+          </dd>
+        `}
     </div>
   `
 }
 
-const renderSummaryRow = (keyBold, row, props) =>
+const renderSummaryRow = (row, props) =>
   html`
-    <${SummaryRow} keyBold=${keyBold} key=${row.key} value=${row.value}
-    id=${row.id} ...${props} //>
+    <${SummaryRow} row=${row} ...${props} //>
   `
 
 const summaryTable = css`
+  dl {
+    margin: 0;
+    margin-bottom: ${theme.space.xl};
+  }
+
   h2 {
     font-size: 1.3em;
-    margin: 0;
+    margin: ${theme.space.lg} 0 ${theme.space.xs} 0;
     padding-bottom: ${theme.space.xxs};
     border-bottom: 1px solid black;
   }
@@ -94,7 +123,7 @@ const summaryTable = css`
   }
 `
 
-const SummaryTable = ({ keyBold, rows, title = false, ...props }) =>
+const SummaryTable = ({ rows, title = false, ...props }) =>
   html`
     <div class=${summaryTable}>
       ${title &&
@@ -102,9 +131,9 @@ const SummaryTable = ({ keyBold, rows, title = false, ...props }) =>
           <h2>${title}</h2>
         `}
       <dl title=${title}>
-        ${rows.map(row => renderSummaryRow(keyBold, row, props))}
+        ${rows.map(row => renderSummaryRow(row, props))}
       </dl>
     </div>
   `
 
-module.exports = { SummaryTable, SummaryRow }
+module.exports = SummaryTable

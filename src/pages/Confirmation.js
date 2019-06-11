@@ -1,6 +1,7 @@
 const { css } = require('emotion')
 const { theme } = require('../styles.js')
 const { html } = require('../utils.js')
+const { getFirstName } = require('../api.js')
 const Layout = require('../components/Layout.js')
 const LogoutLink = require('../components/LogoutLink.js')
 
@@ -23,13 +24,13 @@ const confirmationNumber = css`
   }
 `
 
-const Confirmation = ({ user = {} }) =>
+const Confirmation = ({ data: { name = '' } = {} }) =>
   html`
     <${Layout}>
       <div class=${confirmation}>
         <${LogoutLink} />
         <h1>Success! 🥳🙌</h1>
-        <p>🌈 Good job, ${user.personal.firstName}! 🌈</p>
+        <p>🌈 Good job, ${getFirstName(name)}! 🌈</p>
         <p>
           Your 2018 taxes have been submitted and${' '}
           <strong>you will receive $1611.87 in benefit payments</strong>.

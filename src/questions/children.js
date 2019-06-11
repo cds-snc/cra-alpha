@@ -17,5 +17,5 @@ module.exports = {
       trim: true,
     },
   },
-  previous: '/checklist',
+  previous: '/your-family',
 }

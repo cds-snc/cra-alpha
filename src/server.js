@@ -72,53 +72,53 @@ app.post('/login', checkSchema(loginSchema), (req, res) => {
 })
 
 app.get('/introduction', checkLogin, (req, res) => {
-  const user = getSessionData(req.session)
+  const data = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       title: 'Your information',
       pageComponent: 'Introduction',
-      props: { user, locale },
+      props: { data, locale },
     }),
   )
 })
 
-app.get('/checklist', checkLogin, (req, res) => {
-  const user = getSessionData(req.session)
+app.get('/about-you', checkLogin, (req, res) => {
+  const data = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
-      title: 'Checklist',
-      pageComponent: 'Checklist',
-      props: { user, locale },
+      title: 'About you',
+      pageComponent: 'AboutYou',
+      props: { data, locale },
     }),
   )
 })
 
 app.get('/your-family', checkLogin, (req, res) => {
-  const user = getSessionData(req.session)
+  const data = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       title: 'You and your family',
       pageComponent: 'YourFamily',
-      props: { user, locale },
+      props: { data, locale },
     }),
   )
 })
 
 app.get('/T4', (req, res) => {
-  const user = getSessionData(req.session)
+  const data = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       pageComponent: 'T4',
       title: 'Your income',
-      props: { user, locale },
+      props: { data, locale },
     }),
   )
 })
@@ -176,13 +176,13 @@ app.post(
 )
 
 app.get('/confirmation', checkLogin, (req, res) => {
-  const user = getSessionData(req.session)
+  const data = getSessionData(req.session)
 
   res.send(
     renderPage({
       locale,
       pageComponent: 'Confirmation',
-      props: { user },
+      props: { data },
     }),
   )
 })
