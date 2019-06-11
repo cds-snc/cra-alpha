@@ -25,9 +25,4 @@ describe('Test server responses', () => {
 
     expect(response.headers['x-powered-by']).toBeUndefined()
   })
-
-  test('it should return "Consent" in the h1 tag for /consent', async () => {
-    const response = await request(app).get('/consent')
-    expect(response.text).toContain('<h1>Consent</h1>')
-  })
 })

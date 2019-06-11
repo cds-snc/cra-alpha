@@ -11,7 +11,7 @@ const {
   errorArray2ErrorObject,
 } = require('./utils.js')
 const API = require('./api.js')
-const { renderPage, _renderDocument } = require('./pages/_document.js')
+const { renderPage } = require('./pages/_document.js')
 
 let locale = 'en'
 
@@ -190,14 +190,6 @@ app.get('/confirmation', checkLogin, (req, res) => {
 app.get('/logout', (req, res) => {
   req.session = null
   res.redirect(302, '/login')
-})
-
-app.get('/consent', (req, res) => {
-  const content =
-    '<h1>Consent</h1> \
-    <p>Permission for something to happen or agreement to do something.</p>'
-
-  res.send(_renderDocument({ title: '[WIP] Consent', locale, content }))
 })
 
 app.get('/kim', (req, res) => {
