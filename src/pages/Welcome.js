@@ -14,7 +14,7 @@ const Welcome = ({ locale }) =>
   html`
     <${Layout}>
       <div class=${welcome}>
-        <h1>Claim tax benefits (CTB)</h1>
+        <h1>Claim online benefits ready access (COBRA)</h1>
         <p>
           ${polyglot.t(`${locale}.welcome`)}. This is an invite-only service: you can use if if you
           have received <strong>an invitation letter</strong> in the mail.

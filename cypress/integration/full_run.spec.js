@@ -6,7 +6,7 @@ describe('Full run through', function() {
     cy.visit('/')
 
     // WELCOME PAGE
-    cy.get('h1').should('contain', 'Claim tax benefits (CTB)')
+    cy.get('h1').should('contain', 'Claim online benefits ready access (COBRA)')
     cy.get('main a')
       .should('contain', 'Get started')
       .click()
