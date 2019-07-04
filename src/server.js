@@ -2,7 +2,7 @@ const express = require('express')
 const logger = require('morgan')
 const helmet = require('helmet')
 const cookieSession = require('cookie-session')
-const { validationResult, checkSchema } = require('express-validator/check')
+const { validationResult, checkSchema } = require('express-validator')
 const {
   cookieSessionConfig,
   loginSchema,
