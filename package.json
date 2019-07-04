@@ -22,7 +22,9 @@
     "start": "NODE_ENV=production node index.js",
     "pa11y:run": "node pa11y.test.js",
     "pa11y": "start-server-and-test start http://localhost:3000 pa11y:run",
-    "test": "node node_modules/jest/bin/jest.js src"
+    "test": "node node_modules/jest/bin/jest.js src",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [
     "htm"
@@ -38,7 +40,8 @@
     "morgan": "^1.9.1",
     "node-polyglot": "^2.3.0",
     "preact": "^8.4.2",
-    "preact-render-to-string": "^4.1.0"
+    "preact-render-to-string": "^4.1.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.3",
@@ -60,5 +63,6 @@
   },
   "optionalDependencies": {
     "win-node-env": "^0.4.0"
-  }
+  },
+  "snyk": true
 }
