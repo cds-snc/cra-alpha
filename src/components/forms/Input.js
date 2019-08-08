@@ -52,7 +52,7 @@ const TextInput = ({
     name=${name || id}
     type=${type}
     style=${{ ...style }}
-    aria-describedby="${error ? `${error.param}-error` : false}}"
+    aria-describedby="${error ? `${error.param}-error` : false}"
     ...${props}
   />
 `
@@ -71,7 +71,7 @@ const TextArea = ({
     name=${name || id}
     rows=${rows}
     style=${{ ...style }}
-    aria-describedby="${error ? `${error.param}-error` : false}}"
+    aria-describedby="${error ? `${error.param}-error` : false}"
     ...${props}
   >
 ${value}</textarea
