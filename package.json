@@ -32,7 +32,7 @@
     "emotion": "^10.0.14",
     "emotion-server": "^10.0.14",
     "express": "^4.17.1",
-    "express-validator": "^6.1.1",
+    "express-validator": "^6.2.0",
     "helmet": "^3.20.1",
     "htm": "^2.2.1",
     "morgan": "^1.9.1",
