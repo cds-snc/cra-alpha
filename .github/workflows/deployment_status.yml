@@ -1,0 +1,14 @@
+on: deployment_status
+name: Lighthouse scan
+jobs:
+  runLighthouseScanOnLandingPage:
+    name: Run lighthouse scan on landing page
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Run lighthouse scan on landing page
+      uses: docker://cdssnc/lighthouse-score-github-action
+      env:
+        LIGHTHOUSE_SCORES: '[97, 99, 90, 99, 50]'
+        LIGHTHOUSE_SECRET: ${{ secrets.LIGHTHOUSE_SECRET }}
+        LIGHTHOUSE_URL: ${{ secrets.LIGHTHOUSE_URL }}
