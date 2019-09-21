@@ -1,0 +1,9 @@
+on: push
+name: Lint Dockerfile
+jobs:
+  scan:
+    name: Lint Dockerfile
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: docker://cdssnc/docker-lint

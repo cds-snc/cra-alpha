@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Lint Dockerfile
-        uses: docker://cdssnc/docker-lint
       - name: Install npm dependencies
         uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
         with:
