@@ -1,0 +1,71 @@
+name: Test, build, deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Lint Dockerfile
+        uses: docker://cdssnc/docker-lint
+      - name: Install npm dependencies
+        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
+        with:
+          args: install
+      - name: Run jest unit tests
+        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
+        with:
+          args: test
+      - name: Run JS linter
+        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
+        with:
+          args: run lint
+      - name: Run cypress functional tests
+        uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
+        with:
+          args: run cypress:cli
+      - name: Run pa11y accessibility scan
+        uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
+        with:
+          args: run pa11y
+  deploy:
+    name: Build container and deploy
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@master
+      - name: Build a Docker container
+        uses: actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108
+        with:
+          args: build -t base --build-arg GITHUB_SHA_ARG=${{ github.sha }} .
+      - name: Tag :latest
+        uses: actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108
+        with:
+          args: tag base cdssnc/cra-alpha:latest
+      - name: Tag :$GITHUB_SHA
+        uses: actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108
+        with:
+          args: tag base cdssnc/cra-alpha:${{ github.sha }}
+      - name: Login to Docker Hub
+        uses: actions/docker/login@8cdf801b322af5f369e00d85e9cf3a7122f49108
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      - name: Push container to Docker Hub
+        uses: actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108
+        with:
+          args: push cdssnc/cra-alpha
+      - name: Login to Azure
+        uses: Azure/github-actions/login@d0e5a0afc6b9d8d19c9ade8e2446ef3c20e260d4
+        env:
+          AZURE_SERVICE_APP_ID: ${{ secrets.AZURE_SERVICE_APP_ID }}
+          AZURE_SERVICE_PASSWORD: ${{ secrets.AZURE_SERVICE_PASSWORD }}
+          AZURE_SERVICE_TENANT: ${{ secrets.AZURE_SERVICE_TENANT }}
+      - name: Update container image in Azure App Service for Containers
+        uses: Azure/github-actions/cli@d0e5a0afc6b9d8d19c9ade8e2446ef3c20e260d4
+        env:
+          AZURE_SCRIPT: az webapp config container set --resource-group cdscracollab-innovation-rg
+            --name cra-alpha --docker-custom-image-name cdssnc/cra-alpha:$GITHUB_SHA

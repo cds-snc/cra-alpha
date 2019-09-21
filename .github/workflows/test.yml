@@ -1,0 +1,34 @@
+name: Test
+on:
+  push:
+    branches:
+      - '*'
+      - '!master'
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Lint Dockerfile
+        uses: docker://cdssnc/docker-lint
+      - name: Install npm dependencies
+        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
+        with:
+          args: install
+      - name: Run jest unit tests
+        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
+        with:
+          args: test
+      - name: Run JS linter
+        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
+        with:
+          args: run lint
+      - name: Run cypress functional tests
+        uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
+        with:
+          args: run cypress:cli
+      - name: Run pa11y accessibility scan
+        uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
+        with:
+          args: run pa11y
