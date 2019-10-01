@@ -26,7 +26,3 @@ jobs:
         uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
         with:
           args: run cypress:cli
-      - name: Run pa11y accessibility scan
-        uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
-        with:
-          args: run pa11y
