@@ -2,7 +2,7 @@ name: Test, build, deploy
 on:
   push:
     branches:
-      - actions
+      - master
 jobs:
   test:
     name: Run tests
