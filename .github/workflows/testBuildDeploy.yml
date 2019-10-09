@@ -31,27 +31,19 @@ jobs:
     needs: test
     steps:
       - uses: actions/checkout@master
-      - name: Build a Docker container
-        uses: actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108
-        with:
-          args: build -t base --build-arg GITHUB_SHA_ARG=${{ github.sha }} .
+      - name: Build the Docker image
+        run: docker build -t base --build-arg GITHUB_SHA_ARG=${{ github.sha }} .
       - name: Tag :latest
-        uses: actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108
-        with:
-          args: tag base cdssnc/cra-alpha:latest
+        run: docker tag base cdssnc/cra-alpha:latest
       - name: Tag :$GITHUB_SHA
-        uses: actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108
-        with:
-          args: tag base cdssnc/cra-alpha:${{ github.sha }}
-      - name: Login to Docker Hub
-        uses: actions/docker/login@8cdf801b322af5f369e00d85e9cf3a7122f49108
+        run: docker tag base cdssnc/cra-alpha:${{ github.sha }}
+      - name: Login into Docker Hub
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - name: Push container to Docker Hub
-        uses: actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108
-        with:
-          args: push cdssnc/cra-alpha
+        run: docker push cdssnc/cra-alpha
       - name: Login to Azure
         uses: Azure/github-actions/login@d0e5a0afc6b9d8d19c9ade8e2446ef3c20e260d4
         env:
