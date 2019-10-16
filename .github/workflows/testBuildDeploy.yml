@@ -1,8 +1,5 @@
 name: Test, build, deploy
-on:
-  push:
-    branches:
-      - master
+on: push
 jobs:
   test:
     name: Run tests
@@ -29,6 +26,7 @@ jobs:
     name: Build container and deploy
     runs-on: ubuntu-latest
     needs: test
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@master
       - name: Build the Docker image
