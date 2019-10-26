@@ -37,7 +37,7 @@
     "htm": "^2.2.1",
     "morgan": "^1.9.1",
     "node-polyglot": "^2.4.0",
-    "preact": "^10.0.0",
+    "preact": "^10.0.1",
     "preact-render-to-string": "^5.0.7"
   },
   "devDependencies": {
