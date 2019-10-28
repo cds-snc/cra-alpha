@@ -38,7 +38,7 @@
     "morgan": "^1.9.1",
     "node-polyglot": "^2.4.0",
     "preact": "^10.0.0",
-    "preact-render-to-string": "^5.0.7"
+    "preact-render-to-string": "^5.1.0"
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.3",
