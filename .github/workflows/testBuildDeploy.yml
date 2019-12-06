@@ -4,24 +4,27 @@ jobs:
   test:
     name: Run tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
     steps:
       - uses: actions/checkout@master
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
       - name: Install npm dependencies
-        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
-        with:
-          args: install
+        run: npm install
       - name: Run jest unit tests
-        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
-        with:
-          args: test
+        run: npm test
       - name: Run JS linter
-        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
+        run: npm run lint
+      - name: Run Cypress end-to-end
+        uses: cypress-io/github-action@v1
         with:
-          args: run lint
-      - name: Run cypress functional tests
-        uses: bartlett705/npm-cy@6fa505d818d66409f91d1f42e3b15d50a0cc4886
-        with:
-          args: run cypress:cli
+          # we have already installed all dependencies above
+          install: false
+          start: npm start
   deploy:
     name: Build container and deploy
     runs-on: ubuntu-latest
