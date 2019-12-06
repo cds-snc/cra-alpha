@@ -14,17 +14,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install npm dependencies
-        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
-        with:
-          args: install
+        run: npm install
       - name: Run jest unit tests
-        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
-        with:
-          args: test
+        run: npm test
       - name: Run JS linter
-        uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
-        with:
-          args: run lint
+        run: npm run lint
       - name: Run Cypress end-to-end
         uses: cypress-io/github-action@v1
         with:
