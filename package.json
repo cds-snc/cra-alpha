@@ -20,8 +20,6 @@
     "dev": "nodemon index.js",
     "lint": "node_modules/eslint/bin/eslint.js index.js src",
     "start": "NODE_ENV=production node index.js",
-    "pa11y:run": "node pa11y.test.js",
-    "pa11y": "start-server-and-test start http://localhost:3000 pa11y:run",
     "test": "node node_modules/jest/bin/jest.js src"
   },
   "keywords": [
@@ -48,7 +46,6 @@
     "eslint-plugin-jest": "^22.19.0",
     "jest": "^24.9.0",
     "nodemon": "^1.19.4",
-    "pa11y": "^5.3.0",
     "start-server-and-test": "^1.10.6",
     "supertest": "^4.0.2",
     "supertest-session": "^4.0.0"
